@@ -1,0 +1,990 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FA13F182-105D-4F9A-A9F4-155E2A06804C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>WindowsApplication2.My.MyApplication</StartupObject>
+    <RootNamespace>WindowsApplication2</RootNamespace>
+    <AssemblyName>Rotek sklad</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>ftp.vnenk.orava.sk\Rotek\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>false</MapFileExtensions>
+    <TargetCulture>sk-SK</TargetCulture>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Rotek sklad.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Rotek sklad.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo+200_67.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>80727860F8D91A75D803EC68B75B70D7D997B91A</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>WindowsApplication2_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bullzip.PDFWriter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=041d71cacb6e853c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Common Files\Bullzip\PDF Printer\API\Microsoft.NET\Framework\v4.0\Bullzip.PDFWriter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\Rotek sklad\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=3.1.2.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GemBox.Spreadsheet, Version=37.3.30.1000, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Excel\GemBox.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="GlacialList1.3">
+      <HintPath>Excel\GlacialList1.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>Excel\.net 4.0\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>Excel\.net 4.0\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Excel\.net 4.0\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="ObjectListView, Version=2.6.0.19310, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Excel\ObjectListView.dll</HintPath>
+    </Reference>
+    <Reference Include="RotekIS">
+      <HintPath>Excel\RotekIS.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cenove objednavky\Prehlad_CO.Designer.vb">
+      <DependentUpon>Prehlad_CO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cenove objednavky\Prehlad_CO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cenove objednavky\Pridat_CO.Designer.vb">
+      <DependentUpon>Pridat_CO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cenove objednavky\Pridat_CO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cenove objednavky\Zobraz_CO.Designer.vb">
+      <DependentUpon>Zobraz_CO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cenove objednavky\Zobraz_CO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cenove ponuky\Mail.Designer.vb">
+      <DependentUpon>Mail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cenove ponuky\Mail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cenove ponuky\Prehlad.Designer.vb">
+      <DependentUpon>Prehlad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cenove ponuky\Prehlad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cenove ponuky\Pridat_CP.Designer.vb">
+      <DependentUpon>Pridat_CP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cenove ponuky\Pridat_CP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cenove ponuky\Zobraz_CP.Designer.vb">
+      <DependentUpon>Zobraz_CP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cenove ponuky\Zobraz_CP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EMail.vb" />
+    <Compile Include="Evidencia\Evidencia.Designer.vb">
+      <DependentUpon>Evidencia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Evidencia\Evidencia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Firmy\Fima\nastF.Designer.vb">
+      <DependentUpon>nastF.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Firmy\Fima\nastF.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Firmy\mForm78.designer.vb">
+      <DependentUpon>mForm78.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Firmy\mForm78.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Firmy\Sklad\mpozicat.designer.vb">
+      <DependentUpon>mpozicat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Firmy\Sklad\mpozicat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Firmy\mPridat.designer.vb">
+      <DependentUpon>mPridat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Firmy\mPridat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Firmy\Sklad\msklad.designer.vb">
+      <DependentUpon>msklad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Firmy\Sklad\msklad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Firmy\Fima\msrotC.designer.vb">
+      <DependentUpon>msrotC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Firmy\Fima\msrotC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Firmy\Sklad\msrotV.designer.vb">
+      <DependentUpon>msrotV.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Firmy\Sklad\msrotV.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Firmy\mvymazat.designer.vb">
+      <DependentUpon>mvymazat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Firmy\mvymazat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Firmy\Fima\mzamestnanec.designer.vb">
+      <DependentUpon>mzamestnanec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Firmy\Fima\mzamestnanec.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Firmy\Sklad\mvratit.designer.vb">
+      <DependentUpon>mvratit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Firmy\Sklad\mvratit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formy\CustomDataGridView.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formy\MultiLineListBox.vb" />
+    <Compile Include="Hlavna\Chyby.vb" />
+    <Compile Include="Hlavna\export.Designer.vb">
+      <DependentUpon>export.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Hlavna\export.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hlavna\export_sklad.Designer.vb">
+      <DependentUpon>export_sklad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Hlavna\export_sklad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hlavna\Form2.Designer.vb">
+      <DependentUpon>Form2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Hlavna\Form2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fotk.Designer.vb">
+      <DependentUpon>Fotk.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Fotk.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hlavna\Heslo zmen.designer.vb">
+      <DependentUpon>Heslo zmen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Hlavna\Heslo zmen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hlavna\Heslo.designer.vb">
+      <DependentUpon>Heslo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Hlavna\Heslo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Evidencia\datum_box.Designer.vb">
+      <DependentUpon>datum_box.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Evidencia\datum_box.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Evidencia\Dokoncit.Designer.vb">
+      <DependentUpon>Dokoncit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Evidencia\Dokoncit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hlavna\Spust.Designer.vb">
+      <DependentUpon>Spust.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Hlavna\Spust.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hlavna\Udaje.vb" />
+    <Compile Include="Huta\Dodavatelia.Designer.vb">
+      <DependentUpon>Dodavatelia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Huta\Dodavatelia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Huta\Materialy.Designer.vb">
+      <DependentUpon>Materialy.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Huta\Materialy.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Huta\Vydajky.Designer.vb">
+      <DependentUpon>Vydajky.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Huta\Vydajky.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Huta\Hvydat.designer.vb">
+      <DependentUpon>Hvydat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Huta\Hvydat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Huta\Enfo.designer.vb">
+      <DependentUpon>Enfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Huta\Enfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Evidencia\Evid_Uprav.Designer.vb">
+      <DependentUpon>Evid_Uprav.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Evidencia\Evid_Uprav.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Firmy\Fima\Firma.Designer.vb">
+      <DependentUpon>Firma.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Firmy\Fima\Firma.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MailAttachment.vb" />
+    <Compile Include="Odpadky\Odpadky.Designer.vb">
+      <DependentUpon>Odpadky.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Odpadky\Odpadky.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Odpadky\Odpadky_pridat.designer.vb">
+      <DependentUpon>Odpadky_pridat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Odpadky\Odpadky_pridat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="POP3Client.vb" />
+    <Compile Include="RotekDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RotekDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="RotekDataSet.vb">
+      <DependentUpon>RotekDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="RotekDataSet2.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RotekDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\Firma_SQL.vb" />
+    <Compile Include="SQL\Huta_SQL.vb" />
+    <Compile Include="SQL\Material_SQL.vb" />
+    <Compile Include="SQL\Podzakazka_SQL.vb" />
+    <Compile Include="SQL\Prijemka_SQL.vb" />
+    <Compile Include="SQL\sqlExc.vb" />
+    <Compile Include="SQL\SQL_main.vb" />
+    <Compile Include="SQL\Vydajka_SQL.vb" />
+    <Compile Include="SQL\Zakazka_SQL.vb" />
+    <Compile Include="Zakazka\Vydajka-prehlad.Designer.vb">
+      <DependentUpon>Vydajka-prehlad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Zakazka\Vydajka-prehlad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zakazka\Hchyba.Designer.vb">
+      <DependentUpon>Hchyba.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Zakazka\Hchyba.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Huta\hForm78.designer.vb">
+      <DependentUpon>hForm78.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Huta\hForm78.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zakazka\Hmakro.designer.vb">
+      <DependentUpon>Hmakro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Zakazka\Hmakro.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zakazka\HmakroInfo.Designer.vb">
+      <DependentUpon>HmakroInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Zakazka\HmakroInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Huta\Hpridat.designer.vb">
+      <DependentUpon>Hpridat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Huta\Hpridat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iné\infosky.Designer.vb">
+      <DependentUpon>infosky.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Iné\infosky.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iné\nastrIne.Designer.vb">
+      <DependentUpon>nastrIne.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Iné\nastrIne.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iné\skladIne.designer.vb">
+      <DependentUpon>skladIne.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Iné\skladIne.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Iné\srotIne.Designer.vb">
+      <DependentUpon>srotIne.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Iné\srotIne.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Majetok\Majetok.Designer.vb">
+      <DependentUpon>Majetok.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Majetok\Majetok.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Majetok\M_pridat.Designer.vb">
+      <DependentUpon>M_pridat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Majetok\M_pridat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Majetok\M_odstranit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings.vb" />
+    <Compile Include="Firmy\Fima\Zoznam firiem.Designer.vb">
+      <DependentUpon>Zoznam firiem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Firmy\Fima\Zoznam firiem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sklad\info-nastroj.Designer.vb">
+      <DependentUpon>info-nastroj.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sklad\info-nastroj.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sklad vzácností\nastrvz.designer.vb">
+      <DependentUpon>nastrvz.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sklad vzácností\nastrvz.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hlavna\Pridat.Designer.vb">
+      <DependentUpon>Pridat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Hlavna\Pridat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hlavna\Form78.Designer.vb">
+      <DependentUpon>Form78.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Hlavna\Form78.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sklad vzácností\skladvz.designer.vb">
+      <DependentUpon>skladvz.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sklad vzácností\skladvz.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zakazka\Prijemka-prehlad.Designer.vb">
+      <DependentUpon>Prijemka-prehlad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Zakazka\Prijemka-prehlad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Huta\Prijemky.Designer.vb">
+      <DependentUpon>Prijemky.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Huta\Prijemky.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zakazka\Tlacitka\DL.Designer.vb">
+      <DependentUpon>DL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Zakazka\Tlacitka\DL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zakazka\Z_Info.Designer.vb">
+      <DependentUpon>Z_Info.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Zakazka\Z_Info.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zakazka\Z_Main.Designer.vb">
+      <DependentUpon>Z_Main.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Zakazka\Z_Main.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zamestnanec\pridatIne.designer.vb">
+      <DependentUpon>pridatIne.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Zamestnanec\pridatIne.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zamestnanec\srotC.designer.vb">
+      <DependentUpon>srotC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Zamestnanec\srotC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sklad\srotV.designer.vb">
+      <DependentUpon>srotV.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sklad\srotV.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sklad vzácností\srotVz.designer.vb">
+      <DependentUpon>srotVz.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sklad vzácností\srotVz.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hlavna\vymazat.Designer.vb">
+      <DependentUpon>vymazat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Hlavna\vymazat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zamestnanec\SrotZIne.designer.vb">
+      <DependentUpon>SrotZIne.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Zamestnanec\SrotZIne.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zamestnanec\VratitIne.designer.vb">
+      <DependentUpon>VratitIne.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Zamestnanec\VratitIne.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zamestnanec\VratitNaSklad.Designer.vb">
+      <DependentUpon>VratitNaSklad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Zamestnanec\VratitNaSklad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zamestnanec\zamestnanec.Designer.vb">
+      <DependentUpon>zamestnanec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Zamestnanec\zamestnanec.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sklad\sklad.Designer.vb">
+      <DependentUpon>sklad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sklad\sklad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zamestnanec\nastrclovek.Designer.vb">
+      <DependentUpon>nastrclovek.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Zamestnanec\nastrclovek.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sklad\nastrsklad.Designer.vb">
+      <DependentUpon>nastrsklad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sklad\nastrsklad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Cenove objednavky\Prehlad_CO.resx">
+      <DependentUpon>Prehlad_CO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cenove objednavky\Pridat_CO.resx">
+      <DependentUpon>Pridat_CO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cenove objednavky\Zobraz_CO.resx">
+      <DependentUpon>Zobraz_CO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cenove ponuky\Mail.resx">
+      <DependentUpon>Mail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cenove ponuky\Prehlad.resx">
+      <DependentUpon>Prehlad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cenove ponuky\Pridat_CP.resx">
+      <DependentUpon>Pridat_CP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cenove ponuky\Zobraz_CP.resx">
+      <DependentUpon>Zobraz_CP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Evidencia\Evidencia.resx">
+      <DependentUpon>Evidencia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Firmy\Fima\nastF.resx">
+      <DependentUpon>nastF.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Firmy\mForm78.resx">
+      <DependentUpon>mForm78.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Firmy\Sklad\mpozicat.resx">
+      <DependentUpon>mpozicat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Firmy\mPridat.resx">
+      <DependentUpon>mPridat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Firmy\Sklad\msklad.resx">
+      <DependentUpon>msklad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Firmy\Fima\msrotC.resx">
+      <DependentUpon>msrotC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Firmy\Sklad\msrotV.resx">
+      <DependentUpon>msrotV.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Firmy\mvymazat.resx">
+      <DependentUpon>mvymazat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Firmy\Fima\mzamestnanec.resx">
+      <DependentUpon>mzamestnanec.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Firmy\Sklad\mvratit.resx">
+      <DependentUpon>mvratit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hlavna\export.resx">
+      <DependentUpon>export.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hlavna\export_sklad.resx">
+      <DependentUpon>export_sklad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hlavna\Form2.resx">
+      <DependentUpon>Form2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fotk.resx">
+      <DependentUpon>Fotk.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hlavna\Heslo zmen.resx">
+      <DependentUpon>Heslo zmen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hlavna\Heslo.resx">
+      <DependentUpon>Heslo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Evidencia\datum_box.resx">
+      <DependentUpon>datum_box.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Evidencia\Dokoncit.resx">
+      <DependentUpon>Dokoncit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hlavna\Spust.resx">
+      <DependentUpon>Spust.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Huta\Dodavatelia.resx">
+      <DependentUpon>Dodavatelia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Huta\Materialy.resx">
+      <DependentUpon>Materialy.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Huta\Vydajky.resx">
+      <DependentUpon>Vydajky.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Huta\Hvydat.resx">
+      <DependentUpon>Hvydat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Huta\Enfo.resx">
+      <DependentUpon>Enfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Evidencia\Evid_Uprav.resx">
+      <DependentUpon>Evid_Uprav.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Firmy\Fima\Firma.resx">
+      <DependentUpon>Firma.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Odpadky\Odpadky.resx">
+      <DependentUpon>Odpadky.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Odpadky\Odpadky_pridat.resx">
+      <DependentUpon>Odpadky_pridat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EPPlus.dll" />
+    <EmbeddedResource Include="Zakazka\Vydajka-prehlad.resx">
+      <DependentUpon>Vydajka-prehlad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zakazka\Hchyba.resx">
+      <DependentUpon>Hchyba.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Huta\hForm78.resx">
+      <DependentUpon>hForm78.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zakazka\Hmakro.resx">
+      <DependentUpon>Hmakro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zakazka\HmakroInfo.resx">
+      <DependentUpon>HmakroInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Huta\Hpridat.resx">
+      <DependentUpon>Hpridat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Iné\infosky.resx">
+      <DependentUpon>infosky.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Iné\nastrIne.resx">
+      <DependentUpon>nastrIne.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Iné\skladIne.resx">
+      <DependentUpon>skladIne.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Iné\srotIne.resx">
+      <DependentUpon>srotIne.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Firmy\Fima\Zoznam firiem.resx">
+      <DependentUpon>Zoznam firiem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Majetok\Majetok.resx">
+      <DependentUpon>Majetok.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Majetok\M_odstranit.resx">
+      <DependentUpon>M_odstranit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Majetok\M_pridat.resx">
+      <DependentUpon>M_pridat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sklad\info-nastroj.resx">
+      <DependentUpon>info-nastroj.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sklad vzácností\nastrvz.resx">
+      <DependentUpon>nastrvz.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hlavna\Pridat.resx">
+      <DependentUpon>Pridat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hlavna\Form78.resx">
+      <DependentUpon>Form78.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sklad vzácností\skladvz.resx">
+      <DependentUpon>skladvz.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zakazka\Prijemka-prehlad.resx">
+      <DependentUpon>Prijemka-prehlad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Huta\Prijemky.resx">
+      <DependentUpon>Prijemky.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zakazka\Tlacitka\DL.resx">
+      <DependentUpon>DL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zakazka\Z_Info.resx">
+      <DependentUpon>Z_Info.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zakazka\Z_Main.resx">
+      <DependentUpon>Z_Main.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zamestnanec\pridatIne.resx">
+      <DependentUpon>pridatIne.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zamestnanec\srotC.resx">
+      <DependentUpon>srotC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sklad\srotV.resx">
+      <DependentUpon>srotV.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sklad vzácností\srotVz.resx">
+      <DependentUpon>srotVz.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hlavna\vymazat.resx">
+      <DependentUpon>vymazat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zamestnanec\SrotZIne.resx">
+      <DependentUpon>SrotZIne.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zamestnanec\VratitIne.resx">
+      <DependentUpon>VratitIne.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zamestnanec\VratitNaSklad.resx">
+      <DependentUpon>VratitNaSklad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zamestnanec\zamestnanec.resx">
+      <DependentUpon>zamestnanec.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sklad\sklad.resx">
+      <DependentUpon>sklad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zamestnanec\nastrclovek.resx">
+      <DependentUpon>nastrclovek.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sklad\nastrsklad.resx">
+      <DependentUpon>nastrsklad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zamestnanec\zamestnanec.sk.resx">
+      <DependentUpon>zamestnanec.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="My Project\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="RotekDataSet.xsc">
+      <DependentUpon>RotekDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="RotekDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RotekDataSet2.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="RotekDataSet.xss">
+      <DependentUpon>RotekDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="WindowsApplication2_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.3.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 3.5 SP2</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Databáza\" />
+    <Folder Include="Excel\" />
+    <Folder Include="EXCEL_SOURCE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo+200_67.ico" />
+    <None Include="Resources\64f4b126background.jpg" />
+    <EmbeddedResource Include="Resources\logo 200_67.gif" />
+    <None Include="Resources\Logo.png" />
+    <Content Include="Resources\EPPlus.pdb" />
+    <Content Include="Resources\ObjectListView.dll" />
+    <Content Include="Resources\tick_17-526120944.jpg" />
+    <Content Include="Resources\x-wrong-cross-no-hi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

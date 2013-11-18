@@ -1,0 +1,5 @@
+C:\Users\Fred\Desktop\Pop3MailClient\Pop3MailClient\bin\Debug\Pop3MailClient.exe
+C:\Users\Fred\Desktop\Pop3MailClient\Pop3MailClient\bin\Debug\Pop3MailClient.pdb
+C:\Users\Fred\Desktop\Pop3MailClient\Pop3MailClient\obj\Debug\Pop3MailClient.csprojResolveAssemblyReference.cache
+C:\Users\Fred\Desktop\Pop3MailClient\Pop3MailClient\obj\Debug\Pop3MailClient.exe
+C:\Users\Fred\Desktop\Pop3MailClient\Pop3MailClient\obj\Debug\Pop3MailClient.pdb

@@ -1,0 +1,4 @@
+C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\Excel\GemBox.Spreadsheet.Professional.v2.9\Crack\src\bin\Debug\GemBox.Spreadsheet.dll
+C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\Excel\GemBox.Spreadsheet.Professional.v2.9\Crack\src\bin\Debug\GemBox.Spreadsheet.pdb
+C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\Excel\GemBox.Spreadsheet.Professional.v2.9\Crack\src\obj\Debug\GemBox.Spreadsheet.dll
+C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\Excel\GemBox.Spreadsheet.Professional.v2.9\Crack\src\obj\Debug\GemBox.Spreadsheet.pdb

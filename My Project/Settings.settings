@@ -1,0 +1,48 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="admin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">dffdf</Value>
+    </Setting>
+    <Setting Name="zakazkar" Type="System.String" Scope="User">
+      <Value Profile="(Default)">úáëáú</Value>
+    </Setting>
+    <Setting Name="skladnik" Type="System.String" Scope="User">
+      <Value Profile="(Default)">óëěáä</Value>
+    </Setting>
+    <Setting Name="Rotek2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">fdg</Value>
+    </Setting>
+    <Setting Name="Rotek" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=77.234.226.34;Initial Catalog=RotekSklad;User ID=lubosch;Password=aassdd&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=77.234.226.34;Initial Catalog=RotekSklad;User ID=lubosch;Password=aassdd</Value>
+    </Setting>
+    <Setting Name="Rotek3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">bfd</Value>
+    </Setting>
+    <Setting Name="Uzivatel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Nikto</Value>
+    </Setting>
+    <Setting Name="RotekConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=77.234.226.34;Initial Catalog=Rotek;Persist Security Info=True;User ID=lubosch;Password=aassdd&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=77.234.226.34;Initial Catalog=Rotek;Persist Security Info=True;User ID=lubosch;Password=aassdd</Value>
+    </Setting>
+    <Setting Name="RotekConnectionString1" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=77.234.226.34;Initial Catalog=Rotek;Persist Security Info=True;User ID=lubosch;Password=aassdd&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=77.234.226.34;Initial Catalog=Rotek;Persist Security Info=True;User ID=lubosch;Password=aassdd</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

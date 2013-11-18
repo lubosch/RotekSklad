@@ -1,0 +1,777 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{54E78CB1-0192-4539-BB80-06D91D6B9A33}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>GemBox.Spreadsheet</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GemBox</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>0.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <Name>mscorlib</Name>
+      <HintPath>mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+      <HintPath>System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+      <HintPath>System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.Xml</Name>
+      <HintPath>System.Xml.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\AbstractRange.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\AbsXLSRec.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\AbsXLSRecords.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\Area3dFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\AreaErr3dFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\AreaFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ArrayFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\BinaryOperatorFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\BinaryWritable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\BitmapShape.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\BOFSubstreamType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\BoolFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\BordersData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\BoundSheetRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\BoundSheetSheetType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\BoundSheetVisibility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\Buffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ByteArrRec.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\CellBorder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\CellBorders.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\CellFormula.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\CellRange.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\CellRangeEnumerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\CellRecordHeader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\CellStyle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\CellStyleCachedCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\CellStyleData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\CellStyleDataIndexes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ClusterID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\CmoObjSubRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ColumnInfoOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\CommentShape.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ContinueRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ControlFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\CsvType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\DBCellRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\DefaultRowHeightOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\DirectoryBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\EmbeddedTemplateBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ErrFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelCell.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelCellCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelColumn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelColumnCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelColumnRowBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelComment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelFillPattern.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelFont.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelFontData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelLongString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelLongStrings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelPicture.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelPictureCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelPrintOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelRow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelRowCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelRowColumnCellCollectionBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelRowColumnCollectionBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelShape.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelShapeCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelShortString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelStringBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelStringOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelStringWithoutLength.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelViewOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelWorksheet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExcelWorksheetCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExternsheetRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ExtSSTRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FillPatternData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FillPatternStyle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FontOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FopteStructure.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FormulaFunctionInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FormulaFunctionsTable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FormulaOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FormulaParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FormulaRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FormulaTokenClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FormulaTokenCode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FormulaTokensFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FormulaTokenType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FormulaTokenTypeEx.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FunctionFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\FunctionVarFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\HashtableElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\HorizontalAlignmentStyle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\HorizontalPageBreak.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\HorizontalPageBreakCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\HorizontalPageBreaksRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ImageRecordsFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\IndexedHashCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\IndexRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\IndividualBorder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\IntFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\IoOperation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\IoOperationInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\IoWarningEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\IoWarningEventHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\LabelSSTRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\LineStyle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ManualPackageBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MergedCellRange.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MergedCellRanges.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MergedCellsRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MissArgFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsoBaseRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsoBitmapPictureRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsoBlipType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsoContainerRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsoDelayedRecords.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsoDrawingGroupRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsoDrawingRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsofbtBseRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsofbtClientAnchorRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsofbtClientDataRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsofbtClientTextBoxRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsofbtDggRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsofbtDgRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsofbtOptRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsofbtSpgrRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsofbtSpRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsoOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsoPreservedRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MsoType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MulBlankRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MulRKRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\MultipleBorders.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\NamedRange.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\NamedRangeCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\NameFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\NameRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\NoteRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\NumberFormatCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\NumbersParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\NumFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ObjRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ObjSubRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\OptimizedBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\PackageBuilderBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\PageBreak.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\PageBreakCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\PaletteRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\PreservedRecords.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\RangeIndexingMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\Ref3dFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\RefErr3dFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\RefErrFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\RefFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\RKRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\RowColumnResolutionMethod.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\RowOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\RowRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\ScriptPosition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\SetupOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\SheetIndexes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\SpreadsheetException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\SpreadsheetInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\SSTRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\SSTRelated.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\StrFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\StyleRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\SupBookRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\TxoRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\UnaryOperatorFormulaToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\UnderlineStyle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\UnknownObjSubRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\Utilities.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\VerticalAlignmentStyle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\VerticalPageBreak.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\VerticalPageBreakCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\VerticalPageBreaksRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\WeakHashtable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\WeekReferenceWithHash.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\Window1Options.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\Window2Record.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\WorksheetWindowOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\WSBoolOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\XFOptions1.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\XFOptions2.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\XLSDescriptor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\XLSDescriptors.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\XLSFileReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\XLSFileWriter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\XlsOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\XLSRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\XlsxDirector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\XlsxFillStyle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\XlsxOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\XlsxReadDirector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Spreadsheet\XlsxWriteDirector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CompoundFileData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CompoundFileException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GetStreamDataHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GXLicensing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GXRandom.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="KeyUtilities.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ole2CompoundFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ole2DirectoryEntry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ole2Storage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ole2Stream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ReadData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="VisitDirectoryEntryArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="VisitDirectoryEntryHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WriteData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Spreadsheet\OpenXml\Template\docProps\app.xml" />
+    <EmbeddedResource Include="Spreadsheet\OpenXml\Template\docProps\core.xml" />
+    <EmbeddedResource Include="Spreadsheet\OpenXml\Template\xl\styles.xml" />
+    <EmbeddedResource Include="Spreadsheet\OpenXml\Template\xl\theme\theme1.xml" />
+    <EmbeddedResource Include="Spreadsheet\OpenXml\Template\xl\workbook.xml" />
+    <EmbeddedResource Include="Spreadsheet\OpenXml\Template\[Content_Types].xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Spreadsheet\OpenXml\Template\xl\_rels\workbook!xml.rels" />
+    <EmbeddedResource Include="Spreadsheet\OpenXml\Template\_rels\%40.rels" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
