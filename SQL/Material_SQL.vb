@@ -209,6 +209,43 @@ Public Class Material_SQL
 
     End Sub
 
+    Public Shared Sub getChoices(ByRef dd As DataTable, material As Material_SQL)
+        Dim velkostMax As Integer = material.kusov * material.velkost
+        dd.Clear()
 
+        SQL_main.AddCommand("SELECT m.sirka, m.rozmer, m.velkost, m.kusov FROM Material as m INNER JOIN")
+        SQL_main.AddCommand("~   MaterialVseobecne AS mv ON mv.ID = m.Material_ID INNER JOIN")
+        SQL_main.AddCommand("~   MaterialNazov AS mn ON mn.ID = mv.Nazov_ID INNER JOIN")
+        SQL_main.AddCommand("~   MaterialDruh AS md ON md.ID = mn.Druh_ID")
+        SQL_main.AddCommand("~WHERE mn.Nazov ='" & material.nazov & "' AND md.Nazov='" & material.druh & "' ")
+
+
+        Select Case material.typ
+            Case "Plech"
+                'SQL_main.AddCommand("~AND ")
+            Case "Valec"
+                SQL_main.AddCommand("~AND m.Rozmer = " & material.rozmer & " AND m.Velkost >= " & material.velkost)
+            Case "Rurka"
+            Case "6 - hran"
+            Case "L - profil"
+            Case "U - profil"
+            Case "Jokelt"
+            Case "Hranol"
+                SQL_main.AddCommand("~AND (m.Sirka = " & material.sirka & " AND m.Rozmer = " & material.rozmer & " AND m.Velkost >= " & material.velkost)
+                SQL_main.AddCommand("~OR m.Sirka = " & material.rozmer & " AND m.Rozmer = " & material.sirka & " AND m.Velkost >= " & material.velkost)
+                SQL_main.AddCommand("~OR m.Sirka >= " & material.sirka & " AND m.Rozmer = " & material.rozmer & " AND m.Velkost = " & material.velkost)
+                SQL_main.AddCommand("~OR m.Sirka >= " & material.rozmer & " AND m.Rozmer = " & material.sirka & " AND m.Velkost = " & material.velkost)
+                SQL_main.AddCommand("~OR m.Sirka = " & material.sirka & " AND m.Rozmer >= " & material.rozmer & " AND m.Velkost = " & material.velkost)
+                SQL_main.AddCommand("~OR m.Sirka = " & material.rozmer & " AND m.Rozmer >= " & material.sirka & " AND m.Velkost = " & material.velkost & ")")
+
+
+        End Select
+
+        SQL_main.AddCommand("~ORDER BY m.Velkost")
+        SQL_main.Commit_List(dd)
+
+
+
+    End Sub
 
 End Class

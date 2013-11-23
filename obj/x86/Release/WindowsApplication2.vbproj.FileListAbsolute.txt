@@ -58,7 +58,6 @@ C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsA
 C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Dodavatelia.resources
 C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Materialy.resources
 C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Vydajky.resources
-C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Hvydat.resources
 C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.enfo.resources
 C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Evid_Uprav.resources
 C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Firma.resources
@@ -108,3 +107,5 @@ C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsA
 C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\obj\x86\Release\Rotek sklad.TrustInfo.xml
 C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\obj\x86\Release\Rotek sklad.exe.manifest
 C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\obj\x86\Release\Rotek sklad.application
+C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.vbprojResolveAssemblyReference.cache
+C:\Users\Fred\Documents\Visual Studio 2012\Projects\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Hvydat.resources

@@ -105,7 +105,7 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=77.234.226.34;Initial Catalog=RotekSklad;User ID=lubosch;Password=aas"& _ 
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.150;Initial Catalog=RotekSklad;User ID=lubosch;Password=aas"& _ 
             "sdd")>  _
         Public ReadOnly Property Rotek() As String
             Get
@@ -140,7 +140,7 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=77.234.226.34;Initial Catalog=Rotek;Persist Security Info=True;User I"& _ 
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.150;Initial Catalog=Rotek;Persist Security Info=True;User I"& _ 
             "D=lubosch;Password=aassdd")>  _
         Public ReadOnly Property RotekConnectionString() As String
             Get
@@ -151,7 +151,7 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=77.234.226.34;Initial Catalog=Rotek;Persist Security Info=True;User I"& _ 
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.150;Initial Catalog=Rotek;Persist Security Info=True;User I"& _ 
             "D=lubosch;Password=aassdd")>  _
         Public ReadOnly Property RotekConnectionString1() As String
             Get

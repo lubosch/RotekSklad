@@ -172,11 +172,10 @@ Public Class Hpridat
             Exit Sub
         End If
 
-        Dim druh, nazov, typ As String
+        Dim druh, nazov As String
         druh = TextBox4.Text.Trim
         nazov = TextBox6.Text.Trim
 
-        Dim sirka, rozmer, s_rozmer As Integer
 
         'If rozmer.IndexOf("r") = rozmer.Length - 1 Or rozmer.IndexOf("d") = rozmer.Length - 1 Or (rozmer.IndexOf("x") > 0 And rozmer.IndexOf("x") < rozmer.Length - 1) Then
         'Else
@@ -204,85 +203,10 @@ Public Class Hpridat
             Exit Sub
         End Try
 
+        Dim rozmery As Rozmery
+        rozmery = Hvydat.get_rozmery(TextBox5.Text, TextBox7.Text, TextBox14.Text, TextBox1.Text, typ_slovom)
+
         Try
-
-            Try
-                sirka = TextBox5.Text
-            Catch ex As Exception
-                Chyby.Show("Zle zadaná šírka")
-                Exit Sub
-            End Try
-            Try
-                rozmer = TextBox7.Text
-            Catch ex As Exception
-                Chyby.Show("Zle zadanô " + Label4.Text)
-                Exit Sub
-            End Try
-            Try
-                velkost = TextBox1.Text
-
-            Catch ex As Exception
-                Chyby.Show("Zle zadaná veľkosť")
-                Exit Sub
-            End Try
-            Try
-                s_rozmer = TextBox14.Text
-            Catch ex As Exception
-                Chyby.Show("Zle zadany s-rozmer")
-                Exit Sub
-            End Try
-
-            typ = typ_slovom()
-
-            Select Case typ
-                Case "Valec"
-                    sirka = -1
-                    s_rozmer = -1
-                Case "Plech"
-                    If sirka < rozmer Then
-                        Dim pom As Integer = sirka
-                        sirka = rozmer
-                        rozmer = pom
-                    End If
-                    s_rozmer = -1
-                Case "Rurka"
-                    s_rozmer = -1
-                    If rozmer < sirka Then
-                        Dim t As Integer = rozmer
-                        rozmer = sirka
-                        sirka = t
-                    End If
-                Case "6 - hran"
-                    sirka = -1
-                    s_rozmer = -1
-                Case "L - profil"
-                    If rozmer > sirka Then
-                        Dim pom As Integer = sirka
-                        sirka = rozmer
-                        rozmer = pom
-                    End If
-                Case "U - profil"
-                    If s_rozmer * 2 - sirka > 0 Then
-                        Chyby.Show("Nefunkcne hodnoty")
-                        Exit Sub
-                    End If
-                Case "Jokelt"
-                    If rozmer > sirka Then
-                        Dim pom As Integer = sirka
-                        sirka = rozmer
-                        rozmer = pom
-                    End If
-                Case "Hranol"
-                    If rozmer > sirka Then
-                        Dim pom As Integer = sirka
-                        sirka = rozmer
-                        rozmer = pom
-                    End If
-
-                Case Else
-                    Chyby.Show("Neznamy typ")
-                    Exit Sub
-            End Select
 
             If kusov < 0 AndAlso Form78.heslo <> Form78.admin Then
                 Chyby.Show("Nemáte právo nechávať zmiznúť zo skladu materiál. To môže len administrator")
@@ -290,7 +214,7 @@ Public Class Hpridat
             End If
 
             Try
-                Dim jdsfb As Double = Huta_SQL.objem(rozmer, velkost, sirka, s_rozmer, typ)
+                Dim jdsfb As Double = Huta_SQL.objem(rozmery.rozmer, rozmery.velkost, rozmery.sirka, rozmery.s_rozmer, rozmery.typ)
             Catch ex As Exception
                 Chyby.Show("Zle zadaný rozmer")
                 Exit Sub
@@ -326,11 +250,11 @@ Public Class Hpridat
 
             Dim prijemkaTableAdapter As PrijemkyTableAdapter = New PrijemkyTableAdapter
             Dim prijemka_ID As Integer = prijemkaTableAdapter.byNazov(Label16.Text)
-            Dim material As Material_SQL = New Material_SQL(druh, nazov, sirka, rozmer, s_rozmer, velkost, 0, typ)
+            Dim material As Material_SQL = New Material_SQL(druh, nazov, rozmery.sirka, rozmery.rozmer, rozmery.s_rozmer, rozmery.velkost, 0, rozmery.typ)
             Dim material_id As Integer = material.save
             Dim material_plochac As Material_SQL = Nothing
             If RadioButton2.Checked Then
-                material_plochac = New Material_SQL(druh, nazov, -1, -1, -1, velkost, 0, typ)
+                material_plochac = New Material_SQL(druh, nazov, -1, -1, -1, rozmery.velkost, 0, rozmery.typ)
                 material_plochac.save()
             End If
 
@@ -416,7 +340,7 @@ Public Class Hpridat
 
 
     End Sub
-    Private Function typ_oznac(typ As String) As String
+    Private Sub typ_oznac(typ As String)
 
         Select Case typ
             Case "Plech"
@@ -437,7 +361,7 @@ Public Class Hpridat
                 RadioButton8.Checked = True
 
         End Select
-    End Function
+    End Sub
 
     Private Function typ_slovom() As String
         If RadioButton1.Checked Then
@@ -992,7 +916,7 @@ Public Class Hpridat
     Private Sub TextBox1_Enter(sender As System.Object, e As System.EventArgs) Handles TextBox1.Leave, TextBox1.Enter
         Try
 
-            material_hustota_cena
+            material_hustota_cena()
         Catch ex As Exception
 
         End Try

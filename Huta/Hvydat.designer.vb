@@ -34,11 +34,8 @@ Partial Class Hvydat
         Me.Menpr = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Priezvisko = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TextBox7 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.TextBox9 = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -68,13 +65,7 @@ Partial Class Hvydat
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.DataGridView3 = New System.Windows.Forms.DataGridView()
-        Me.TextBox14 = New System.Windows.Forms.TextBox()
-        Me.Label23 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -83,12 +74,6 @@ Partial Class Hvydat
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.TextBox10 = New System.Windows.Forms.TextBox()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
         Me.VydajkyTableAdapter = New WindowsApplication2.RotekDataSetTableAdapters.VydajkyTableAdapter()
         Me.Material_VydajkaTableAdapter = New WindowsApplication2.RotekDataSetTableAdapters.Material_VydajkaTableAdapter()
         Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
@@ -104,19 +89,36 @@ Partial Class Hvydat
         Me.EmployerTableAdapter = New WindowsApplication2.RotekDataSetTableAdapters.EmployerTableAdapter()
         Me.MaterialDruhTableAdapter = New WindowsApplication2.RotekDataSetTableAdapters.MaterialDruhTableAdapter()
         Me.MaterialNazovTableAdapter = New WindowsApplication2.RotekDataSetTableAdapters.MaterialNazovTableAdapter()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.MaterialBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.MaterialTableAdapter = New WindowsApplication2.RotekDataSetTableAdapters.MaterialTableAdapter()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.TextBox13 = New System.Windows.Forms.TextBox()
-        Me.Button9 = New System.Windows.Forms.Button()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TextBox17 = New System.Windows.Forms.TextBox()
-        Me.Label24 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.TextBox18 = New System.Windows.Forms.TextBox()
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.Velkost = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Kusov = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Zvysok = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.DataGridView4 = New System.Windows.Forms.DataGridView()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Celkovo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ZvysokKs = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.MaterialNazovBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RotekDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MaterialDruhBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,10 +131,8 @@ Partial Class Hvydat
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmployerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MaterialBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer1.Panel1.SuspendLayout()
-        Me.SplitContainer1.Panel2.SuspendLayout()
-        Me.SplitContainer1.SuspendLayout()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button1
@@ -148,17 +148,17 @@ Partial Class Hvydat
         'Button2
         '
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Button2.Location = New System.Drawing.Point(145, 349)
+        Me.Button2.Location = New System.Drawing.Point(885, 440)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(81, 28)
+        Me.Button2.Size = New System.Drawing.Size(126, 43)
         Me.Button2.TabIndex = 28
-        Me.Button2.Text = "Vziať"
+        Me.Button2.Text = "Vziať zo skladu"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'TextBox1
         '
         Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox1.Location = New System.Drawing.Point(5, 170)
+        Me.TextBox1.Location = New System.Drawing.Point(489, 130)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(103, 20)
         Me.TextBox1.TabIndex = 12
@@ -219,14 +219,6 @@ Partial Class Hvydat
         Me.Priezvisko.HeaderText = "Priezvisko"
         Me.Priezvisko.Name = "Priezvisko"
         '
-        'TextBox7
-        '
-        Me.TextBox7.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox7.Location = New System.Drawing.Point(9, 81)
-        Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(99, 20)
-        Me.TextBox7.TabIndex = 10
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -247,30 +239,10 @@ Partial Class Hvydat
         Me.Label3.TabIndex = 18
         Me.Label3.Text = "Názov materiálu"
         '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label4.Location = New System.Drawing.Point(9, 61)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(91, 17)
-        Me.Label4.TabIndex = 19
-        Me.Label4.Text = "Rozmer [mm]"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label5.Location = New System.Drawing.Point(9, 150)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(96, 17)
-        Me.Label5.TabIndex = 20
-        Me.Label5.Text = "Do dĺžky [mm]"
-        '
         'TextBox9
         '
         Me.TextBox9.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox9.Location = New System.Drawing.Point(130, 36)
+        Me.TextBox9.Location = New System.Drawing.Point(605, 132)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.Size = New System.Drawing.Size(87, 20)
         Me.TextBox9.TabIndex = 14
@@ -280,7 +252,7 @@ Partial Class Hvydat
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label11.Location = New System.Drawing.Point(123, 17)
+        Me.Label11.Location = New System.Drawing.Point(598, 113)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(115, 17)
         Me.Label11.TabIndex = 29
@@ -547,25 +519,6 @@ Partial Class Hvydat
         Me.RadioButton1.Text = "Valec"
         Me.RadioButton1.UseVisualStyleBackColor = False
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label2.Location = New System.Drawing.Point(9, 16)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(74, 17)
-        Me.Label2.TabIndex = 54
-        Me.Label2.Text = "Šírka [mm]"
-        '
-        'TextBox5
-        '
-        Me.TextBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox5.Location = New System.Drawing.Point(9, 36)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(99, 20)
-        Me.TextBox5.TabIndex = 8
-        Me.TextBox5.Text = "-1"
-        '
         'DataGridView3
         '
         Me.DataGridView3.AllowUserToAddRows = False
@@ -574,54 +527,17 @@ Partial Class Hvydat
         Me.DataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.DataGridView3.Location = New System.Drawing.Point(0, 417)
+        Me.DataGridView3.Location = New System.Drawing.Point(0, 489)
         Me.DataGridView3.Name = "DataGridView3"
         Me.DataGridView3.ReadOnly = True
         Me.DataGridView3.Size = New System.Drawing.Size(1023, 164)
         Me.DataGridView3.TabIndex = 59
         '
-        'TextBox14
-        '
-        Me.TextBox14.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox14.Location = New System.Drawing.Point(9, 127)
-        Me.TextBox14.Name = "TextBox14"
-        Me.TextBox14.Size = New System.Drawing.Size(99, 20)
-        Me.TextBox14.TabIndex = 11
-        Me.TextBox14.Text = "-1"
-        '
-        'Label23
-        '
-        Me.Label23.AutoSize = True
-        Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label23.Location = New System.Drawing.Point(9, 107)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(77, 17)
-        Me.Label23.TabIndex = 61
-        Me.Label23.Text = "stena [mm]"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(114, 169)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(58, 13)
-        Me.Label6.TabIndex = 62
-        Me.Label6.Text = "Na sklade:"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(169, 169)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(13, 13)
-        Me.Label7.TabIndex = 63
-        Me.Label7.Text = "0"
-        '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label8.Location = New System.Drawing.Point(12, 150)
+        Me.Label8.Location = New System.Drawing.Point(347, 246)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(96, 17)
         Me.Label8.TabIndex = 69
@@ -630,7 +546,7 @@ Partial Class Hvydat
         'TextBox2
         '
         Me.TextBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox2.Location = New System.Drawing.Point(10, 170)
+        Me.TextBox2.Location = New System.Drawing.Point(345, 266)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(99, 20)
         Me.TextBox2.TabIndex = 67
@@ -639,7 +555,7 @@ Partial Class Hvydat
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label9.Location = New System.Drawing.Point(10, 107)
+        Me.Label9.Location = New System.Drawing.Point(345, 203)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(77, 17)
         Me.Label9.TabIndex = 71
@@ -648,7 +564,7 @@ Partial Class Hvydat
         'TextBox3
         '
         Me.TextBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox3.Location = New System.Drawing.Point(10, 127)
+        Me.TextBox3.Location = New System.Drawing.Point(345, 223)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(99, 20)
         Me.TextBox3.TabIndex = 66
@@ -657,7 +573,7 @@ Partial Class Hvydat
         'TextBox8
         '
         Me.TextBox8.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox8.Location = New System.Drawing.Point(10, 36)
+        Me.TextBox8.Location = New System.Drawing.Point(345, 130)
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.Size = New System.Drawing.Size(99, 20)
         Me.TextBox8.TabIndex = 64
@@ -667,7 +583,7 @@ Partial Class Hvydat
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label10.Location = New System.Drawing.Point(7, 19)
+        Me.Label10.Location = New System.Drawing.Point(342, 113)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(74, 17)
         Me.Label10.TabIndex = 70
@@ -677,7 +593,7 @@ Partial Class Hvydat
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label12.Location = New System.Drawing.Point(10, 61)
+        Me.Label12.Location = New System.Drawing.Point(345, 153)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(91, 17)
         Me.Label12.TabIndex = 68
@@ -686,65 +602,10 @@ Partial Class Hvydat
         'TextBox10
         '
         Me.TextBox10.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox10.Location = New System.Drawing.Point(10, 81)
+        Me.TextBox10.Location = New System.Drawing.Point(345, 173)
         Me.TextBox10.Name = "TextBox10"
         Me.TextBox10.Size = New System.Drawing.Size(99, 20)
         Me.TextBox10.TabIndex = 65
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label13.Location = New System.Drawing.Point(7, -1)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(164, 13)
-        Me.Label13.TabIndex = 72
-        Me.Label13.Text = "ZOBRAŤ ZO ZVYŠKOVÝCH"
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(13, 196)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(95, 23)
-        Me.Button3.TabIndex = 74
-        Me.Button3.Text = "Celý kus"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(116, 36)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(23, 23)
-        Me.Button4.TabIndex = 75
-        Me.Button4.Text = "O"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'Button5
-        '
-        Me.Button5.Location = New System.Drawing.Point(116, 79)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(23, 23)
-        Me.Button5.TabIndex = 76
-        Me.Button5.Text = "O"
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'Button6
-        '
-        Me.Button6.Location = New System.Drawing.Point(115, 125)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(23, 23)
-        Me.Button6.TabIndex = 77
-        Me.Button6.Text = "O"
-        Me.Button6.UseVisualStyleBackColor = True
-        '
-        'Button7
-        '
-        Me.Button7.Location = New System.Drawing.Point(115, 168)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(23, 23)
-        Me.Button7.TabIndex = 78
-        Me.Button7.Text = "O"
-        Me.Button7.UseVisualStyleBackColor = True
         '
         'VydajkyTableAdapter
         '
@@ -851,24 +712,6 @@ Partial Class Hvydat
         '
         Me.MaterialNazovTableAdapter.ClearBeforeFill = True
         '
-        'Button8
-        '
-        Me.Button8.Location = New System.Drawing.Point(230, 167)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(23, 23)
-        Me.Button8.TabIndex = 88
-        Me.Button8.Text = "R"
-        Me.Button8.UseVisualStyleBackColor = True
-        '
-        'ListBox2
-        '
-        Me.ListBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.Location = New System.Drawing.Point(5, 190)
-        Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(103, 108)
-        Me.ListBox2.TabIndex = 89
-        '
         'MaterialBindingSource
         '
         Me.MaterialBindingSource.DataMember = "Material"
@@ -882,7 +725,7 @@ Partial Class Hvydat
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label19.Location = New System.Drawing.Point(12, 220)
+        Me.Label19.Location = New System.Drawing.Point(347, 289)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(111, 17)
         Me.Label19.TabIndex = 91
@@ -891,26 +734,17 @@ Partial Class Hvydat
         'TextBox13
         '
         Me.TextBox13.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox13.Location = New System.Drawing.Point(10, 240)
+        Me.TextBox13.Location = New System.Drawing.Point(345, 309)
         Me.TextBox13.Name = "TextBox13"
         Me.TextBox13.Size = New System.Drawing.Size(99, 20)
         Me.TextBox13.TabIndex = 90
         Me.TextBox13.Text = "1"
         '
-        'Button9
-        '
-        Me.Button9.Location = New System.Drawing.Point(115, 279)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(23, 23)
-        Me.Button9.TabIndex = 94
-        Me.Button9.Text = "O"
-        Me.Button9.UseVisualStyleBackColor = True
-        '
         'Label21
         '
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label21.Location = New System.Drawing.Point(12, 261)
+        Me.Label21.Location = New System.Drawing.Point(347, 337)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(129, 17)
         Me.Label21.TabIndex = 93
@@ -919,103 +753,271 @@ Partial Class Hvydat
         'TextBox17
         '
         Me.TextBox17.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox17.Location = New System.Drawing.Point(10, 281)
+        Me.TextBox17.Location = New System.Drawing.Point(345, 357)
         Me.TextBox17.Name = "TextBox17"
         Me.TextBox17.Size = New System.Drawing.Size(99, 20)
         Me.TextBox17.TabIndex = 92
-        '
-        'Label24
-        '
-        Me.Label24.AutoSize = True
-        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label24.Location = New System.Drawing.Point(9, 0)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(131, 13)
-        Me.Label24.TabIndex = 95
-        Me.Label24.Text = "ZO SKLADU ZOBRAŤ"
         '
         'Label25
         '
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label25.Location = New System.Drawing.Point(258, 19)
+        Me.Label25.Location = New System.Drawing.Point(810, 113)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(91, 17)
+        Me.Label25.Size = New System.Drawing.Size(116, 17)
         Me.Label25.TabIndex = 97
-        Me.Label25.Text = "Celých kusov"
+        Me.Label25.Text = "Kusy so zvyškom"
         '
         'TextBox18
         '
         Me.TextBox18.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox18.Location = New System.Drawing.Point(261, 38)
+        Me.TextBox18.Location = New System.Drawing.Point(813, 132)
         Me.TextBox18.Name = "TextBox18"
-        Me.TextBox18.Size = New System.Drawing.Size(87, 20)
+        Me.TextBox18.Size = New System.Drawing.Size(111, 20)
         Me.TextBox18.TabIndex = 96
         Me.TextBox18.Text = "1"
         '
-        'SplitContainer1
+        'Label13
         '
-        Me.SplitContainer1.Location = New System.Drawing.Point(411, 111)
-        Me.SplitContainer1.Name = "SplitContainer1"
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.Label13.Location = New System.Drawing.Point(342, 100)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(61, 13)
+        Me.Label13.TabIndex = 98
+        Me.Label13.Text = "ZOBRAŤ:"
         '
-        'SplitContainer1.Panel1
+        'Label26
         '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.ListBox2)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Label25)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Label24)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.TextBox7)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.TextBox18)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Label4)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.TextBox9)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Label11)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Label2)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.TextBox5)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.TextBox14)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Label23)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.TextBox1)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Button8)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Label5)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Label6)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Label7)
+        Me.Label26.AutoSize = True
+        Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.Label26.Location = New System.Drawing.Point(486, 100)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(81, 13)
+        Me.Label26.TabIndex = 99
+        Me.Label26.Text = "ZO SKLADU:"
         '
-        'SplitContainer1.Panel2
+        'DataGridView2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Label13)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.TextBox10)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Label12)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Label10)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Button9)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.TextBox8)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Label21)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.TextBox3)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.TextBox17)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Label9)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Label19)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.TextBox2)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.TextBox13)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Label8)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Button3)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Button4)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Button5)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Button6)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Button7)
-        Me.SplitContainer1.Size = New System.Drawing.Size(589, 303)
-        Me.SplitContainer1.SplitterDistance = 386
-        Me.SplitContainer1.TabIndex = 98
+        Me.DataGridView2.AllowUserToAddRows = False
+        Me.DataGridView2.AllowUserToDeleteRows = False
+        Me.DataGridView2.AllowUserToOrderColumns = True
+        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Velkost, Me.Kusov, Me.Zvysok})
+        Me.DataGridView2.Location = New System.Drawing.Point(489, 156)
+        Me.DataGridView2.Name = "DataGridView2"
+        Me.DataGridView2.ReadOnly = True
+        Me.DataGridView2.RowHeadersWidth = 5
+        Me.DataGridView2.Size = New System.Drawing.Size(308, 150)
+        Me.DataGridView2.TabIndex = 100
+        '
+        'Velkost
+        '
+        Me.Velkost.HeaderText = "Veľkosť"
+        Me.Velkost.Name = "Velkost"
+        Me.Velkost.ReadOnly = True
+        '
+        'Kusov
+        '
+        Me.Kusov.HeaderText = "Kusov"
+        Me.Kusov.Name = "Kusov"
+        Me.Kusov.ReadOnly = True
+        '
+        'Zvysok
+        '
+        Me.Zvysok.HeaderText = "Zvyšok"
+        Me.Zvysok.Name = "Zvysok"
+        Me.Zvysok.ReadOnly = True
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(930, 130)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 101
+        Me.Button3.Text = "Pridať"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'DataGridView4
+        '
+        Me.DataGridView4.AllowUserToAddRows = False
+        Me.DataGridView4.AllowUserToDeleteRows = False
+        Me.DataGridView4.AllowUserToOrderColumns = True
+        Me.DataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView4.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.Celkovo, Me.DataGridViewTextBoxColumn4, Me.ZvysokKs})
+        Me.DataGridView4.Location = New System.Drawing.Point(489, 342)
+        Me.DataGridView4.Name = "DataGridView4"
+        Me.DataGridView4.ReadOnly = True
+        Me.DataGridView4.RowHeadersWidth = 5
+        Me.DataGridView4.Size = New System.Drawing.Size(442, 95)
+        Me.DataGridView4.TabIndex = 102
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.Label2.Location = New System.Drawing.Point(486, 113)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(81, 17)
+        Me.Label2.TabIndex = 103
+        Me.Label2.Text = "Dĺžka: [mm]"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.Label4.Location = New System.Drawing.Point(486, 322)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(111, 17)
+        Me.Label4.TabIndex = 104
+        Me.Label4.Text = "Vybrané kusy:"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.Label5.Location = New System.Drawing.Point(486, 440)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(99, 17)
+        Me.Label5.TabIndex = 105
+        Me.Label5.Text = "Celková dĺžka:"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.Label6.Location = New System.Drawing.Point(591, 440)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(17, 17)
+        Me.Label6.TabIndex = 106
+        Me.Label6.Text = "0"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.Label7.Location = New System.Drawing.Point(591, 457)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(17, 17)
+        Me.Label7.TabIndex = 108
+        Me.Label7.Text = "0"
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.Label23.Location = New System.Drawing.Point(486, 457)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(82, 17)
+        Me.Label23.TabIndex = 107
+        Me.Label23.Text = "Ešte chýba:"
+        '
+        'Button4
+        '
+        Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.Button4.Location = New System.Drawing.Point(348, 383)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(91, 29)
+        Me.Button4.TabIndex = 109
+        Me.Button4.Text = "Načítať →"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.Label24.Location = New System.Drawing.Point(717, 113)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(87, 17)
+        Me.Label24.TabIndex = 111
+        Me.Label24.Text = "Zvyšok [mm]"
+        '
+        'TextBox5
+        '
+        Me.TextBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox5.Location = New System.Drawing.Point(720, 132)
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.Size = New System.Drawing.Size(87, 20)
+        Me.TextBox5.TabIndex = 110
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Veľkosť"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        Me.DataGridViewTextBoxColumn2.Width = 80
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Kusov"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        Me.DataGridViewTextBoxColumn3.Width = 60
+        '
+        'Celkovo
+        '
+        Me.Celkovo.HeaderText = "Celková veľkosť"
+        Me.Celkovo.Name = "Celkovo"
+        Me.Celkovo.ReadOnly = True
+        Me.Celkovo.Width = 115
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Zvyšok"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.ReadOnly = True
+        Me.DataGridViewTextBoxColumn4.Width = 60
+        '
+        'ZvysokKs
+        '
+        Me.ZvysokKs.HeaderText = "Kusy so zvyškom"
+        Me.ZvysokKs.Name = "ZvysokKs"
+        Me.ZvysokKs.ReadOnly = True
+        Me.ZvysokKs.Width = 120
         '
         'Hvydat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1023, 581)
-        Me.Controls.Add(Me.SplitContainer1)
+        Me.ClientSize = New System.Drawing.Size(1023, 653)
+        Me.Controls.Add(Me.Label24)
+        Me.Controls.Add(Me.TextBox5)
+        Me.Controls.Add(Me.Button4)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.Label23)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.DataGridView4)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Label25)
+        Me.Controls.Add(Me.DataGridView2)
+        Me.Controls.Add(Me.Label26)
+        Me.Controls.Add(Me.TextBox18)
+        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.TextBox10)
+        Me.Controls.Add(Me.TextBox9)
+        Me.Controls.Add(Me.Label21)
+        Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.Label16)
+        Me.Controls.Add(Me.TextBox17)
+        Me.Controls.Add(Me.Label12)
+        Me.Controls.Add(Me.Label19)
         Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.TextBox13)
         Me.Controls.Add(Me.CheckBox1)
+        Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.NumericUpDown2)
+        Me.Controls.Add(Me.TextBox8)
         Me.Controls.Add(Me.TextBox12)
+        Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.TextBox11)
+        Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.NumericUpDown1)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.GroupBox1)
@@ -1053,12 +1055,8 @@ Partial Class Hvydat
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmployerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MaterialBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.Panel1.ResumeLayout(False)
-        Me.SplitContainer1.Panel1.PerformLayout()
-        Me.SplitContainer1.Panel2.ResumeLayout(False)
-        Me.SplitContainer1.Panel2.PerformLayout()
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.ResumeLayout(False)
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout
 
@@ -1073,11 +1071,8 @@ End Sub
     Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Priezvisko As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RotekDataSet As WindowsApplication2.RotekDataSet
-    Friend WithEvents TextBox7 As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents TextBox9 As System.Windows.Forms.TextBox
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents Label15 As System.Windows.Forms.Label
@@ -1092,18 +1087,12 @@ End Sub
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
     Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
     Friend WithEvents DataGridView3 As System.Windows.Forms.DataGridView
     Friend WithEvents RadioButton6 As System.Windows.Forms.RadioButton
     Friend WithEvents RadioButton5 As System.Windows.Forms.RadioButton
     Friend WithEvents RadioButton4 As System.Windows.Forms.RadioButton
     Friend WithEvents RadioButton3 As System.Windows.Forms.RadioButton
     Friend WithEvents RadioButton7 As System.Windows.Forms.RadioButton
-    Friend WithEvents TextBox14 As System.Windows.Forms.TextBox
-    Friend WithEvents Label23 As System.Windows.Forms.Label
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
@@ -1112,12 +1101,6 @@ End Sub
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents TextBox10 As System.Windows.Forms.TextBox
-    Friend WithEvents Label13 As System.Windows.Forms.Label
-    Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents Button4 As System.Windows.Forms.Button
-    Friend WithEvents Button5 As System.Windows.Forms.Button
-    Friend WithEvents Button6 As System.Windows.Forms.Button
-    Friend WithEvents Button7 As System.Windows.Forms.Button
     Friend WithEvents VydajkyTableAdapter As WindowsApplication2.RotekDataSetTableAdapters.VydajkyTableAdapter
     Friend WithEvents MaterialVydajkaBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents Material_VydajkaTableAdapter As WindowsApplication2.RotekDataSetTableAdapters.Material_VydajkaTableAdapter
@@ -1143,18 +1126,35 @@ End Sub
     Friend WithEvents MaterialDruhTableAdapter As WindowsApplication2.RotekDataSetTableAdapters.MaterialDruhTableAdapter
     Friend WithEvents MaterialNazovBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents MaterialNazovTableAdapter As WindowsApplication2.RotekDataSetTableAdapters.MaterialNazovTableAdapter
-    Friend WithEvents Button8 As System.Windows.Forms.Button
-    Friend WithEvents ListBox2 As System.Windows.Forms.ListBox
     Friend WithEvents MaterialBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents MaterialTableAdapter As WindowsApplication2.RotekDataSetTableAdapters.MaterialTableAdapter
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents TextBox13 As System.Windows.Forms.TextBox
-    Friend WithEvents Button9 As System.Windows.Forms.Button
     Friend WithEvents Label21 As System.Windows.Forms.Label
     Friend WithEvents TextBox17 As System.Windows.Forms.TextBox
-    Friend WithEvents Label24 As System.Windows.Forms.Label
     Friend WithEvents Label25 As System.Windows.Forms.Label
     Friend WithEvents TextBox18 As System.Windows.Forms.TextBox
-    Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
     Friend WithEvents RadioButton8 As System.Windows.Forms.RadioButton
+    Friend WithEvents Label13 As System.Windows.Forms.Label
+    Friend WithEvents Label26 As System.Windows.Forms.Label
+    Friend WithEvents DataGridView2 As System.Windows.Forms.DataGridView
+    Friend WithEvents Button3 As System.Windows.Forms.Button
+    Friend WithEvents DataGridView4 As System.Windows.Forms.DataGridView
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents Label23 As System.Windows.Forms.Label
+    Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents Label24 As System.Windows.Forms.Label
+    Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
+    Friend WithEvents Velkost As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Kusov As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Zvysok As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Celkovo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ZvysokKs As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class
