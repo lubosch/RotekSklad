@@ -1402,7 +1402,6 @@ Public Class Z_Main
     End Sub
 
     Private Sub ReklamáciaToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ReklamáciaToolStripMenuItem.Click
-
         reklamacja(DataGridView1.Rows(ContextMenuStrip2.Tag).Cells(ZAKAZKACOL).Value, ContextMenuStrip2.Tag)
     End Sub
 
@@ -1426,129 +1425,7 @@ Public Class Z_Main
 
 
         If awkward = "Otvoriť" Then
-            Try
-                Me.HutaTableAdapter.Fill(Me.RotekDataSet.Huta)
-                Dim sql As String
-                Dim f As New datum_box
-                f.ShowDialog()
-                Dim datum As Date = New Date(1954, 10, 10)
-                Dim datum2 As Date = New Date(1954, 10, 10)
-                Dim z As String
-                Dim evidol As String
-
-                If f.DialogResult = DialogResult.OK Then
-                    datum = f.datum.ToString("yyyy-MM-dd")
-                    datum2 = f.dz.ToString("yyyy-MM-dd")
-                    z = f.zakazka
-                    evidol = f.evidol
-                Else
-                    Exit Sub
-                End If
-                If datum = New Date(1954, 10, 10) Then
-                    Exit Sub
-                End If
-
-                Me.ZakazkaTableAdapter.Filtered(String.Format("{0} = {1} AND {2} ='{3}'", RotekDataSet.Zakazka.pocetColumn, 1, RotekDataSet.Zakazka.ZakazkaColumn, z), Me.RotekDataSet.Zakazka)
-                'Me.ZakazkaBindingSource.Filter = String.Format("{0} = '{1}' AND {2} ='{3}'", RotekDataSet.Zakazka.pocetColumn, 1, RotekDataSet.Zakazka.ZakazkaColumn, z)
-                If DataGridView1.RowCount <> 0 Then
-
-                    Chyby.Show("Už existuje zakazka")
-                    napln_thread()
-                    Exit Sub
-
-                End If
-                Me.ZakazkaTableAdapter.Filtered(String.Format("{0} = {1} AND {2} ='{3}'", RotekDataSet.Zakazka.pocetColumn, 1, RotekDataSet.Zakazka.ZakazkaColumn, zakazka), Me.RotekDataSet.Zakazka)
-                'Me.ZakazkaBindingSource.Filter = String.Format("{0} = '{1}' AND {2} ='{3}'", RotekDataSet.Zakazka.pocetColumn, 1, RotekDataSet.Zakazka.ZakazkaColumn, zakazka)
-
-                Dim con As New SqlConnection
-                Dim cmd As New SqlCommand
-                con.ConnectionString = My.Settings.Rotek2
-                con.Open()
-
-                Dim s As String = ""
-                Dim firma As String = DataGridView1.Rows(0).Cells(ZAKAZNIKCOL).Value
-                Dim veduci As String = DataGridView1.Rows(0).Cells(VEDUCICOL).Value
-                Dim uprava1 As String = DataGridView1.Rows(0).Cells(POVRCHUPRAVACOL).Value
-                Dim uprava2 As String = DataGridView1.Rows(0).Cells(TEPELUPRAVACOL).Value
-                Dim kusov As Integer = DataGridView1.Rows(0).Cells(KUSOVCOL).Value
-                Dim menozakazky As String = DataGridView1.Rows(0).Cells(NAZOVCOL).Value
-                Dim vykresy As Integer = DataGridView1.Rows(0).Cells(VYKRESYCOL).Value
-                '                Chyby.Show(vykresy)
-                Dim zk As String = "" ' zodpovedny konstrukcie
-                If IsDBNull(DataGridView1.Rows(0).Cells(ZODPOVEDNYKONSTRUKCIECOL).Value) = False Then
-                    zk = DataGridView1.Rows(0).Cells(ZODPOVEDNYKONSTRUKCIECOL).Value
-                End If
-                Dim pc As Integer = DataGridView1.Rows(0).Cells(PCNCCOL).Value
-                Dim pr As Integer = DataGridView1.Rows(0).Cells(PREZCOL).Value
-                Dim pe As Integer = DataGridView1.Rows(0).Cells(PELEKTRODCOL).Value
-
-                sql = "Insert INTO Zakazka (Zakazka, pocet, srot, srotcena, D_plan, D_prijatia, Zaevidoval, Zakaznik, Veduci, Povrch_uprava, Tepel_uprava, Rozprac, Kusov, Razy, Meno, Vykresy, Zodp_Konstrukcie, P_CNC, P_REZ, P_ELEKTROD, Vydajxa) VALUES ('" + z + "','" & 1 & "','" & 0 & "','" & 0 & "','" + datum.ToString("yyyy-MM-dd") + "','" + datum2.ToString("yyyy-MM-dd") + "','" + evidol + "','" + firma + "','" + veduci + "','" & uprava1 & "','" & uprava2 & "','" & 0 & "','" & kusov & "','" & 0 & "','" + menozakazky + "','" & vykresy & "','" & zk & "','" & pc & "','" & pr & "','" & pe & "','" & 0 & "')"
-                cmd = New SqlCommand(sql, con)
-                cmd.ExecuteNonQuery()
-
-                sql = "Insert INTO Huta (zakazka, pocet, srot, srotcena, D_ukoncenia,  Kusov) VALUES ('" + z + "','" & 2 & "','" & 0 & "','" & 0 & "','" + datum.ToString("yyyy-MM-dd") + "','" & 0 & "')"
-                cmd = New SqlCommand(sql, con)
-                cmd.ExecuteNonQuery()
-
-
-                Me.ZakazkaTableAdapter.Filtered(String.Format("{0} = {1} AND {2} ='{3}'", RotekDataSet.Zakazka.pocetColumn, 2, RotekDataSet.Zakazka.ZakazkaColumn, zakazka), Me.RotekDataSet.Zakazka)
-                'Me.ZakazkaBindingSource.Filter = String.Format("{0} = '{1}' AND {2} ='{3}'", RotekDataSet.Zakazka.pocetColumn, 2, RotekDataSet.Zakazka.ZakazkaColumn, zakazka)
-                For i As Integer = 0 To DataGridView1.RowCount - 1
-                    Dim podzakazka As String = DataGridView1.Rows(i).Cells(PODZAKAZKACOL).Value
-                    kusov = DataGridView1.Rows(i).Cells(KUSOVCOL).Value
-                    uprava1 = DataGridView1.Rows(i).Cells(POVRCHUPRAVACOL).Value
-                    uprava2 = DataGridView1.Rows(i).Cells(TEPELUPRAVACOL).Value
-                    vykresy = DataGridView1.Rows(i).Cells(VYKRESYCOL).Value
-                    pc = DataGridView1.Rows(i).Cells(PCNCCOL).Value
-                    pr = DataGridView1.Rows(i).Cells(PREZCOL).Value
-                    pe = DataGridView1.Rows(i).Cells(PELEKTRODCOL).Value
-                    ' vykresy = DataGridView1.Rows(i).Cells(14).Value
-
-                    sql = "Insert INTO Zakazka (Zakazka, pocet, srot, srotcena, Povrch_uprava, Tepel_uprava, Podzakazka, Rozprac, Kusov, Razy, P_CNC, P_REZ, P_ELEKTROD, Vykresy) VALUES ('" + z + "','" & 2 & "','" & 0 & "','" & 0 & "','" & uprava1 & "','" & uprava2 & "','" + podzakazka + "','" & 0 & "','" & kusov & "','" & 0 & "','" & pc & "','" & pr & "','" & pe & "','" & vykresy & "')"
-                    '                    Chyby.Show(sql)
-                    cmd = New SqlCommand(sql, con)
-                    cmd.ExecuteNonQuery()
-                Next
-
-                Me.HutaBindingSource.Filter = String.Format("({0} = '{1}' OR {0}='{4}') AND {2}='{3}'", RotekDataSet.Huta.pocetColumn, 1, RotekDataSet.Huta.zakazkaColumn, zakazka, 3)
-
-                For i As Integer = 0 To DataGridView3.RowCount - 1
-                    Dim druh, sirka, nazov, rozmer, velkost As String
-                    druh = DataGridView3.Rows(i).Cells(0).Value
-                    sirka = DataGridView3.Rows(i).Cells(1).Value
-                    nazov = DataGridView3.Rows(i).Cells(2).Value
-                    rozmer = DataGridView3.Rows(i).Cells(3).Value
-                    velkost = DataGridView3.Rows(i).Cells(4).Value
-                    '      Dim pocet As Integer = DataGridView3.Rows(i).Cells(8).Value
-                    Dim Podzakazka As String = DataGridView3.Rows(i).Cells(5).Value
-                    Me.ZakazkaTableAdapter.Filtered(String.Format("{0} = '{1}' AND {2} ='{3}' AND {4}='{5}'", RotekDataSet.Zakazka.pocetColumn, 2, RotekDataSet.Zakazka.ZakazkaColumn, zakazka, RotekDataSet.Zakazka.PodzakazkaColumn, Podzakazka), Me.RotekDataSet.Zakazka)
-                    'Me.ZakazkaBindingSource.Filter = String.Format("{0} = '{1}' AND {2} ='{3}' AND {4}='{5}'", RotekDataSet.Zakazka.pocetColumn, 2, RotekDataSet.Zakazka.ZakazkaColumn, zakazka, RotekDataSet.Zakazka.PodzakazkaColumn, Podzakazka)
-                    kusov = DataGridView1.Rows(0).Cells(KUSOVCOL).Value
-                    sql = "Insert INTO Huta (Druh,  Nazov, Sirka, Rozmer, Velkost, zakazka, pocet, srot, srotcena, Vaha, Kusov) VALUES ('" + druh + "', '" + nazov + "','" & sirka & "','" & rozmer & "','" & velkost & "','" + z + "','" & 1 & "','" & 0 & "','" & 0 & "','" + Podzakazka + "','" & kusov & "')"
-                    cmd = New SqlCommand(sql, con)
-                    cmd.ExecuteNonQuery()
-                Next
-                con.Close()
-                Dim cesta As String = My.Settings.Rotek3 + "zakazky\" + zakazka + "\Vykresy"
-                Dim cesta2 As String = My.Settings.Rotek3 + "zakazky\" + z + "\Vykresy"
-                cesta = cesta.Replace("/", "\")
-                cesta2 = cesta2.Replace("/", "\")
-                If System.IO.Directory.Exists(cesta) Then
-                    CopyDirectory(cesta, cesta2)
-                End If
-                cesta = My.Settings.Rotek3 + "zakazky\" + zakazka + "\Programy"
-                cesta2 = My.Settings.Rotek3 + "zakazky\" + z + "\Programy"
-                cesta = cesta.Replace("/", "\")
-                cesta2 = cesta2.Replace("/", "\")
-                If System.IO.Directory.Exists(cesta) Then
-                    CopyDirectory(cesta, cesta2)
-                End If
-
-                'Me.ZakazkaTableAdapter.Zoradene(Me.RotekDataSet.Zakazka)
-                napln_thread()
-            Catch ex As Exception
-                Chyby.Show(ex.ToString)
-            End Try
+            skopirovat(riadok, zakazka)
         ElseIf awkward = "Ukončiť" Then
             Dim f As New Dokoncit(zakazka)
             f.ShowDialog()
@@ -1566,6 +1443,133 @@ Public Class Z_Main
             napln_thread()
         End If
     End Sub
+
+    Public Sub skopirovat(ByVal riadok As Integer, ByVal zakazka As String)
+        Try
+            Me.HutaTableAdapter.Fill(Me.RotekDataSet.Huta)
+            Dim sql As String
+            Dim f As New datum_box
+            f.ShowDialog()
+            Dim datum As Date = New Date(1954, 10, 10)
+            Dim datum2 As Date = New Date(1954, 10, 10)
+            Dim z As String
+            Dim evidol As String
+
+            If f.DialogResult = DialogResult.OK Then
+                datum = f.datum.ToString("yyyy-MM-dd")
+                datum2 = f.dz.ToString("yyyy-MM-dd")
+                z = f.zakazka
+                evidol = f.evidol
+            Else
+                Exit Sub
+            End If
+            If datum = New Date(1954, 10, 10) Then
+                Exit Sub
+            End If
+
+            Me.ZakazkaTableAdapter.Filtered(String.Format("{0} = {1} AND {2} ='{3}'", RotekDataSet.Zakazka.pocetColumn, 1, RotekDataSet.Zakazka.ZakazkaColumn, z), Me.RotekDataSet.Zakazka)
+            'Me.ZakazkaBindingSource.Filter = String.Format("{0} = '{1}' AND {2} ='{3}'", RotekDataSet.Zakazka.pocetColumn, 1, RotekDataSet.Zakazka.ZakazkaColumn, z)
+            If DataGridView1.RowCount <> 0 Then
+
+                Chyby.Show("Už existuje zakazka")
+                napln_thread()
+                Exit Sub
+
+            End If
+            Me.ZakazkaTableAdapter.Filtered(String.Format("{0} = {1} AND {2} ='{3}'", RotekDataSet.Zakazka.pocetColumn, 1, RotekDataSet.Zakazka.ZakazkaColumn, Zakazka), Me.RotekDataSet.Zakazka)
+            'Me.ZakazkaBindingSource.Filter = String.Format("{0} = '{1}' AND {2} ='{3}'", RotekDataSet.Zakazka.pocetColumn, 1, RotekDataSet.Zakazka.ZakazkaColumn, zakazka)
+
+            Dim con As New SqlConnection
+            Dim cmd As New SqlCommand
+            con.ConnectionString = My.Settings.Rotek2
+            con.Open()
+
+            Dim s As String = ""
+            Dim firma As String = DataGridView1.Rows(0).Cells(ZAKAZNIKCOL).Value
+            Dim veduci As String = DataGridView1.Rows(0).Cells(VEDUCICOL).Value
+            Dim uprava1 As String = DataGridView1.Rows(0).Cells(POVRCHUPRAVACOL).Value
+            Dim uprava2 As String = DataGridView1.Rows(0).Cells(TEPELUPRAVACOL).Value
+            Dim kusov As Integer = DataGridView1.Rows(0).Cells(KUSOVCOL).Value
+            Dim menozakazky As String = DataGridView1.Rows(0).Cells(NAZOVCOL).Value
+            Dim vykresy As Integer = DataGridView1.Rows(0).Cells(VYKRESYCOL).Value
+            '                Chyby.Show(vykresy)
+            Dim zk As String = "" ' zodpovedny konstrukcie
+            If IsDBNull(DataGridView1.Rows(0).Cells(ZODPOVEDNYKONSTRUKCIECOL).Value) = False Then
+                zk = DataGridView1.Rows(0).Cells(ZODPOVEDNYKONSTRUKCIECOL).Value
+            End If
+            Dim pc As Integer = DataGridView1.Rows(0).Cells(PCNCCOL).Value
+            Dim pr As Integer = DataGridView1.Rows(0).Cells(PREZCOL).Value
+            Dim pe As Integer = DataGridView1.Rows(0).Cells(PELEKTRODCOL).Value
+
+            sql = "Insert INTO Zakazka (Zakazka, pocet, srot, srotcena, D_plan, D_prijatia, Zaevidoval, Zakaznik, Veduci, Povrch_uprava, Tepel_uprava, Rozprac, Kusov, Razy, Meno, Vykresy, Zodp_Konstrukcie, P_CNC, P_REZ, P_ELEKTROD, Vydajxa) VALUES ('" + z + "','" & 1 & "','" & 0 & "','" & 0 & "','" + datum.ToString("yyyy-MM-dd") + "','" + datum2.ToString("yyyy-MM-dd") + "','" + evidol + "','" + firma + "','" + veduci + "','" & uprava1 & "','" & uprava2 & "','" & 0 & "','" & kusov & "','" & 0 & "','" + menozakazky + "','" & vykresy & "','" & zk & "','" & pc & "','" & pr & "','" & pe & "','" & 0 & "')"
+            cmd = New SqlCommand(sql, con)
+            cmd.ExecuteNonQuery()
+
+            sql = "Insert INTO Huta (zakazka, pocet, srot, srotcena, D_ukoncenia,  Kusov) VALUES ('" + z + "','" & 2 & "','" & 0 & "','" & 0 & "','" + datum.ToString("yyyy-MM-dd") + "','" & 0 & "')"
+            cmd = New SqlCommand(sql, con)
+            cmd.ExecuteNonQuery()
+
+
+            Me.ZakazkaTableAdapter.Filtered(String.Format("{0} = {1} AND {2} ='{3}'", RotekDataSet.Zakazka.pocetColumn, 2, RotekDataSet.Zakazka.ZakazkaColumn, Zakazka), Me.RotekDataSet.Zakazka)
+            'Me.ZakazkaBindingSource.Filter = String.Format("{0} = '{1}' AND {2} ='{3}'", RotekDataSet.Zakazka.pocetColumn, 2, RotekDataSet.Zakazka.ZakazkaColumn, zakazka)
+            For i As Integer = 0 To DataGridView1.RowCount - 1
+                Dim podzakazka As String = DataGridView1.Rows(i).Cells(PODZAKAZKACOL).Value
+                kusov = DataGridView1.Rows(i).Cells(KUSOVCOL).Value
+                uprava1 = DataGridView1.Rows(i).Cells(POVRCHUPRAVACOL).Value
+                uprava2 = DataGridView1.Rows(i).Cells(TEPELUPRAVACOL).Value
+                vykresy = DataGridView1.Rows(i).Cells(VYKRESYCOL).Value
+                pc = DataGridView1.Rows(i).Cells(PCNCCOL).Value
+                pr = DataGridView1.Rows(i).Cells(PREZCOL).Value
+                pe = DataGridView1.Rows(i).Cells(PELEKTRODCOL).Value
+                ' vykresy = DataGridView1.Rows(i).Cells(14).Value
+
+                sql = "Insert INTO Zakazka (Zakazka, pocet, srot, srotcena, Povrch_uprava, Tepel_uprava, Podzakazka, Rozprac, Kusov, Razy, P_CNC, P_REZ, P_ELEKTROD, Vykresy) VALUES ('" + z + "','" & 2 & "','" & 0 & "','" & 0 & "','" & uprava1 & "','" & uprava2 & "','" + podzakazka + "','" & 0 & "','" & kusov & "','" & 0 & "','" & pc & "','" & pr & "','" & pe & "','" & vykresy & "')"
+                '                    Chyby.Show(sql)
+                cmd = New SqlCommand(sql, con)
+                cmd.ExecuteNonQuery()
+            Next
+
+            Me.HutaBindingSource.Filter = String.Format("({0} = '{1}' OR {0}='{4}') AND {2}='{3}'", RotekDataSet.Huta.pocetColumn, 1, RotekDataSet.Huta.zakazkaColumn, Zakazka, 3)
+
+            For i As Integer = 0 To DataGridView3.RowCount - 1
+                Dim druh, sirka, nazov, rozmer, velkost As String
+                druh = DataGridView3.Rows(i).Cells(0).Value
+                sirka = DataGridView3.Rows(i).Cells(1).Value
+                nazov = DataGridView3.Rows(i).Cells(2).Value
+                rozmer = DataGridView3.Rows(i).Cells(3).Value
+                velkost = DataGridView3.Rows(i).Cells(4).Value
+                '      Dim pocet As Integer = DataGridView3.Rows(i).Cells(8).Value
+                Dim Podzakazka As String = DataGridView3.Rows(i).Cells(5).Value
+                Me.ZakazkaTableAdapter.Filtered(String.Format("{0} = '{1}' AND {2} ='{3}' AND {4}='{5}'", RotekDataSet.Zakazka.pocetColumn, 2, RotekDataSet.Zakazka.ZakazkaColumn, Zakazka, RotekDataSet.Zakazka.PodzakazkaColumn, Podzakazka), Me.RotekDataSet.Zakazka)
+                'Me.ZakazkaBindingSource.Filter = String.Format("{0} = '{1}' AND {2} ='{3}' AND {4}='{5}'", RotekDataSet.Zakazka.pocetColumn, 2, RotekDataSet.Zakazka.ZakazkaColumn, zakazka, RotekDataSet.Zakazka.PodzakazkaColumn, Podzakazka)
+                kusov = DataGridView1.Rows(0).Cells(KUSOVCOL).Value
+                sql = "Insert INTO Huta (Druh,  Nazov, Sirka, Rozmer, Velkost, zakazka, pocet, srot, srotcena, Vaha, Kusov) VALUES ('" + druh + "', '" + nazov + "','" & sirka & "','" & rozmer & "','" & velkost & "','" + z + "','" & 1 & "','" & 0 & "','" & 0 & "','" + Podzakazka + "','" & kusov & "')"
+                cmd = New SqlCommand(sql, con)
+                cmd.ExecuteNonQuery()
+            Next
+            con.Close()
+            Dim cesta As String = My.Settings.Rotek3 + "zakazky\" + Zakazka + "\Vykresy"
+            Dim cesta2 As String = My.Settings.Rotek3 + "zakazky\" + z + "\Vykresy"
+            cesta = cesta.Replace("/", "\")
+            cesta2 = cesta2.Replace("/", "\")
+            If System.IO.Directory.Exists(cesta) Then
+                CopyDirectory(cesta, cesta2)
+            End If
+            cesta = My.Settings.Rotek3 + "zakazky\" + Zakazka + "\Programy"
+            cesta2 = My.Settings.Rotek3 + "zakazky\" + z + "\Programy"
+            cesta = cesta.Replace("/", "\")
+            cesta2 = cesta2.Replace("/", "\")
+            If System.IO.Directory.Exists(cesta) Then
+                CopyDirectory(cesta, cesta2)
+            End If
+
+            'Me.ZakazkaTableAdapter.Zoradene(Me.RotekDataSet.Zakazka)
+            napln_thread()
+        Catch ex As Exception
+            Chyby.Show(ex.ToString)
+        End Try
+    End Sub
+
     Private Sub reklamacja(ByVal zakazka As String, ByVal riadok As Integer)
         GroupBox2.Location = New System.Drawing.Point(800, 175 + DataGridView1.Rows(0).Height * (riadok + 1))
         GroupBox2.Show()
@@ -1584,7 +1588,7 @@ Public Class Z_Main
         SQL_main.AddCommand("DELETE FROM ZakazkaPoznamka WHERE Zakazka_ID IN (SELECT ID FROM Zakazka WHERE Zakazka ='" + zakazka + "')")
         SQL_main.AddCommand("DELETE FROM Vydajky WHERE Zakazka_ID = (SELECT TOP 1 ID FROM Zakazka WHERE pocet = 1 AND Zakazka ='" + zakazka + "')")
         SQL_main.AddCommand("DELETE FROM Zakazka WHERE Zakazka='" + zakazka + "'")
-        SQL_main.Odpal
+        SQL_main.Odpal()
         Dim cesta As String = ""
         Try
             'Chyby.Show((My.Settings.Rotek3 & "zakazky\" & zakazka).Substring("/", "\"))
@@ -1815,6 +1819,11 @@ Public Class Z_Main
         f.TopLevel = True
         f.Dock = DockStyle.None
         f.ShowDialog()
+    End Sub
+
+    Private Sub SkopírovaťToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SkopírovaťToolStripMenuItem.Click
+        skopirovat(ContextMenuStrip2.Tag, DataGridView1.Rows(ContextMenuStrip2.Tag).Cells(ZAKAZKACOL).Value)
+
     End Sub
 End Class
 

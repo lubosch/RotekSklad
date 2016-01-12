@@ -28,9 +28,14 @@ Partial Class hForm78
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -87,6 +92,16 @@ Partial Class hForm78
         Me.SrozmerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VelkostDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.KusovDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.UpraviťToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Button9 = New System.Windows.Forms.Button()
+        Me.Button10 = New System.Windows.Forms.Button()
         Me.DataGridView3 = New WindowsApplication2.CustomDataGridView()
         Me.NazovDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DatumDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -95,23 +110,28 @@ Partial Class hForm78
         Me.ZakazkaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PokazilDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridView1 = New WindowsApplication2.CustomDataGridView()
-        Me.DruhDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NazovDataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TypDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SirkaDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RozmerDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SrozmerDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VelkostDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.KusovDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VOdpadeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Selected = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Druh = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Nazov = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Typ = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Sirka = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Rozmer = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.S_rozmer = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Velkost = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Kusov = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.V_odpade = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Vkusov = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VKbutton = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Zmazat = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.MaterialBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RotekDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PrijemkyBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VydajkyBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
+        Me.ContextMenuStrip2.SuspendLayout()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -237,11 +257,11 @@ Partial Class hForm78
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
-        Me.Label5.Location = New System.Drawing.Point(349, 122)
+        Me.Label5.Location = New System.Drawing.Point(336, 122)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(55, 16)
+        Me.Label5.Size = New System.Drawing.Size(103, 16)
         Me.Label5.TabIndex = 26
-        Me.Label5.Text = "Rozmer"
+        Me.Label5.Text = "Priemer/Hrúbka"
         '
         'ProgressBar1
         '
@@ -286,7 +306,7 @@ Partial Class hForm78
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
-        Me.Label7.Location = New System.Drawing.Point(266, 123)
+        Me.Label7.Location = New System.Drawing.Point(269, 123)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(39, 16)
         Me.Label7.TabIndex = 39
@@ -296,11 +316,11 @@ Partial Class hForm78
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
-        Me.Label8.Location = New System.Drawing.Point(503, 123)
+        Me.Label8.Location = New System.Drawing.Point(510, 123)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(55, 16)
+        Me.Label8.Size = New System.Drawing.Size(42, 16)
         Me.Label8.TabIndex = 40
-        Me.Label8.Text = "Veľkosť"
+        Me.Label8.Text = "Dĺžka"
         '
         'TextBox8
         '
@@ -313,11 +333,11 @@ Partial Class hForm78
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
-        Me.Label9.Location = New System.Drawing.Point(428, 122)
+        Me.Label9.Location = New System.Drawing.Point(444, 122)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(65, 16)
+        Me.Label9.Size = New System.Drawing.Size(43, 16)
         Me.Label9.TabIndex = 42
-        Me.Label9.Text = "S_rozmer"
+        Me.Label9.Text = "Stena"
         '
         'Button17
         '
@@ -357,6 +377,7 @@ Partial Class hForm78
         'RotekDataSet
         '
         Me.RotekDataSet.DataSetName = "RotekDataSet"
+        Me.RotekDataSet.EnforceConstraints = False
         Me.RotekDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'MaterialTableAdapter
@@ -377,7 +398,8 @@ Partial Class hForm78
         Me.DataGridView2.Location = New System.Drawing.Point(641, 189)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.ReadOnly = True
-        Me.DataGridView2.Size = New System.Drawing.Size(625, 247)
+        Me.DataGridView2.RowHeadersWidth = 20
+        Me.DataGridView2.Size = New System.Drawing.Size(625, 238)
         Me.DataGridView2.TabIndex = 46
         '
         'NazovDataGridViewTextBoxColumn2
@@ -565,6 +587,87 @@ Partial Class hForm78
         Me.KusovDataGridViewTextBoxColumn.Name = "KusovDataGridViewTextBoxColumn"
         Me.KusovDataGridViewTextBoxColumn.Width = 62
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpraviťToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(114, 26)
+        '
+        'UpraviťToolStripMenuItem
+        '
+        Me.UpraviťToolStripMenuItem.Name = "UpraviťToolStripMenuItem"
+        Me.UpraviťToolStripMenuItem.Size = New System.Drawing.Size(113, 22)
+        Me.UpraviťToolStripMenuItem.Text = "Upraviť"
+        '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(114, 26)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(113, 22)
+        Me.ToolStripMenuItem1.Text = "Upraviť"
+        '
+        'Button6
+        '
+        Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
+        Me.Button6.Location = New System.Drawing.Point(831, 79)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(112, 37)
+        Me.Button6.TabIndex = 55
+        Me.Button6.Text = "Odpadky"
+        Me.Button6.UseVisualStyleBackColor = True
+        Me.Button6.Visible = False
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 1000
+        '
+        'NumericUpDown1
+        '
+        Me.NumericUpDown1.Location = New System.Drawing.Point(680, 165)
+        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {99, 0, 0, 0})
+        Me.NumericUpDown1.Minimum = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(49, 20)
+        Me.NumericUpDown1.TabIndex = 56
+        Me.NumericUpDown1.Value = New Decimal(New Integer() {10, 0, 0, 0})
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
+        Me.Label6.Location = New System.Drawing.Point(638, 167)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(36, 16)
+        Me.Label6.TabIndex = 57
+        Me.Label6.Text = "Rok:"
+        '
+        'Button9
+        '
+        Me.Button9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Button9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.Button9.Location = New System.Drawing.Point(4, 697)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(113, 30)
+        Me.Button9.TabIndex = 58
+        Me.Button9.Text = "Vyhodiť označené"
+        Me.Button9.UseVisualStyleBackColor = True
+        '
+        'Button10
+        '
+        Me.Button10.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Button10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.Button10.Location = New System.Drawing.Point(123, 697)
+        Me.Button10.Name = "Button10"
+        Me.Button10.Size = New System.Drawing.Size(121, 30)
+        Me.Button10.TabIndex = 59
+        Me.Button10.Text = "Vyhodiť s hodnotou"
+        Me.Button10.UseVisualStyleBackColor = True
+        '
         'DataGridView3
         '
         Me.DataGridView3.AllowUserToAddRows = False
@@ -604,7 +707,7 @@ Partial Class hForm78
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView3.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridView3.RowHeadersWidth = 20
-        Me.DataGridView3.Size = New System.Drawing.Size(625, 299)
+        Me.DataGridView3.Size = New System.Drawing.Size(625, 290)
         Me.DataGridView3.TabIndex = 10
         '
         'NazovDataGridViewTextBoxColumn1
@@ -667,95 +770,121 @@ Partial Class hForm78
         DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DruhDataGridViewTextBoxColumn1, Me.NazovDataGridViewTextBoxColumn3, Me.TypDataGridViewTextBoxColumn1, Me.SirkaDataGridViewTextBoxColumn1, Me.RozmerDataGridViewTextBoxColumn1, Me.SrozmerDataGridViewTextBoxColumn1, Me.VelkostDataGridViewTextBoxColumn1, Me.KusovDataGridViewTextBoxColumn1, Me.VOdpadeDataGridViewTextBoxColumn, Me.Vkusov, Me.VKbutton, Me.Zmazat})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Selected, Me.Druh, Me.Nazov, Me.Typ, Me.Sirka, Me.Rozmer, Me.S_rozmer, Me.Velkost, Me.Kusov, Me.V_odpade, Me.Vkusov, Me.VKbutton, Me.Zmazat, Me.ID})
         Me.DataGridView1.DataSource = Me.MaterialBindingSource
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle12
         Me.DataGridView1.Location = New System.Drawing.Point(0, 189)
         Me.DataGridView1.Name = "DataGridView1"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle13
         Me.DataGridView1.RowHeadersWidth = 20
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(635, 561)
+        Me.DataGridView1.Size = New System.Drawing.Size(635, 507)
         Me.DataGridView1.TabIndex = 10
         '
-        'DruhDataGridViewTextBoxColumn1
+        'Selected
         '
-        Me.DruhDataGridViewTextBoxColumn1.DataPropertyName = "Druh"
-        Me.DruhDataGridViewTextBoxColumn1.HeaderText = "Druh"
-        Me.DruhDataGridViewTextBoxColumn1.Name = "DruhDataGridViewTextBoxColumn1"
-        Me.DruhDataGridViewTextBoxColumn1.Width = 55
+        Me.Selected.HeaderText = "Všetky"
+        Me.Selected.Name = "Selected"
+        Me.Selected.Width = 45
         '
-        'NazovDataGridViewTextBoxColumn3
+        'Druh
         '
-        Me.NazovDataGridViewTextBoxColumn3.DataPropertyName = "Nazov"
-        Me.NazovDataGridViewTextBoxColumn3.HeaderText = "Nazov"
-        Me.NazovDataGridViewTextBoxColumn3.Name = "NazovDataGridViewTextBoxColumn3"
-        Me.NazovDataGridViewTextBoxColumn3.Width = 63
+        Me.Druh.DataPropertyName = "Druh"
+        Me.Druh.HeaderText = "Druh"
+        Me.Druh.Name = "Druh"
+        Me.Druh.Width = 55
         '
-        'TypDataGridViewTextBoxColumn1
+        'Nazov
         '
-        Me.TypDataGridViewTextBoxColumn1.DataPropertyName = "Typ"
-        Me.TypDataGridViewTextBoxColumn1.HeaderText = "Typ"
-        Me.TypDataGridViewTextBoxColumn1.Name = "TypDataGridViewTextBoxColumn1"
-        Me.TypDataGridViewTextBoxColumn1.Width = 50
+        Me.Nazov.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Nazov.DataPropertyName = "Nazov"
+        Me.Nazov.HeaderText = "Nazov"
+        Me.Nazov.Name = "Nazov"
+        Me.Nazov.Width = 63
         '
-        'SirkaDataGridViewTextBoxColumn1
+        'Typ
         '
-        Me.SirkaDataGridViewTextBoxColumn1.DataPropertyName = "Sirka"
-        Me.SirkaDataGridViewTextBoxColumn1.HeaderText = "Sirka"
-        Me.SirkaDataGridViewTextBoxColumn1.Name = "SirkaDataGridViewTextBoxColumn1"
-        Me.SirkaDataGridViewTextBoxColumn1.Width = 56
+        Me.Typ.DataPropertyName = "Typ"
+        Me.Typ.HeaderText = "Typ"
+        Me.Typ.Name = "Typ"
+        Me.Typ.Width = 50
         '
-        'RozmerDataGridViewTextBoxColumn1
+        'Sirka
         '
-        Me.RozmerDataGridViewTextBoxColumn1.DataPropertyName = "Rozmer"
-        Me.RozmerDataGridViewTextBoxColumn1.HeaderText = "Rozmer"
-        Me.RozmerDataGridViewTextBoxColumn1.Name = "RozmerDataGridViewTextBoxColumn1"
-        Me.RozmerDataGridViewTextBoxColumn1.Width = 68
+        Me.Sirka.DataPropertyName = "Sirka"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle6.Format = "N1"
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.Sirka.DefaultCellStyle = DataGridViewCellStyle6
+        Me.Sirka.HeaderText = "Šírka"
+        Me.Sirka.Name = "Sirka"
+        Me.Sirka.Width = 58
         '
-        'SrozmerDataGridViewTextBoxColumn1
+        'Rozmer
         '
-        Me.SrozmerDataGridViewTextBoxColumn1.DataPropertyName = "S_rozmer"
-        Me.SrozmerDataGridViewTextBoxColumn1.HeaderText = "S_rozmer"
-        Me.SrozmerDataGridViewTextBoxColumn1.Name = "SrozmerDataGridViewTextBoxColumn1"
-        Me.SrozmerDataGridViewTextBoxColumn1.Width = 76
+        Me.Rozmer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Rozmer.DataPropertyName = "Rozmer"
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle7.Format = "N1"
+        Me.Rozmer.DefaultCellStyle = DataGridViewCellStyle7
+        Me.Rozmer.HeaderText = "Priemer / Hrúbka"
+        Me.Rozmer.Name = "Rozmer"
+        Me.Rozmer.Width = 75
         '
-        'VelkostDataGridViewTextBoxColumn1
+        'S_rozmer
         '
-        Me.VelkostDataGridViewTextBoxColumn1.DataPropertyName = "Velkost"
-        Me.VelkostDataGridViewTextBoxColumn1.HeaderText = "Velkost"
-        Me.VelkostDataGridViewTextBoxColumn1.Name = "VelkostDataGridViewTextBoxColumn1"
-        Me.VelkostDataGridViewTextBoxColumn1.Width = 67
+        Me.S_rozmer.DataPropertyName = "S_rozmer"
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle8.Format = "N1"
+        Me.S_rozmer.DefaultCellStyle = DataGridViewCellStyle8
+        Me.S_rozmer.HeaderText = "Stena"
+        Me.S_rozmer.Name = "S_rozmer"
+        Me.S_rozmer.Width = 60
         '
-        'KusovDataGridViewTextBoxColumn1
+        'Velkost
         '
-        Me.KusovDataGridViewTextBoxColumn1.DataPropertyName = "Kusov"
-        Me.KusovDataGridViewTextBoxColumn1.HeaderText = "Kusov"
-        Me.KusovDataGridViewTextBoxColumn1.Name = "KusovDataGridViewTextBoxColumn1"
-        Me.KusovDataGridViewTextBoxColumn1.Width = 62
+        Me.Velkost.DataPropertyName = "Velkost"
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Velkost.DefaultCellStyle = DataGridViewCellStyle9
+        Me.Velkost.HeaderText = "Dĺžka"
+        Me.Velkost.Name = "Velkost"
+        Me.Velkost.Width = 60
         '
-        'VOdpadeDataGridViewTextBoxColumn
+        'Kusov
         '
-        Me.VOdpadeDataGridViewTextBoxColumn.DataPropertyName = "V odpade"
-        DataGridViewCellStyle6.NullValue = "0"
-        Me.VOdpadeDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
-        Me.VOdpadeDataGridViewTextBoxColumn.HeaderText = "V odpade"
-        Me.VOdpadeDataGridViewTextBoxColumn.Name = "VOdpadeDataGridViewTextBoxColumn"
-        Me.VOdpadeDataGridViewTextBoxColumn.Width = 72
+        Me.Kusov.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Kusov.DataPropertyName = "Kusov"
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle10.Format = "N0"
+        DataGridViewCellStyle10.NullValue = Nothing
+        Me.Kusov.DefaultCellStyle = DataGridViewCellStyle10
+        Me.Kusov.HeaderText = "Kusov / Plocha"
+        Me.Kusov.Name = "Kusov"
+        Me.Kusov.Width = 70
+        '
+        'V_odpade
+        '
+        Me.V_odpade.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.V_odpade.DataPropertyName = "V odpade"
+        DataGridViewCellStyle11.NullValue = "0"
+        Me.V_odpade.DefaultCellStyle = DataGridViewCellStyle11
+        Me.V_odpade.HeaderText = "V odpade"
+        Me.V_odpade.Name = "V_odpade"
+        Me.V_odpade.Width = 65
         '
         'Vkusov
         '
@@ -781,11 +910,25 @@ Partial Class hForm78
         Me.Zmazat.UseColumnTextForButtonValue = True
         Me.Zmazat.Width = 49
         '
+        'ID
+        '
+        Me.ID.DataPropertyName = "ID"
+        Me.ID.HeaderText = "ID"
+        Me.ID.Name = "ID"
+        Me.ID.ReadOnly = True
+        Me.ID.Visible = False
+        Me.ID.Width = 43
+        '
         'hForm78
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-        Me.ClientSize = New System.Drawing.Size(1266, 742)
+        Me.ClientSize = New System.Drawing.Size(1266, 733)
+        Me.Controls.Add(Me.Button10)
+        Me.Controls.Add(Me.Button9)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.NumericUpDown1)
+        Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.RadioButton3)
@@ -826,6 +969,9 @@ Partial Class hForm78
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PrijemkyBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VydajkyBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
+        Me.ContextMenuStrip2.ResumeLayout(False)
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -900,16 +1046,28 @@ Partial Class hForm78
     Friend WithEvents SrozmerDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents VelkostDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents KusovDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DruhDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents NazovDataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TypDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents SirkaDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents RozmerDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents SrozmerDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents VelkostDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents KusovDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents VOdpadeDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents UpraviťToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ContextMenuStrip2 As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Button6 As System.Windows.Forms.Button
+    Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents NumericUpDown1 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents Button9 As System.Windows.Forms.Button
+    Friend WithEvents Button10 As System.Windows.Forms.Button
+    Friend WithEvents Selected As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents Druh As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Nazov As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Typ As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Sirka As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Rozmer As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents S_rozmer As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Velkost As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Kusov As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents V_odpade As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Vkusov As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents VKbutton As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents Zmazat As System.Windows.Forms.DataGridViewButtonColumn
+    Friend WithEvents ID As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

@@ -112,7 +112,7 @@ Public Class Huta_SQL
     End Function
 
 
-    Public Shared Function objem(ByVal rozmer As Double, ByVal velkost As Double, ByVal sirka As Double, ByVal s_rozmer As Double, ByVal typ As String) As Double
+    Public Shared Function objem(ByVal rozmer As Decimal, ByVal velkost As Decimal, ByVal sirka As Decimal, ByVal s_rozmer As Decimal, ByVal typ As String) As Double
         Dim obj As Double = 0
         sirka = sirka / 1000
         velkost = velkost / 1000

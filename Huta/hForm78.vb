@@ -27,15 +27,17 @@ Public Class hForm78
 
         Dim g As Graphics = Me.CreateGraphics
 
-        DataGridView1.Size = New Size((rww + 40), (sw - 240))
+        DataGridView1.Size = New Size((rww + 40), (sw - 280))
         DataGridView1.Location = New Point(0, 199)
 
         DataGridView2.Location = New Point((rww + 40), 199)
         DataGridView2.Size = New Size((rww - 50), (sw - 240) / 2)
 
+        Label6.Location = New Point((rww + 40), 179)
+        NumericUpDown1.Location = New Point((rww + 80), 179)
+
         DataGridView3.Location = New Point((rww + 40), 199 + (sw - 240) / 2)
         DataGridView3.Size = New Size((rww - 50), (sw - 240) / 2)
-
 
         Dim strSz As SizeF = g.MeasureString(Label1.Text, Label1.Font)
         Dim stred As Integer
@@ -48,77 +50,85 @@ Public Class hForm78
 
     End Sub
     Private Sub poverenie()
+        Dim dd As List(Of Dictionary(Of String, Boolean)) = New List(Of Dictionary(Of String, Boolean))
+        Dim d As Dictionary(Of String, Boolean)
+
+        dd = Povolenia_SQL.getRights("Huta")
         Select Case Form78.heslo
             Case Form78.admin
-                Button7.Show()
-                Button17.Show()
-                Button1.Show()
-                Button8.Show()
-
-                DataGridView1.Columns("Zmazat").Visible = True
-                DataGridView1.Columns("Vkusov").Visible = True
-                DataGridView1.Columns("VKbutton").Visible = True
+                d = dd(0)
             Case Form78.zakazkar
-                Button7.Show()
-                Button17.Show()
-                Button1.Show()
-                Button8.Show()
-
-                DataGridView1.Columns("Zmazat").Visible = True
-                DataGridView1.Columns("Vkusov").Visible = True
-                DataGridView1.Columns("VKbutton").Visible = True
+                d = dd(1)
             Case Form78.skladnik
-                Button7.Show()
-                Button17.Show()
-                Button1.Show()
-                Button1.Show()
-                Button8.Show()
-
-                DataGridView1.Columns("Zmazat").Visible = True
-                DataGridView1.Columns("Vkusov").Visible = True
-                DataGridView1.Columns("VKbutton").Visible = True
+                d = dd(2)
             Case Else
-                Button7.Hide()
-                Button17.Hide()
-                Button1.Hide()
-                Button8.Hide()
-
-                DataGridView1.Columns("Zmazat").Visible = False
-                DataGridView1.Columns("Vkusov").Visible = False
-                DataGridView1.Columns("VKbutton").Visible = False
+                d = dd(3)
         End Select
+
+        If (Not d("Pridávať")) Then
+            Button5.Hide()
+        End If
+        If (Not d("Meniť dodávateľov")) Then
+            Button2.Hide()
+        End If
+        If (Not d("Pridávať")) Then
+            Button1.Hide()
+        End If
+        If (Not d("Odoberať")) Then
+            Button8.Hide()
+        End If
+        If (Not d("Mazať materiál")) Then
+            DataGridView1.Columns("Zmazat").Visible = False
+        End If
+        If (Not d("Vyhadzovať do odpadov")) Then
+            DataGridView1.Columns("Vkusov").Visible = False
+            DataGridView1.Columns("VKbutton").Visible = False
+        End If
+
+
+        dd = Povolenia_SQL.getRights("Príjemka")
+        Select Case Form78.heslo
+            Case Form78.admin
+                d = dd(0)
+            Case Form78.zakazkar
+                d = dd(1)
+            Case Form78.skladnik
+                d = dd(2)
+            Case Else
+                d = dd(3)
+        End Select
+
+        If (Not d("Upravovať")) Then
+            ContextMenuStrip2.Items(0).Visible = False
+        End If
+
+
+
+        dd = Povolenia_SQL.getRights("Výdajka")
+        Select Case Form78.heslo
+            Case Form78.admin
+                d = dd(0)
+            Case Form78.zakazkar
+                d = dd(1)
+            Case Form78.skladnik
+                d = dd(2)
+            Case Else
+                d = dd(3)
+        End Select
+
+        If (Not d("Upravovať")) Then
+            ContextMenuStrip1.Items(0).Visible = False
+        End If
+
+
     End Sub
 
     Private Sub Form5_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'RotekDataSet.Prijemky' table. You can move, or remove it, as needed.
-        Dim stopky As Stopwatch = New Stopwatch()
-        stopky.Start()
-
-        'Me.VydajkyTableAdapter.fillFiltered(Me.RotekDataSet.Vydajky, "", "","")
-
-        Debug.WriteLine(stopky.ElapsedMilliseconds)
-
         poverenie()
-
-        Debug.WriteLine(stopky.ElapsedMilliseconds)
-
-        x = DataGridView1.RowCount
-        'Me.HutaBindingSource.Filter = String.Format("{0} = '{1}' AND {2}<>'{3}'", RotekDataSet.Huta.pocetColumn, 0, RotekDataSet.Huta.KusovColumn, 0)
-        'Me.HutaBindingSource1.Filter = String.Format("{0} = '{1}'", RotekDataSet.Huta.pocetColumn, 2)
-        Debug.WriteLine(stopky.ElapsedMilliseconds)
-
-        Me.MaterialBindingSource.Sort = "Druh, Nazov, Typ"
-        Debug.WriteLine(stopky.ElapsedMilliseconds)
-
-
-        'Me.HutaBindingSource1.Sort = "D_ukoncenia ASC"
-        ' ceny()
-
-
+        MaterialBindingSource.Sort = "Nazov, Druh, Typ"
+        NumericUpDown1.Value = Date.Now.Year.ToString().Substring(2)
         rozmers()
-        Debug.WriteLine(stopky.ElapsedMilliseconds)
         zmena()
-        Debug.WriteLine(stopky.ElapsedMilliseconds)
     End Sub
 
 
@@ -140,15 +150,13 @@ Public Class hForm78
     End Sub
 
     Private Sub TextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox1.TextChanged
-        zmena()
-        MaterialBindingSource.Sort = "Druh, " & MaterialBindingSource.Sort
+        start_zmena_timer(TextBox1)
     End Sub
 
 
 
     Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
-        zmena()
-        MaterialBindingSource.Sort = "Nazov, " & MaterialBindingSource.Sort
+        start_zmena_timer(TextBox2)
     End Sub
 
 
@@ -215,7 +223,7 @@ Public Class hForm78
     Private Sub zmena()
         Dim stopky As Stopwatch = New Stopwatch
         stopky.Start()
-        'Debug.WriteLine(stopky.ElapsedMilliseconds)
+        Debug.WriteLine(stopky.ElapsedMilliseconds)
 
         Try
             Dim znamienko As String = "="
@@ -241,7 +249,7 @@ Public Class hForm78
             If TextBox4.Text.Length <> 0 Then
                 Try
                     c = TextBox4.Text
-                    filt = String.Format("{0} AND {1} {3} '{2}'", filt, RotekDataSet.Huta.RozmerColumn, c, znamienko)
+                    filt = String.Format("{0} AND m.{1} {3} '{2}'", filt, RotekDataSet.Huta.RozmerColumn, c, znamienko)
                 Catch ex As Exception
                     c = 0
                 End Try
@@ -251,7 +259,7 @@ Public Class hForm78
 
                 Try
                     ccc = TextBox6.Text
-                    filt = String.Format("{0} AND {1} {3} '{2}'", filt, RotekDataSet.Huta.VelkostColumn, ccc, znamienko)
+                    filt = String.Format("{0} AND m.{1} {3} '{2}'", filt, RotekDataSet.Huta.VelkostColumn, ccc, znamienko)
                 Catch ex As Exception
                     ccc = 0
                 End Try
@@ -259,7 +267,7 @@ Public Class hForm78
             If TextBox7.Text.Length <> 0 Then
                 Try
                     cc = TextBox7.Text
-                    filt = String.Format("{0} AND {1} {3} '{2}'", filt, RotekDataSet.Huta.SirkaColumn, cc, znamienko)
+                    filt = String.Format("{0} AND m.{1} {3} '{2}'", filt, RotekDataSet.Huta.SirkaColumn, cc, znamienko)
                 Catch ex As Exception
                     cc = 0
                 End Try
@@ -267,41 +275,42 @@ Public Class hForm78
             If TextBox8.Text.Length <> 0 Then
                 Try
                     cccc = TextBox8.Text
-                    filt = String.Format("{0} AND {1} {3} '{2}'", filt, RotekDataSet.Huta.S_rozmerColumn, cccc, znamienko)
+                    filt = String.Format("{0} AND m.{1} {3} '{2}'", filt, RotekDataSet.Huta.S_rozmerColumn, cccc, znamienko)
                 Catch ex As Exception
                     cccc = 0
                 End Try
             End If
+            filt = String.Format("{0} AND 1=1", filt)
 
-            'Debug.WriteLine(stopky.ElapsedMilliseconds)
-            Me.MaterialTableAdapter.FillFiltered(Me.RotekDataSet.Material, druh, typ,nazov, filt)
+            Debug.WriteLine("Pred materialom " & stopky.ElapsedMilliseconds)
+            Me.MaterialTableAdapter.FillFiltered(Me.RotekDataSet.Material, druh, typ, nazov, filt)
 
             'Material_SQL.fillFiltered(Me.RotekDataSet.Material, filt, nazov)
-            'Debug.WriteLine(stopky.ElapsedMilliseconds)
-            Me.VydajkyTableAdapter.fillFiltered(Me.RotekDataSet.Vydajky, druh, typ, nazov, filt)
-            'Debug.WriteLine(stopky.ElapsedMilliseconds)
-            Me.PrijemkyTableAdapter.fillFiltered(Me.RotekDataSet.Prijemky, druh, typ, nazov, filt)
-            'Debug.WriteLine(stopky.ElapsedMilliseconds)
+            Debug.WriteLine("Material " & stopky.ElapsedMilliseconds)
+            Me.VydajkyTableAdapter.fillFiltered(Me.RotekDataSet.Vydajky, NumericUpDown1.Value, druh, typ, nazov, filt)
+            Debug.WriteLine("Vydajka " & stopky.ElapsedMilliseconds)
+            Me.PrijemkyTableAdapter.fillFiltered(Me.RotekDataSet.Prijemky, typ, nazov, NumericUpDown1.Value, "rok2", druh, filt)
+            Debug.WriteLine("Prijemka " & stopky.ElapsedMilliseconds)
             stopky.Stop()
         Catch ex As Exception
             Chyby.Show(ex.ToString)
         End Try
     End Sub
     Private Sub TextBox4_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox4.TextChanged
-        zmena()
-        MaterialBindingSource.Sort = "Rozmer, " & MaterialBindingSource.Sort
+        start_zmena_timer(TextBox4)
     End Sub
 
     Private Function getMaterialByRow(riadok As Integer) As Material_SQL
-        Dim druh, nazov, rozmer, sirka, s_rozmer, velkost, typ As String
-        druh = DataGridView1.Rows(riadok).Cells(0).Value
-        nazov = DataGridView1.Rows(riadok).Cells(1).Value
-        sirka = DataGridView1.Rows(riadok).Cells(3).Value
-        rozmer = DataGridView1.Rows(riadok).Cells(4).Value
-        s_rozmer = DataGridView1.Rows(riadok).Cells(5).Value
-        velkost = DataGridView1.Rows(riadok).Cells(6).Value
-        typ = DataGridView1.Rows(riadok).Cells(2).Value
-        Dim material As Material_SQL = New Material_SQL(druh, nazov, sirka, rozmer, s_rozmer, velkost, 0, typ)
+        'Dim druh, nazov, rozmer, sirka, s_rozmer, velkost, typ As String
+        'druh = DataGridView1.Rows(riadok).Cells("Druh").Value
+        'nazov = DataGridView1.Rows(riadok).Cells("Nazov").Value
+        'sirka = DataGridView1.Rows(riadok).Cells("Sirka").Value
+        'rozmer = DataGridView1.Rows(riadok).Cells("Rozmer").Value
+        's_rozmer = DataGridView1.Rows(riadok).Cells("S_rozmer").Value
+        'velkost = DataGridView1.Rows(riadok).Cells("Velkost").Value
+        'typ = DataGridView1.Rows(riadok).Cells("Typ").Value
+        Dim material_id = DataGridView1.Rows(riadok).Cells("ID").Value
+        Dim material As Material_SQL = New Material_SQL(material_id)
         Return material
 
     End Function
@@ -318,7 +327,7 @@ Public Class hForm78
             End If
             If (e.ColumnIndex = DataGridView1.Columns("VKbutton").Index) Then 'Vyhodit kusy
                 Vyhod_Material(e.RowIndex)
-
+                zmena()
             End If
 
         Catch ex As Exception
@@ -350,14 +359,9 @@ Public Class hForm78
         End Try
 
         Dim material As Material_SQL = getMaterialByRow(riadok)
-
-        SQL_main.AddCommand("INSERT INTO Odpady (Material_ID, Ks) VALUES( " & material.id & " , " & kusov & ")")
-        SQL_main.AddCommand("UPDATE Material SET Kusov = Kusov - " & kusov & " WHERE ID = " & material.id)
-        SQL_main.Commit_Transaction()
-        zmena()
-
+        material.throwOut(kusov)
     End Sub
-   
+
 
     Private Sub Button17_Click(sender As System.Object, e As System.EventArgs) Handles Button17.Click
         Dim f As New Prijemky
@@ -370,10 +374,14 @@ Public Class hForm78
     End Sub
 
     Private Sub DataGridView1_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DataGridView1.CellFormatting
-        If e.ColumnIndex <= 2 OrElse e.ColumnIndex >= 7 OrElse (e.Value Is Nothing OrElse e.Value.ToString <> "-1") Then
+        If e.ColumnIndex <= 3 OrElse e.ColumnIndex >= 8 OrElse (e.Value Is Nothing OrElse e.Value <> -1) Then
         Else
             e.Value = ""
         End If
+        If e.ColumnIndex = 9 And DataGridView1.Rows(e.RowIndex).Cells("Typ").Value = "Plech" Then
+            e.Value = e.Value / 10000
+        End If
+
         'If e.ColumnIndex = 10 Then
         '    e.Value = DataGridView1.Rows(e.RowIndex).Cells(12).Value
         'End If
@@ -387,25 +395,31 @@ Public Class hForm78
 
 
     Private Sub TextBox3_TextChanged_1(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
-        zmena()
-        MaterialBindingSource.Sort = "Typ, " & MaterialBindingSource.Sort
+        start_zmena_timer(TextBox3)
 
     End Sub
+    Private Sub start_zmena_timer(text_box As TextBox)
+        Timer1.Stop()
+        If text_box.Text.Length >= 3 Then
+            Timer1.Interval = 500
+        Else
+            Timer1.Interval = 1500
+        End If
+        Timer1.Start()
 
+    End Sub
     Private Sub TextBox7_TextChanged(sender As Object, e As EventArgs) Handles TextBox7.TextChanged
-        zmena()
-        MaterialBindingSource.Sort = "Sirka, " & MaterialBindingSource.Sort
+        start_zmena_timer(TextBox7)
+
     End Sub
 
     Private Sub TextBox6_TextChanged(sender As Object, e As EventArgs) Handles TextBox6.TextChanged
-        zmena()
-        MaterialBindingSource.Sort = "Velkost, " & MaterialBindingSource.Sort
+        start_zmena_timer(TextBox6)
 
     End Sub
 
     Private Sub TextBox8_TextChanged(sender As Object, e As EventArgs) Handles TextBox8.TextChanged
-        zmena()
-        MaterialBindingSource.Sort = "S_rozmer, " & MaterialBindingSource.Sort
+        start_zmena_timer(TextBox8)
 
     End Sub
 
@@ -423,19 +437,19 @@ Public Class hForm78
             Dim slovo As String = DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).Value
 
             Select Case e.ColumnIndex
-                Case 0
-                    TextBox1.Text = slovo
                 Case 1
-                    TextBox2.Text = slovo
+                    TextBox1.Text = slovo
                 Case 2
-                    TextBox3.Text = slovo
+                    TextBox2.Text = slovo
                 Case 3
-                    TextBox7.Text = slovo
+                    TextBox3.Text = slovo
                 Case 4
-                    TextBox4.Text = slovo
+                    TextBox7.Text = slovo
                 Case 5
-                    TextBox8.Text = slovo
+                    TextBox4.Text = slovo
                 Case 6
+                    TextBox8.Text = slovo
+                Case 7
                     TextBox6.Text = slovo
             End Select
         End If
@@ -448,7 +462,7 @@ Public Class hForm78
         f.ShowDialog()
         f.Dispose()
         Me.Show()
-        zmena
+        zmena()
     End Sub
 
     Private Sub Button8_Click_1(sender As Object, e As EventArgs) Handles Button8.Click
@@ -514,12 +528,6 @@ Public Class hForm78
 
     End Sub
 
-    Private Sub DataGridView1_CellMouseEnter(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellMouseEnter
-        If e.RowIndex > -1 AndAlso e.ColumnIndex = 1 Then
-
-        End If
-    End Sub
-
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Dim f As New Dodavatelia()
         f.ShowDialog()
@@ -528,4 +536,117 @@ Public Class hForm78
 
 
 
+    Private Sub DataGridView3_CellMouseUp(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView3.CellMouseUp
+        If e.Button = MouseButtons.Right And e.RowIndex > -1 Then
+            ContextMenuStrip1.Show(MousePosition.X, MousePosition.Y)
+            ContextMenuStrip1.Tag = e.RowIndex
+            DataGridView3.ClearSelection()
+            DataGridView3.Rows(e.RowIndex).Selected = True
+
+        End If
+
+
+    End Sub
+
+    Private Sub UpraviťToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpraviťToolStripMenuItem.Click
+        Dim nazov As String = DataGridView3.Rows(ContextMenuStrip1.Tag).Cells(0).Value
+        Dim f As New Hvydat(nazov)
+        f.ShowDialog()
+        f.Dispose()
+        zmena()
+    End Sub
+
+    Private Sub DataGridView2_CellMouseUp(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView2.CellMouseUp
+        If e.Button = MouseButtons.Right Then
+            ContextMenuStrip2.Show(MousePosition.X, MousePosition.Y)
+            ContextMenuStrip2.Tag = e.RowIndex
+            DataGridView2.ClearSelection()
+            DataGridView2.Rows(e.RowIndex).Selected = True
+        End If
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        Dim nazov As String = DataGridView2.Rows(ContextMenuStrip2.Tag).Cells(0).Value
+        Dim f As New Hpridat(nazov)
+        f.ShowDialog()
+        f.Dispose()
+        zmena()
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Dim f As New Odpadky
+        f.ShowDialog()
+        f.Dispose()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Timer1.Stop()
+        zmena()
+    End Sub
+
+    Private Sub TextBox6_Enter(sender As Object, e As EventArgs) Handles TextBox6.Enter
+        MaterialBindingSource.Sort = "Velkost, " & MaterialBindingSource.Sort
+    End Sub
+
+    Private Sub TextBox8_Enter(sender As Object, e As EventArgs) Handles TextBox8.Enter
+        MaterialBindingSource.Sort = "S_rozmer, " & MaterialBindingSource.Sort
+
+    End Sub
+
+    Private Sub TextBox4_Enter(sender As Object, e As EventArgs) Handles TextBox4.Enter
+        MaterialBindingSource.Sort = "Rozmer, " & MaterialBindingSource.Sort
+
+    End Sub
+
+    Private Sub TextBox7_Enter(sender As Object, e As EventArgs) Handles TextBox7.Enter
+        MaterialBindingSource.Sort = "Sirka, " & MaterialBindingSource.Sort
+
+    End Sub
+
+    Private Sub TextBox3_Enter(sender As Object, e As EventArgs) Handles TextBox3.Enter
+        MaterialBindingSource.Sort = "Typ, " & MaterialBindingSource.Sort
+
+    End Sub
+
+    Private Sub TextBox2_Enter(sender As Object, e As EventArgs) Handles TextBox2.Enter
+        MaterialBindingSource.Sort = "Nazov, " & MaterialBindingSource.Sort
+
+    End Sub
+
+    Private Sub TextBox1_Enter(sender As Object, e As EventArgs) Handles TextBox1.Enter
+        MaterialBindingSource.Sort = "Druh, " & MaterialBindingSource.Sort
+
+    End Sub
+
+    Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
+        zmena()
+    End Sub
+
+    Private Sub Button9_Click_1(sender As Object, e As EventArgs) Handles Button9.Click
+        For Each row As DataGridViewRow In DataGridView1.Rows
+            If row.Cells("Selected").Value = True Then
+                Dim material As Material_SQL = getMaterialByRow(row.Index)
+                material.throwOut(row.Cells("Kusov").Value)
+            End If
+        Next
+        zmena()
+    End Sub
+
+    Private Sub Button10_Click_1(sender As Object, e As EventArgs) Handles Button10.Click
+        For Each row As DataGridViewRow In DataGridView1.Rows
+            If row.Cells("VKusov").Value IsNot Nothing Then
+                
+                Vyhod_Material(row.Index)
+            End If
+        Next
+        zmena()
+    End Sub
+
+    Private Sub DataGridView1_ColumnHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView1.ColumnHeaderMouseClick
+        If e.ColumnIndex = DataGridView1.Columns("Selected").Index Then
+            For Each row As DataGridViewRow In DataGridView1.Rows
+                row.Cells("Selected").Value = 1 - row.Cells("Selected").Value
+            Next
+        End If
+    End Sub
 End Class

@@ -194,7 +194,7 @@ Public Class Spust
                 Button4.Hide()
                 Label2.Text = Form78.uzivatel
             Case Form78.zakazkar
-                Button4.Show()
+                Button4.Hide()
                 Button5.Hide()
                 Label2.Text = Form78.uzivatel
             Case Else
@@ -501,7 +501,7 @@ Public Class Spust
                 ' ObjShell.exec("Rotek sklad.exe")
                 'ObjShell = Nothing
 
-                Chyby.Show("Začína " & FileN & " Netreba nič robiť len po chvíli spustiť z plochy")
+                'Chyby.Show("Začína " & FileN & " Netreba nič robiť len po chvíli spustiť z plochy")
                 System.IO.File.Copy("\\192.168.1.150\Sklad\Updates\" + FileN, localFiles(0) & FileN)
 
                 'My.Computer.Network.DownloadFile("http://vnenk.orava.sk/rotek/" & FileN, localFiles(0) & FileN)
@@ -548,7 +548,8 @@ Public Class Spust
 
 
                 System.IO.File.Delete(Path.GetTempPath() & "Uninstall.bat")
-                System.IO.File.WriteAllLines(Path.GetTempPath() & "Uninstall.bat", New String() {"msiexec.exe /x ""{DDD63E0A-414F-480B-BAE0-A4EDB0AC80FE}"" /passive " & vbLf, "msiexec.exe /i """ + localFiles(0) & "temp_install\Rotek IS.msi"" /passive"})
+                System.IO.File.WriteAllLines(Path.GetTempPath() & "Uninstall.bat", New String() {"msiexec.exe /x ""{DDD63E0A-414F-480B-BAE0-A4EDB0AC80FE}"" /passive " & vbLf, "msiexec.exe /i """ + localFiles(0) & "temp_install\Rotek IS.msi"" /passive", "start """" """ & Application.ExecutablePath & """"})
+
 
                 proc = New Process()
                 proc.StartInfo.FileName = Path.GetTempPath() & "Uninstall.bat"
@@ -707,7 +708,7 @@ Public Class Spust
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim f As New Mail("", "", "", "")
+        Dim f As New Povolenia()
         f.ShowDialog()
         f.Dispose()
     End Sub

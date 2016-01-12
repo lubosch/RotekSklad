@@ -245,6 +245,7 @@ Partial Class Z_Main
         Me.DataGridViewTextBoxColumn49 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Button16 = New System.Windows.Forms.Button()
         Me.Button15 = New System.Windows.Forms.Button()
+        Me.SkopírovaťToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.ZakazkaBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RotekDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -364,7 +365,7 @@ Partial Class Z_Main
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersWidth = 20
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(1370, 604)
+        Me.DataGridView1.Size = New System.Drawing.Size(1354, 604)
         Me.DataGridView1.TabIndex = 1
         '
         'DataGridViewTextBoxColumn7
@@ -1586,32 +1587,32 @@ Partial Class Z_Main
         '
         'ContextMenuStrip2
         '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpraviťToolStripMenuItem, Me.ZmeniťStavToolStripMenuItem, Me.ReklamáciaToolStripMenuItem, Me.ZmazaťToolStripMenuItem})
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpraviťToolStripMenuItem, Me.ZmeniťStavToolStripMenuItem, Me.ReklamáciaToolStripMenuItem, Me.ZmazaťToolStripMenuItem, Me.SkopírovaťToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(138, 92)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(153, 136)
         '
         'UpraviťToolStripMenuItem
         '
         Me.UpraviťToolStripMenuItem.Name = "UpraviťToolStripMenuItem"
-        Me.UpraviťToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.UpraviťToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.UpraviťToolStripMenuItem.Text = "Upraviť"
         '
         'ZmeniťStavToolStripMenuItem
         '
         Me.ZmeniťStavToolStripMenuItem.Name = "ZmeniťStavToolStripMenuItem"
-        Me.ZmeniťStavToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.ZmeniťStavToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ZmeniťStavToolStripMenuItem.Text = "Zmeniť stav"
         '
         'ReklamáciaToolStripMenuItem
         '
         Me.ReklamáciaToolStripMenuItem.Name = "ReklamáciaToolStripMenuItem"
-        Me.ReklamáciaToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.ReklamáciaToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ReklamáciaToolStripMenuItem.Text = "Reklamácia"
         '
         'ZmazaťToolStripMenuItem
         '
         Me.ZmazaťToolStripMenuItem.Name = "ZmazaťToolStripMenuItem"
-        Me.ZmazaťToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.ZmazaťToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ZmazaťToolStripMenuItem.Text = "Zmazať"
         '
         'Button8
@@ -2149,11 +2150,17 @@ Partial Class Z_Main
         Me.Button15.Text = "Zoznam firiem"
         Me.Button15.UseVisualStyleBackColor = True
         '
+        'SkopírovaťToolStripMenuItem
+        '
+        Me.SkopírovaťToolStripMenuItem.Name = "SkopírovaťToolStripMenuItem"
+        Me.SkopírovaťToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SkopírovaťToolStripMenuItem.Text = "Skopírovať"
+        '
         'Z_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-        Me.ClientSize = New System.Drawing.Size(1370, 728)
+        Me.ClientSize = New System.Drawing.Size(1354, 728)
         Me.Controls.Add(Me.Button16)
         Me.Controls.Add(Me.Button15)
         Me.Controls.Add(Me.NumericUpDown1)
@@ -2410,4 +2417,5 @@ Partial Class Z_Main
     Friend WithEvents DataGridViewButtonColumn17 As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents DataGridViewTextBoxColumn48 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn12 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents SkopírovaťToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

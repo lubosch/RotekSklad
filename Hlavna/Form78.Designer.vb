@@ -442,7 +442,7 @@ Partial Class Form78
         Me.Controls.Add(Me.Button1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form78"
-        Me.Text = "Sklad Rotek"
+        Me.Text = "s"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.RotekDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RotekBindingSource, System.ComponentModel.ISupportInitialize).EndInit()

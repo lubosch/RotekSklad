@@ -35,25 +35,33 @@ Public Class Vydajky
 
         rozmers()
         poverenie()
+        NumericUpDown1.Value = Now.Year - 2000
+
     End Sub
     Private Sub poverenie()
+        Dim dd As List(Of Dictionary(Of String, Boolean)) = New List(Of Dictionary(Of String, Boolean))
+        Dim d As Dictionary(Of String, Boolean)
+
+        dd = Povolenia_SQL.getRights("Výdajka")
         Select Case Form78.heslo
-
             Case Form78.admin
-                DataGridView1.Columns(5).Visible = True
-                DataGridView1.Columns(6).Visible = True
-
+                d = dd(0)
             Case Form78.zakazkar
-                DataGridView1.Columns(5).Visible = False
-                DataGridView1.Columns(6).Visible = False
+                d = dd(1)
             Case Form78.skladnik
-                DataGridView1.Columns(6).Visible = False
-                DataGridView1.Columns(5).Visible = False
+                d = dd(2)
             Case Else
-                DataGridView1.Columns(6).Visible = False
-                DataGridView1.Columns(5).Visible = False
-
+                d = dd(3)
         End Select
+
+        If (Not d("Upravovať")) Then
+            DataGridView1.Columns(7).Visible = False
+        End If
+
+        If (Not d("Mazať výdajky")) Then
+            DataGridView1.Columns(8).Visible = False
+        End If
+
     End Sub
     Private Sub rozmers()
         Dim rww As Integer = Me.Width / 2
@@ -74,20 +82,19 @@ Public Class Vydajky
     End Sub
 
     Private Sub filtruj()
-        If TextBox2.Text.Length = 0 Then
-            If CheckBox1.Checked Then
-                Me.VydajkyBindingSource.Filter = String.Format("{0} LIKE '%{1}%' AND {2}<='{3}' AND Pokazil IS NOT NULL", RotekDataSet.Vydajky.NazovColumn, TextBox1.Text, RotekDataSet.Vydajky.DatumColumn, DateTimePicker1.Value)
-            Else
-                Me.VydajkyBindingSource.Filter = String.Format("{0} LIKE '%{1}%' AND {2}<='{3}'", RotekDataSet.Vydajky.NazovColumn, TextBox1.Text, RotekDataSet.Vydajky.DatumColumn, DateTimePicker1.Value)
-            End If
-        Else
-            If CheckBox1.Checked Then
-                Me.VydajkyBindingSource.Filter = String.Format("{0} LIKE '%{1}%' AND {2} LIKE '%{3}%' AND {4} >='{5}' AND Pokazil IS NOT NULL", RotekDataSet.Vydajky.NazovColumn, TextBox1.Text, RotekDataSet.Vydajky.ZakazkaColumn, TextBox2.Text, RotekDataSet.Vydajky.DatumColumn, DateTimePicker1.Value)
-            Else
-                Me.VydajkyBindingSource.Filter = String.Format("{0} LIKE '%{1}%' AND {2} LIKE '%{3}%' AND {4} >='{5}'", RotekDataSet.Vydajky.NazovColumn, TextBox1.Text, RotekDataSet.Vydajky.ZakazkaColumn, TextBox2.Text, RotekDataSet.Vydajky.DatumColumn, DateTimePicker1.Value)
-            End If
+        Dim filter_string As String = String.Format("{0} LIKE '%{1}%' AND {2}<='{3}' AND {2}<='{4}' AND {2}>='{5}'", RotekDataSet.Vydajky.NazovColumn, TextBox1.Text, RotekDataSet.Vydajky.DatumColumn, DateTimePicker1.Value, (New DateTime(2000 + CInt(NumericUpDown1.Value), 12, 31)).ToString("yyyy-MM-dd"), (New DateTime(2000 + CInt(NumericUpDown1.Value), 1, 1)).ToString("yyyy-MM-dd"))
+        If TextBox2.Text.Length > 0 Then
+            filter_string += String.Format(" AND {0} LIKE '%{1}%' ", RotekDataSet.Vydajky.ZakazkaColumn, TextBox2.Text)
+        End If
+        If CheckBox1.Checked Then
+            filter_string += String.Format(" AND Pokazil IS NOT NULL ")
+        End If
+        If TextBox3.Text.Length > 0 Then
+            filter_string += String.Format(" AND {0} LIKE '%{1}%' ", RotekDataSet.Vydajky.PoznamkaColumn, TextBox3.Text)
         End If
 
+
+        Me.VydajkyBindingSource.Filter = filter_string
     End Sub
     Private Sub TextBox1_TextChanged(sender As System.Object, e As System.EventArgs) Handles TextBox1.TextChanged
         filtruj()
@@ -118,14 +125,8 @@ Public Class Vydajky
             filtruj()
         ElseIf e.ColumnIndex = DataGridView1.Columns("Zmazat").Index Then 'zmazat
             Dim nazov As String = DataGridView1.Rows(e.RowIndex).Cells(0).Value
-            SQL_main.OpenConnection()
-            SQL_main.AddCommand("UPDATE m SET m.kusov = m.kusov - mv.Ks  FROM Material m JOIN Material_Vydajka mv ON mv.Material_ID = m.ID JOIN Vydajky v ON v.ID = mv.Vydajka_ID WHERE v.Nazov = '" + nazov + "'")
-            SQL_main.AddCommand("UPDATE m SET m.kusov = m.kusov - mv.Zvysok_ks  FROM Material m JOIN Material_Vydajka mv ON mv.Material_zvysok_ID = m.ID JOIN Vydajky v ON v.ID = mv.Vydajka_ID  WHERE v.Nazov = '" + nazov + "'")
-
-            SQL_main.AddCommand("DELETE FROM Material_Vydajka WHERE Vydajka_ID IN (SELECT ID FROM Vydajky WHERE Nazov =  '" + nazov + "')")
-            SQL_main.AddCommand("DELETE FROM Reklamacia_Vydajka WHERE Vydajka_ID =  (SELECT ID FROM Vydajky WHERE Nazov = '" + nazov + "')")
-            SQL_main.AddCommand("DELETE FROM Vydajky WHERE Nazov =  '" + nazov + "'")
-            SQL_main.Commit_Transaction()
+            Dim vydajka_sql As Vydajka_SQL = New Vydajka_SQL(nazov)
+            vydajka_sql.delete_me()
             Me.VydajkyTableAdapter.Fill(Me.RotekDataSet.Vydajky)
             filtruj()
 
@@ -137,7 +138,9 @@ Public Class Vydajky
         Dim zakazka, poznamka, nazov, vyhotovil As String
         Dim datum As Date
         nazov = DataGridView1.Rows(riadok).Cells(0).Value
-        zakazka = DataGridView1.Rows(riadok).Cells(1).Value
+        If DataGridView1.Rows(riadok).Cells(1).Value IsNot DBNull.Value Then
+            zakazka = DataGridView1.Rows(riadok).Cells(1).Value
+        End If
         datum = DataGridView1.Rows(riadok).Cells(2).Value
         vyhotovil = DataGridView1.Rows(riadok).Cells(3).Value
         If IsDBNull(DataGridView1.Rows(riadok).Cells(7).Value) Then
@@ -418,7 +421,9 @@ Public Class Vydajky
     Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
         TextBox1.Text = ""
         TextBox2.Text = ""
+        TextBox3.Text = ""
         DateTimePicker1.Value = Now
+        NumericUpDown1.Value = Now.Year - 2000
     End Sub
 
     Private Sub DataGridView1_CellDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
@@ -444,6 +449,14 @@ Public Class Vydajky
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
         filtruj()
 
+    End Sub
+
+    Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
+        filtruj()
+    End Sub
+
+    Private Sub TextBox3_TextChanged_1(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
+        filtruj()
     End Sub
 End Class
 

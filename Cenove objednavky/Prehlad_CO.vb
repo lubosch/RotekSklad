@@ -6,6 +6,7 @@ Imports System.Threading
 Imports Bullzip.PdfWriter
 Imports System.Drawing.Printing
 Imports GemBox.Spreadsheet
+Imports NPOI.HSSF.UserModel
 
 
 Public Class PrehladO
@@ -22,6 +23,8 @@ Public Class PrehladO
         rozmers()
         napln()
         poverenie()
+
+        NumericUpDown1.Value = Now.Year - 2000
     End Sub
     Private Sub poverenie()
         Select Case Form78.heslo
@@ -54,13 +57,13 @@ Public Class PrehladO
         End Select
     End Sub
     Private Sub napln()
-        Me.COBindingSource.Filter = String.Format("{0} = '{1}' AND {2} LIKE '%{3}%' AND {4} LIKE '{5}%' AND {6} LIKE '{7}%'", RotekDataSet.CO.pocetColumn, 1, RotekDataSet.CO.NazovColumn, TextBox1.Text, RotekDataSet.CO.PopisColumn, TextBox2.Text, RotekDataSet.CO.FirmaColumn, TextBox3.Text)
+        Me.COBindingSource.Filter = String.Format("{0} = '{1}' AND {2} LIKE '%{3}%' AND {2} LIKE '%{4}' AND {5} LIKE '{6}%' AND {7} LIKE '{8}%'", RotekDataSet.CO.pocetColumn, 1, RotekDataSet.CO.NazovColumn, TextBox1.Text, NumericUpDown1.Value, RotekDataSet.CO.PopisColumn, TextBox2.Text, RotekDataSet.CO.FirmaColumn, TextBox3.Text)
     End Sub
     Private Sub rozmers()
         Dim rww As Integer = Me.Width / 2
         Dim sw As Integer = Me.Height
 
-        DataGridView1.Size = New Size(rww * 2, sw - 165)
+        DataGridView1.Size = New Size(rww * 2, sw - 185)
         Dim g As System.Drawing.Graphics = Me.CreateGraphics
         Dim strSz As SizeF = g.MeasureString("Objednávky", Label1.Font)
         Dim stred As Integer
@@ -116,8 +119,19 @@ Public Class PrehladO
             Exit Sub
         End If
 
-        Dim strPath As String = My.Settings.Rotek3 & "CO\" & cp.Replace("/", "•") & ".xls"
-        Dim cesta As String = My.Settings.Rotek3 & "CO.xls"
+
+
+        Dim folder_path As String = My.Settings.Rotek3 & "CO\" & (Now.Year - 2000) & "\"
+        If (Not Directory.Exists(folder_path)) Then
+            Directory.CreateDirectory(folder_path)
+        End If
+
+        Dim strPath As String = folder_path & cp.Replace("/", "•") & ".xls"
+
+        '        strPath = strPath.Replace(".xlsx", ".ods")
+
+
+        Dim cesta As String = My.Settings.Rotek3 & "CO2.xls"
 
         Dim fs As System.IO.FileStream
 
@@ -164,41 +178,42 @@ Public Class PrehladO
         Try
             excelSheet = excelApp.Worksheets(0)
 
-            Dim intNewRow As Int32 = 23
+            Dim intNewRow As Int32 = 18
             Dim vyska As Integer = 38
-            Dim strana As Integer = 32
+            Dim strana As Integer = 26
 
             Dim i As Integer = 0
 
             Dim zaciatok As Integer = i
             Dim d As DateTime = New DateTime
-            excelSheet.Cells("F17").Value = cp
-            excelSheet.Cells("D15").Value = DataGridView1.Rows(riadok).Cells(9).Value
+            excelSheet.Cells("G2").Value = cp
+            'excelSheet.Cells("F13").Value = DataGridView1.Rows(riadok).Cells(9).Value
             Dim datumm As DateTime = DataGridView1.Rows(riadok).Cells(4).Value
-            excelSheet.Cells("H15").Value = datumm.ToShortDateString
-            excelSheet.Cells("D8").Value = DataGridView1.Rows(riadok).Cells(3).Value
-            excelSheet.Cells("D9").Value = DataGridView1.Rows(riadok).Cells(2).Value
-            excelSheet.Cells("D10").Value = DataGridView3.Rows(0).Cells(1).Value
-            excelSheet.Cells("D11").Value = DataGridView3.Rows(0).Cells(2).Value
-            excelSheet.Cells("D12").Value = DataGridView3.Rows(0).Cells(3).Value
+            excelSheet.Cells("G4").Value = datumm.ToShortDateString
+            excelSheet.Cells("F13").Value = DataGridView1.Rows(riadok).Cells(3).Value
+            excelSheet.Cells("F7").Value = DataGridView1.Rows(riadok).Cells(2).Value
+            excelSheet.Cells("F8").Value = DataGridView3.Rows(0).Cells(1).Value
+            excelSheet.Cells("F9").Value = DataGridView3.Rows(0).Cells(2).Value
+            excelSheet.Cells("F10").Value = DataGridView3.Rows(0).Cells(3).Value
             ' excelSheet.Cells("I51").Value = dokedy
             If DataGridView3.Rows(i).Cells(4).Value = "Slovensko" Then
             Else
-                excelSheet.Cells("D13").Value = DataGridView3.Rows(i).Cells(4).Value
+                excelSheet.Cells("F11").Value = DataGridView3.Rows(i).Cells(4).Value
             End If
 
             For i = 0 To DataGridView2.RowCount - 1
                 excelSheet.Cells("A" & intNewRow + i).Value = i + 1
-                excelSheet.Cells.GetSubrange("B" & intNewRow + i, "C" & intNewRow + i).Merged = True
+                excelSheet.Cells("A" & intNewRow + i).Style.HorizontalAlignment = GemBox.Spreadsheet.HorizontalAlignmentStyle.Center
+                excelSheet.Cells.GetSubrange("B" & intNewRow + i, "D" & intNewRow + i).Merged = True
                 excelSheet.Cells("B" & intNewRow + i).Value = DataGridView2.Rows(i).Cells(0).Value
-                excelSheet.Cells("E" & intNewRow + i).Value = DataGridView2.Rows(i).Cells(1).Value
-                excelSheet.Cells("G" & intNewRow + i).Value = CDec(DataGridView2.Rows(i).Cells(2).Value)
-                excelSheet.Cells("A" & intNewRow + i).Style.Borders.SetBorders(MultipleBorders.Outside, Color.Black, LineStyle.Thin)
-                excelSheet.Cells("B" & intNewRow + i).Style.Borders.SetBorders(MultipleBorders.Outside, Color.Black, LineStyle.Thin)
-                excelSheet.Cells("E" & intNewRow + i).Style.Borders.SetBorders(MultipleBorders.Outside, Color.Black, LineStyle.Thin)
-                excelSheet.Cells("G" & intNewRow + i).Style.Borders.SetBorders(MultipleBorders.Outside, Color.Black, LineStyle.Thin)
-                excelSheet.Cells("I" & intNewRow + i).Formula = "=IF(E" & intNewRow + i & "*G" & intNewRow + i & "=0,"""",E" & intNewRow + i & "*G" & intNewRow + i & ")"
-                excelSheet.Cells("I" & intNewRow + i).Style.Borders.SetBorders(MultipleBorders.Outside, Color.Black, LineStyle.Thin)
+                excelSheet.Cells("F" & intNewRow + i).Value = CDec(DataGridView2.Rows(i).Cells(1).Value)
+                excelSheet.Cells("E" & intNewRow + i).Value = CDec(DataGridView2.Rows(i).Cells(2).Value)
+                excelSheet.Cells("A" & intNewRow + i).Style.Borders.SetBorders(MultipleBorders.Left, Color.Black, LineStyle.Dotted)
+                'excelSheet.Cells("B" & intNewRow + i).Style.Borders.SetBorders(MultipleBorders.Outside, Color.Black, LineStyle.Thin)
+                'excelSheet.Cells("E" & intNewRow + i).Style.Borders.SetBorders(MultipleBorders.Outside, Color.Black, LineStyle.Thin)
+                excelSheet.Cells("G" & intNewRow + i).Style.Borders.SetBorders(MultipleBorders.Right, Color.Black, LineStyle.Dotted)
+                excelSheet.Cells("G" & intNewRow + i).Formula = "=IF(E" & intNewRow + i & "*F" & intNewRow + i & "=0,"""",E" & intNewRow + i & "*F" & intNewRow + i & ")"
+                'excelSheet.Cells("I" & intNewRow + i).Style.Borders.SetBorders(MultipleBorders.Outside, Color.Black, LineStyle.Thin)
             Next
             Dim potom As Integer = DataGridView2.RowCount + 1
             If potom / strana - Math.Floor(potom / strana) > (strana - 2) / strana Then
@@ -206,27 +221,65 @@ Public Class PrehladO
             Else
                 potom = Math.Ceiling(potom / strana) * strana - 2 + intNewRow
             End If
-            excelSheet.Rows(potom - 2).Height = excelSheet.Rows(intNewRow + DataGridView2.RowCount).Height / 2
-            excelSheet.Cells.GetSubrange("F" & potom, "G" & potom).Merged = True
-            excelSheet.Cells.GetSubrange("A" & potom + 1, "G" & potom + 1).Merged = True
-            excelSheet.Cells("F" & potom).Style.HorizontalAlignment = HorizontalAlignmentStyle.Right
-            excelSheet.Cells("F" & potom).Value = "Spolu:"
-            excelSheet.Cells("I" & potom).Formula = "=IF(SUM(I" & intNewRow & ":I" & potom - 1 & ")=0,"""",SUM(I" & intNewRow & ":I" & potom - 1 & "))"
-            excelSheet.Cells("I" & potom).Style.Borders.SetBorders(MultipleBorders.Outside, Color.Black, LineStyle.Thin)
+            'excelSheet.Rows(potom - 2).Height = excelSheet.Rows(intNewRow + DataGridView2.RowCount).Height / 2
+            excelSheet.Cells.GetSubrange("C" & potom, "F" & potom).Merged = True
+            'excelSheet.Cells.GetSubrange("A" & potom + 1, "G" & potom + 1).Merged = True
+            'excelSheet.Cells("F" & potom).Style.HorizontalAlignment = HorizontalAlignmentStyle.Right
+            excelSheet.Cells("C" & potom).Value = "Celkom bez DPH"
+            excelSheet.Cells("G" & potom).Formula = "=IF(SUM(G" & intNewRow & ":G" & potom - 1 & ")=0,"""",SUM(G" & intNewRow & ":G" & potom - 1 & "))"
+
+            excelSheet.Rows(potom - 1).Height = 500
+
+            excelSheet.Cells("C" & potom).Style.Font.Size = 240
+            excelSheet.Cells("G" & potom).Style.Font.Size = 240
+            excelSheet.Cells("C" & potom).Style.Font.Weight = 1000
+            excelSheet.Cells("G" & potom).Style.Font.Weight = 1000
+            excelSheet.Cells("A" & potom + 2).Style.Font.Weight = 1000
+            excelSheet.Cells("C" & potom + 2).Style.Font.Weight = 1000
+            excelSheet.Cells("F" & potom + 2).Style.Font.Weight = 1000
+
+            excelSheet.Cells.GetSubrange("A" & potom - 1, "G" & potom - 1).Merged = True
+            excelSheet.Cells("A" & potom - 1).Style.Borders.SetBorders(MultipleBorders.Bottom, Color.Black, LineStyle.Double)
+
+            excelSheet.Cells("A" & potom + 2).Value = "Vybavuje"
+            excelSheet.Cells("B" & potom + 2).Value = DataGridView1.Rows(riadok).Cells(9).Value
+            excelSheet.Cells("C" & potom + 2).Value = "Kontakt"
+            excelSheet.Cells("F" & potom + 2).Value = "Email"
+            excelSheet.Cells.GetSubrange("A" & potom + 4, "G" & (potom + 5)).Merged = True
+            excelSheet.Cells.GetSubrange("A" & potom + 6, "G" & (potom + 7)).Merged = True
+            excelSheet.Cells.GetSubrange("A" & potom + 8, "G" & (potom + 8)).Merged = True
+
+
+            excelSheet.Cells("A" & potom + 4).Style.Font.Size = 150
+            excelSheet.Cells("A" & potom + 4).Value = "Žiadame Vás o uvádzanie našich správnych fakturačných údajov na faktúre, inak Vašu faktúru nebude možné akceptovať a evidovať v našom účtovníctve."
+            excelSheet.Cells("A" & potom + 4).Style.WrapText = True
+
+            excelSheet.Cells("A" & potom + 6).Style.Font.Size = 150
+            excelSheet.Cells("A" & potom + 6).Style.WrapText = True
+            excelSheet.Cells("A" & potom + 6).Value = "Žiadame Vás o uvádzanie hmotnosti a čísla colného sadzobníka pri polotkách, hlavne ak sa jedná o tovary spadajúce do kapitoly 72 colného sadzobníka a nmenklatúry začínajúce na 7301, 7308 a 7314."
+            excelSheet.Cells("A" & potom + 8).Style.Font.Weight = 1000
+            excelSheet.Cells("A" & potom + 8).Style.Font.Size = 240
+            excelSheet.Rows(potom + 7).Height = 500
+            excelSheet.Cells("A" & potom + 8).Value = "Obratom očakávame Vaše potvrdenie objednávky s uvedením termínu dodania."
+
+
+            'excelSheet.Cells("I" & potom).Style.Borders.SetBorders(MultipleBorders.Outside, Color.Black, LineStyle.Thin)
 
             If RadioButton1.Checked = True Then
-                excelSheet.Cells("A" & potom + 1).Value = "Termín dodania:"
-                excelSheet.Cells("A" & potom + 1).Style.HorizontalAlignment = HorizontalAlignmentStyle.Right
-                excelSheet.Cells("I" & potom + 1).Value = dokedy
-                excelSheet.Cells("I" & potom + 1).Style.HorizontalAlignment = HorizontalAlignmentStyle.Right
-                excelSheet.Cells("I" & potom + 1).Style.Borders.SetBorders(MultipleBorders.Outside, Color.Black, GemBox.Spreadsheet.LineStyle.Thin)
+                'excelSheet.Cells("A" & potom + 1).Value = "Termín dodania:"
+                'excelSheet.Cells("A" & potom + 1).Style.HorizontalAlignment = HorizontalAlignmentStyle.Right
+                excelSheet.Cells("G5").Value = dokedy
+                'excelSheet.Cells("G" & 5).Style.HorizontalAlignment = HorizontalAlignmentStyle.Right
+                'excelSheet.Cells("G" & potom + 1).Style.Borders.SetBorders(MultipleBorders.Outside, Color.Black, GemBox.Spreadsheet.LineStyle.Thin)
             Else
-                excelSheet.Cells("A" & potom + 1).Value = RichTextBox1.Text
+                excelSheet.Cells("G5").Value = RichTextBox1.Text
             End If
 
-            For i = DataGridView2.RowCount + intNewRow To potom - 1
-                excelSheet.Cells.GetSubrange("B" & i, "C" & i).Merged = True
-                excelSheet.Cells("I" & i).Formula = "=IF(E" & i & "*G" & i & "=0,"""",E" & i & "*G" & i & ")"
+            For i = DataGridView2.RowCount + intNewRow To potom - 2
+                excelSheet.Cells.GetSubrange("B" & i, "D" & i).Merged = True
+                excelSheet.Cells("A" & i).Style.Borders.SetBorders(MultipleBorders.Left, Color.Black, LineStyle.Dotted)
+                excelSheet.Cells("G" & i).Style.Borders.SetBorders(MultipleBorders.Right, Color.Black, LineStyle.Dotted)
+                excelSheet.Cells("G" & i).Formula = "=IF(E" & i & "*F" & i & "=0,"""",E" & i & "*F" & i & ")"
 
             Next
 
@@ -248,7 +301,7 @@ Public Class PrehladO
             'excelApp.Workbooks.Open(strPath)
             '   excelSheet.ExportAsFixedFormat(XlFixedFormatType.xlTypePDF, strPath.Replace(".xls", ""), XlFixedFormatQuality.xlQualityStandard, True, True, 1, 1, True)
 
-            Prehlad.img_excel(strPath, "acert.png")
+            img_excel(strPath, "logo.png")
 
             Process.Start(strPath)
 
@@ -258,6 +311,32 @@ Public Class PrehladO
 
 
     End Sub
+
+    Public Sub img_excel(ByVal strPath As String, ByVal obrazok As String)
+        Dim fss As FileStream = New FileStream(strPath, FileMode.Open, FileAccess.ReadWrite)
+        Dim wb As HSSFWorkbook = New HSSFWorkbook(fss, True)
+        Dim sheet As NPOI.SS.UserModel.ISheet = wb.GetSheetAt(0)
+        Dim patriarch = sheet.CreateDrawingPatriarch()
+
+        Dim anchor As HSSFClientAnchor
+        anchor = New HSSFClientAnchor(0, 0, 120, 180, 0, 2, 2, 4)
+        anchor.AnchorType = 0
+        Dim picture = patriarch.CreatePicture(anchor, LoadImage(My.Settings.Rotek3 & obrazok, wb))
+        picture.Resize()
+        fss.Close()
+        Dim fos As FileStream = New FileStream(strPath, FileMode.Create, FileAccess.ReadWrite)
+        wb.Write(fos)
+        fos.Close()
+    End Sub
+
+    Public Function LoadImage(ByVal path As String, ByVal wb As HSSFWorkbook) As Integer
+        Dim file As New FileStream(path, FileMode.Open, FileAccess.Read)
+        Dim buffer As Byte() = New Byte(file.Length - 1) {}
+        file.Read(buffer, 0, CInt(file.Length))
+        Return wb.AddPicture(buffer, NPOI.SS.UserModel.PictureType.JPEG)
+
+    End Function
+
     Public Shared Sub ukonci_excel(ByVal hwnd As Int32)
         Try
             PostMessage(hwnd, &H12, 0, 0)
@@ -313,7 +392,7 @@ ByVal wParam As Int32, ByVal lParam As Int32) As Int32
     End Sub
 
     Private Sub Button4_Click(sender As System.Object, e As System.EventArgs) Handles Button4.Click
-        tlac(MonthCalendar1.SelectionEnd.ToString("yyyy-MM-dd"))
+        tlac(MonthCalendar1.SelectionEnd.ToString("d.M.yyyy"))
         If RadioButton1.Checked = True Then
             Dim sql As String = "UPDATE CO SET DU='" & MonthCalendar1.SelectionEnd.ToString("yyyy-MM-dd") & "' WHERE pocet=1 AND Nazov='" & DataGridView1.Rows(riadok).Cells(0).Value & "'"
             Form78.sqa(sql)
@@ -333,6 +412,7 @@ ByVal wParam As Int32, ByVal lParam As Int32) As Int32
         If (GroupBox2.Visible) And ((Cursor.Position.X < GroupBox2.Location.X) Or (Cursor.Position.X > (GroupBox2.Location.X + GroupBox2.Size.Width)) Or (Cursor.Position.Y < GroupBox2.Location.Y) Or (Cursor.Position.Y > (GroupBox2.Location.Y + GroupBox2.Size.Height))) Then
             GroupBox2.Hide()
         End If
+
     End Sub
 
     Private Sub DataGridView1_Click(sender As System.Object, e As System.EventArgs) Handles DataGridView1.Click
@@ -347,8 +427,8 @@ ByVal wParam As Int32, ByVal lParam As Int32) As Int32
 
         Dim text As String = ""
         ListView1.Items.Add("Papiere:")
-        If IsDBNull(DataGridView1.Rows(GroupBox2.Tag).Cells(14).Value) = False Then
-            text = DataGridView1.Rows(GroupBox2.Tag).Cells(14).Value
+        If IsDBNull(DataGridView1.Rows(GroupBox2.Tag).Cells("Vykresy_db").Value) = False Then
+            text = DataGridView1.Rows(GroupBox2.Tag).Cells("Vykresy_db").Value
         End If
 
         Dim slovo As String = InputBox("Napis identifikaciu cenovej ponuky", "Cenova ponuka")
@@ -440,7 +520,7 @@ ByVal wParam As Int32, ByVal lParam As Int32) As Int32
             ElseIf (e.ColumnIndex = 12) Then
                 Me.riadok = e.RowIndex
                 Dim co As String = DataGridView1.Rows(riadok).Cells(0).Value
-                Dim strPath As String = My.Settings.Rotek3 & "CO\" & co.Replace("/", "•") & ".xls"
+                Dim strPath As String = My.Settings.Rotek3 & "CO\" & (Now.Year - 2000) & "\" & co.Replace("/", "•") & ".xls"
                 If File.Exists(strPath) Then
                     Process.Start(strPath)
                 Else
@@ -532,7 +612,7 @@ ByVal wParam As Int32, ByVal lParam As Int32) As Int32
             Dim i As Integer = co
             co = "OB " & Format(i + 1, "0000") & "/" & Year(Now).ToString.Substring(2)
         Catch ex As Exception
-            Chyby.Show("Chyba")
+            Chyby.Show("Chyba" & ex.ToString)
             Exit Sub
         End Try
 
@@ -699,7 +779,7 @@ ByVal wParam As Int32, ByVal lParam As Int32) As Int32
     Private Sub OtvoriťToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OtvoriťToolStripMenuItem.Click
         Me.riadok = ContextMenuStrip1.Tag
         Dim co As String = DataGridView1.Rows(riadok).Cells(0).Value
-        Dim strPath As String = My.Settings.Rotek3 & "CO\" & co.Replace("/", "•") & ".xls"
+        Dim strPath As String = My.Settings.Rotek3 & "CO\" & (Now.Year - 2000) & "\" & co.Replace("/", "•") & ".xls"
         If File.Exists(strPath) Then
             Process.Start(strPath)
         Else
@@ -750,8 +830,13 @@ ByVal wParam As Int32, ByVal lParam As Int32) As Int32
             GroupBox1.Location = New Point(1, GroupBox1.Location.Y)
         End If
         If GroupBox1.Location.Y + GroupBox1.Size.Height > Me.Height Then
-            GroupBox1.Location = New Point(GroupBox1.Location.X, GroupBox1.Location.Y - GroupBox1.Height - 70)
+            GroupBox1.Location = New Point(GroupBox1.Location.X, MousePosition.Y - GroupBox1.Height - 70)
         End If
+
+    End Sub
+
+    Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
+        napln()
 
     End Sub
 End Class

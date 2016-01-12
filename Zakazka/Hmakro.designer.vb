@@ -30,7 +30,6 @@ Partial Class Hmakro
         Me.Menpr = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Priezvisko = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
@@ -183,12 +182,13 @@ Partial Class Hmakro
         Me.TextBox17 = New System.Windows.Forms.TextBox()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
-        Me.MultiLineListBox1 = New WindowsApplication2.MultiLineListBox()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ZmazaťToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.RichTextBox2 = New System.Windows.Forms.RichTextBox()
         Me.Label29 = New System.Windows.Forms.Label()
+        Me.Button17 = New System.Windows.Forms.Button()
+        Me.MultiLineListBox1 = New WindowsApplication2.MultiLineListBox()
         CType(Me.RotekDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -219,7 +219,7 @@ Partial Class Hmakro
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
-        Me.Button1.Location = New System.Drawing.Point(10, 545)
+        Me.Button1.Location = New System.Drawing.Point(292, 557)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(89, 29)
         Me.Button1.TabIndex = 60
@@ -229,7 +229,7 @@ Partial Class Hmakro
         'Button2
         '
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
-        Me.Button2.Location = New System.Drawing.Point(127, 546)
+        Me.Button2.Location = New System.Drawing.Point(402, 557)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(102, 28)
         Me.Button2.TabIndex = 58
@@ -259,17 +259,6 @@ Partial Class Hmakro
         Me.Priezvisko.DataPropertyName = "Priezvisko"
         Me.Priezvisko.HeaderText = "Priezvisko"
         Me.Priezvisko.Name = "Priezvisko"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label6.Location = New System.Drawing.Point(275, 548)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(81, 20)
-        Me.Label6.TabIndex = 23
-        Me.Label6.Text = "PRIDANÉ"
-        Me.Label6.Visible = False
         '
         'TextBox2
         '
@@ -1231,7 +1220,7 @@ Partial Class Hmakro
         Me.DataGridView6.AutoGenerateColumns = False
         Me.DataGridView6.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.DataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView6.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.PodzakazkaDataGridViewTextBoxColumn2})
+        Me.DataGridView6.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PodzakazkaDataGridViewTextBoxColumn2, Me.Column1})
         Me.DataGridView6.DataSource = Me.ZakazkaBindingSource1
         Me.DataGridView6.Location = New System.Drawing.Point(27, 19)
         Me.DataGridView6.Name = "DataGridView6"
@@ -1685,17 +1674,6 @@ Partial Class Hmakro
         Me.RichTextBox1.TabIndex = 100
         Me.RichTextBox1.Text = ""
         '
-        'MultiLineListBox1
-        '
-        Me.MultiLineListBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.MultiLineListBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
-        Me.MultiLineListBox1.FormattingEnabled = True
-        Me.MultiLineListBox1.Location = New System.Drawing.Point(157, 252)
-        Me.MultiLineListBox1.Name = "MultiLineListBox1"
-        Me.MultiLineListBox1.ScrollAlwaysVisible = True
-        Me.MultiLineListBox1.Size = New System.Drawing.Size(431, 80)
-        Me.MultiLineListBox1.TabIndex = 101
-        '
         'Label28
         '
         Me.Label28.AutoSize = True
@@ -1737,11 +1715,34 @@ Partial Class Hmakro
         Me.Label29.TabIndex = 104
         Me.Label29.Text = "Poznámka:"
         '
+        'Button17
+        '
+        Me.Button17.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
+        Me.Button17.Location = New System.Drawing.Point(10, 545)
+        Me.Button17.Name = "Button17"
+        Me.Button17.Size = New System.Drawing.Size(108, 23)
+        Me.Button17.TabIndex = 105
+        Me.Button17.Text = "Pridať z CP"
+        Me.Button17.UseVisualStyleBackColor = True
+        Me.Button17.Visible = False
+        '
+        'MultiLineListBox1
+        '
+        Me.MultiLineListBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.MultiLineListBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.MultiLineListBox1.FormattingEnabled = True
+        Me.MultiLineListBox1.Location = New System.Drawing.Point(157, 252)
+        Me.MultiLineListBox1.Name = "MultiLineListBox1"
+        Me.MultiLineListBox1.ScrollAlwaysVisible = True
+        Me.MultiLineListBox1.Size = New System.Drawing.Size(431, 80)
+        Me.MultiLineListBox1.TabIndex = 101
+        '
         'Hmakro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-        Me.ClientSize = New System.Drawing.Size(942, 588)
+        Me.ClientSize = New System.Drawing.Size(942, 591)
+        Me.Controls.Add(Me.Button17)
         Me.Controls.Add(Me.Label29)
         Me.Controls.Add(Me.RichTextBox2)
         Me.Controls.Add(Me.Label28)
@@ -1812,7 +1813,6 @@ Partial Class Hmakro
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
@@ -1870,7 +1870,6 @@ Partial Class Hmakro
     Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Priezvisko As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RotekDataSet As WindowsApplication2.RotekDataSet
-    Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
     Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
@@ -2031,4 +2030,5 @@ Partial Class Hmakro
     Friend WithEvents ZmazaťToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RichTextBox2 As System.Windows.Forms.RichTextBox
     Friend WithEvents Label29 As System.Windows.Forms.Label
+    Friend WithEvents Button17 As System.Windows.Forms.Button
 End Class

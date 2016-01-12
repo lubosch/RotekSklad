@@ -5,9 +5,9 @@ Public Class Material_SQL
     Public id As Integer
     Public druh As String
     Public nazov As String
-    Public sirka As Integer
-    Public rozmer As Integer
-    Public s_rozmer As Integer
+    Public sirka As Decimal
+    Public rozmer As Decimal
+    Public s_rozmer As Decimal
     Public velkost As Integer
     Public kusov As Integer
     Public typ As String
@@ -15,7 +15,7 @@ Public Class Material_SQL
     Public cena As String
 
 
-    Public Sub New(druh As String, nazov As String, sirka As Integer, rozmer As Integer, s_rozmer As Integer, velkost As Integer, kusov As Integer, typ As String)
+    Public Sub New(druh As String, nazov As String, sirka As Decimal, rozmer As Decimal, s_rozmer As Decimal, velkost As Integer, kusov As Integer, typ As String)
         Me.druh = druh
         Me.nazov = nazov
         Me.velkost = velkost
@@ -70,7 +70,7 @@ Public Class Material_SQL
 
     End Sub
 
-    Public Sub New(druh As String, nazov As String, sirka As Integer, rozmer As Integer, s_rozmer As Integer, typ As String)
+    Public Sub New(druh As String, nazov As String, sirka As Decimal, rozmer As Decimal, s_rozmer As Decimal, typ As String)
         Dim dd As DataTable = New DataTable
 
         Dim mvta As MaterialVseobecneTableAdapter = New MaterialVseobecneTableAdapter
@@ -85,7 +85,7 @@ Public Class Material_SQL
 
     End Sub
 
-    Public Sub New(druh As String, nazov As String, sirka As Integer, rozmer As Integer, s_rozmer As Integer, velkost As Integer, typ As String)
+    Public Sub New(druh As String, nazov As String, sirka As Decimal, rozmer As Decimal, s_rozmer As Decimal, velkost As Integer, typ As String)
         Dim dd As DataTable = New DataTable
 
         Dim mvta As MaterialVseobecneTableAdapter = New MaterialVseobecneTableAdapter
@@ -108,7 +108,7 @@ Public Class Material_SQL
 
     Public Function get_ID() As Integer
         Dim mta As MaterialTableAdapter = New MaterialTableAdapter()
-        Debug.WriteLine("|" & druh & "|" & nazov & "|" & sirka & "|" & rozmer & "|" & s_rozmer & "|" & velkost & "|" & typ & "|")
+        Console.Out.WriteLine("|" & druh & "|" & nazov & "|" & sirka & "|" & rozmer & "|" & s_rozmer & "|" & velkost & "|" & typ & "|")
         Dim tmp As String = mta.findByMaterial(druh, nazov, rozmer, velkost, sirka, typ, s_rozmer)
 
         If String.IsNullOrEmpty(tmp) Then
@@ -174,7 +174,7 @@ Public Class Material_SQL
         Return Huta_SQL.rozmer_slovom(Me.sirka, Me.rozmer, Me.s_rozmer, Me.velkost, Me.typ)
     End Function
     Public Function GetPlochac() As Material_SQL
-        Return New Material_SQL(druh, nazov, -1, -1, -1, velkost, 0, typ)
+        Return New Material_SQL(druh, nazov, -1, Me.rozmer, -1, -1, 0, typ)
 
     End Function
     Public Shared Sub fill(ByRef dd As DataTable)
@@ -208,44 +208,61 @@ Public Class Material_SQL
 
 
     End Sub
+    Public Sub throwOut(pocet As Integer)
+        SQL_main.AddCommand("INSERT INTO Odpady (Material_ID, Ks) VALUES( " & Me.id & " , " & pocet & ")")
+        SQL_main.AddCommand("UPDATE Material SET Kusov = Kusov - " & pocet & " WHERE ID = " & Me.id)
+        SQL_main.Commit_Transaction()
+    End Sub
 
     Public Shared Sub getChoices(ByRef dd As DataTable, material As Material_SQL)
         Dim velkostMax As Integer = material.kusov * material.velkost
         dd.Clear()
 
-        SQL_main.AddCommand("SELECT m.sirka, m.rozmer, m.velkost, m.kusov FROM Material as m INNER JOIN")
+        SQL_main.AddCommand("SELECT m.sirka, m.rozmer Hrubka, m.velkost, m.kusov, m.ID FROM Material as m INNER JOIN")
         SQL_main.AddCommand("~   MaterialVseobecne AS mv ON mv.ID = m.Material_ID INNER JOIN")
         SQL_main.AddCommand("~   MaterialNazov AS mn ON mn.ID = mv.Nazov_ID INNER JOIN")
         SQL_main.AddCommand("~   MaterialDruh AS md ON md.ID = mn.Druh_ID")
-        SQL_main.AddCommand("~WHERE mn.Nazov ='" & material.nazov & "' AND md.Nazov='" & material.druh & "' ")
-
+        SQL_main.AddCommand("~WHERE mn.Nazov ='" & material.nazov & "' AND md.Nazov='" & material.druh & "' AND m.Typ = '" & material.typ & "' ")
 
         Select Case material.typ
             Case "Plech"
-                'SQL_main.AddCommand("~AND ")
+                SQL_main.AddCommand("~AND m.Sirka = -1 AND m.Rozmer = " & material.rozmer & " AND m.S_rozmer = -1 AND m.Velkost = -1 AND m.Kusov >= " & material.kusov * material.sirka * material.velkost)
             Case "Valec"
                 SQL_main.AddCommand("~AND m.Rozmer = " & material.rozmer & " AND m.Velkost >= " & material.velkost)
             Case "Rurka"
+                SQL_main.AddCommand("~AND m.Sirka = " & material.sirka & " AND m.Rozmer = " & material.rozmer & " AND m.Velkost >= " & material.velkost)
             Case "6 - hran"
+                SQL_main.AddCommand("~AND m.Rozmer = " & material.rozmer & " AND m.Velkost >= " & material.velkost)
             Case "L - profil"
+                SQL_main.AddCommand("~AND m.Sirka = " & material.sirka & " AND m.Rozmer = " & material.rozmer & " AND m.S_rozmer = " & material.s_rozmer & " AND m.Velkost >= " & material.velkost)
             Case "U - profil"
+                SQL_main.AddCommand("~AND m.Sirka = " & material.sirka & " AND m.Rozmer = " & material.rozmer & " AND m.S_rozmer = " & material.s_rozmer & " AND m.Velkost >= " & material.velkost)
             Case "Jokelt"
+                SQL_main.AddCommand("~AND m.Sirka = " & material.sirka & " AND m.Rozmer = " & material.rozmer & " AND m.S_rozmer = " & material.s_rozmer & " AND m.Velkost >= " & material.velkost)
             Case "Hranol"
                 SQL_main.AddCommand("~AND (m.Sirka = " & material.sirka & " AND m.Rozmer = " & material.rozmer & " AND m.Velkost >= " & material.velkost)
-                SQL_main.AddCommand("~OR m.Sirka = " & material.rozmer & " AND m.Rozmer = " & material.sirka & " AND m.Velkost >= " & material.velkost)
-                SQL_main.AddCommand("~OR m.Sirka >= " & material.sirka & " AND m.Rozmer = " & material.rozmer & " AND m.Velkost = " & material.velkost)
-                SQL_main.AddCommand("~OR m.Sirka >= " & material.rozmer & " AND m.Rozmer = " & material.sirka & " AND m.Velkost = " & material.velkost)
-                SQL_main.AddCommand("~OR m.Sirka = " & material.sirka & " AND m.Rozmer >= " & material.rozmer & " AND m.Velkost = " & material.velkost)
-                SQL_main.AddCommand("~OR m.Sirka = " & material.rozmer & " AND m.Rozmer >= " & material.sirka & " AND m.Velkost = " & material.velkost & ")")
-
+                SQL_main.AddCommand("~OR m.Velkost = " & material.velkost & " AND m.Rozmer = " & material.rozmer & " AND m.Sirka >= " & material.sirka)
+                SQL_main.AddCommand("~OR m.Velkost = " & material.sirka & " AND m.Rozmer = " & material.rozmer & " AND m.Sirka >= " & material.velkost)
+                SQL_main.AddCommand("~OR m.Sirka = " & material.velkost & " AND m.Rozmer = " & material.rozmer & " AND m.Velkost >= " & material.sirka)
+                SQL_main.AddCommand("~OR m.Sirka = " & material.sirka & " AND m.Velkost = " & material.velkost & " AND m.Rozmer >= " & material.rozmer & " )")
 
         End Select
 
-        SQL_main.AddCommand("~ORDER BY m.Velkost")
+        SQL_main.AddCommand("~AND m.kusov > 0 ORDER BY m.Velkost")
         SQL_main.Commit_List(dd)
 
 
 
     End Sub
+
+    Public Sub resetRozmery()
+        Dim rozmery As Rozmery = Hvydat.get_rozmery(sirka, rozmer, s_rozmer, velkost, typ)
+        Me.sirka = rozmery.sirka
+        Me.rozmer = rozmery.rozmer
+        Me.s_rozmer = rozmery.s_rozmer
+        Me.velkost = rozmery.velkost
+
+    End Sub
+
 
 End Class

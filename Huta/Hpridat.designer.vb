@@ -70,6 +70,7 @@ Partial Class Hpridat
         Me.Label22 = New System.Windows.Forms.Label()
         Me.TextBox16 = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton8 = New System.Windows.Forms.RadioButton()
         Me.RadioButton7 = New System.Windows.Forms.RadioButton()
         Me.RadioButton6 = New System.Windows.Forms.RadioButton()
         Me.RadioButton5 = New System.Windows.Forms.RadioButton()
@@ -98,7 +99,6 @@ Partial Class Hpridat
         Me.MaterialDruhTableAdapter = New WindowsApplication2.RotekDataSetTableAdapters.MaterialDruhTableAdapter()
         Me.MaterialNazovTableAdapter = New WindowsApplication2.RotekDataSetTableAdapters.MaterialNazovTableAdapter()
         Me.DodavatelTableAdapter = New WindowsApplication2.RotekDataSetTableAdapters.DodavatelTableAdapter()
-        Me.RadioButton8 = New System.Windows.Forms.RadioButton()
         CType(Me.MaterialNazovBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RotekDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MaterialDruhBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -384,7 +384,7 @@ Partial Class Hpridat
         Me.Label15.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.Label15.Location = New System.Drawing.Point(264, 9)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(74, 18)
+        Me.Label15.Size = New System.Drawing.Size(73, 18)
         Me.Label15.TabIndex = 35
         Me.Label15.Text = "Príjemka:"
         '
@@ -534,6 +534,17 @@ Partial Class Hpridat
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Tvar"
         '
+        'RadioButton8
+        '
+        Me.RadioButton8.AutoSize = True
+        Me.RadioButton8.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.RadioButton8.Location = New System.Drawing.Point(1, 108)
+        Me.RadioButton8.Name = "RadioButton8"
+        Me.RadioButton8.Size = New System.Drawing.Size(56, 17)
+        Me.RadioButton8.TabIndex = 7
+        Me.RadioButton8.Text = "Hranol"
+        Me.RadioButton8.UseVisualStyleBackColor = False
+        '
         'RadioButton7
         '
         Me.RadioButton7.AutoSize = True
@@ -658,9 +669,11 @@ Partial Class Hpridat
         Me.DataGridView3.AllowUserToAddRows = False
         Me.DataGridView3.AllowUserToDeleteRows = False
         Me.DataGridView3.AllowUserToOrderColumns = True
+        Me.DataGridView3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.DataGridView3.Location = New System.Drawing.Point(0, 368)
         Me.DataGridView3.Name = "DataGridView3"
         Me.DataGridView3.ReadOnly = True
@@ -694,7 +707,7 @@ Partial Class Hpridat
         Me.DataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView4.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn1, Me.MaterialIDDataGridViewTextBoxColumn, Me.PrijemkaIDDataGridViewTextBoxColumn, Me.KsDataGridViewTextBoxColumn2, Me.KsKgDataGridViewTextBoxColumn1, Me.KgDataGridViewTextBoxColumn2, Me.CenaKgDataGridViewTextBoxColumn1, Me.CenaDataGridViewTextBoxColumn3})
         Me.DataGridView4.DataSource = Me.MaterialPrijemkaBindingSource
-        Me.DataGridView4.Location = New System.Drawing.Point(-48, 295)
+        Me.DataGridView4.Location = New System.Drawing.Point(-17, 294)
         Me.DataGridView4.Name = "DataGridView4"
         Me.DataGridView4.ReadOnly = True
         Me.DataGridView4.Size = New System.Drawing.Size(779, 30)
@@ -780,17 +793,6 @@ Partial Class Hpridat
         '
         Me.DodavatelTableAdapter.ClearBeforeFill = True
         '
-        'RadioButton8
-        '
-        Me.RadioButton8.AutoSize = True
-        Me.RadioButton8.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.RadioButton8.Location = New System.Drawing.Point(1, 108)
-        Me.RadioButton8.Name = "RadioButton8"
-        Me.RadioButton8.Size = New System.Drawing.Size(56, 17)
-        Me.RadioButton8.TabIndex = 7
-        Me.RadioButton8.Text = "Hranol"
-        Me.RadioButton8.UseVisualStyleBackColor = False
-        '
         'Hpridat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -857,10 +859,10 @@ Partial Class Hpridat
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MaterialPrijemkaBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(false)
-        Me.PerformLayout
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-End Sub
+    End Sub
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox

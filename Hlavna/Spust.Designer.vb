@@ -218,9 +218,8 @@ Partial Class Spust
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(101, 30)
         Me.Button4.TabIndex = 27
-        Me.Button4.Text = "Mail"
+        Me.Button4.Text = "Zmeniť práva"
         Me.Button4.UseVisualStyleBackColor = True
-        Me.Button4.Visible = False
         '
         'UcetBindingSource
         '

@@ -27,6 +27,24 @@ Partial Class Prehlad
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New WindowsApplication2.CustomDataGridView()
+        Me.NazovDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PopisDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FirmaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VeduciDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DatumDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CenaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DU = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PoznamkaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Evidoval = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Vykresy = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Vykresy_db = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.RotekDataSet = New WindowsApplication2.RotekDataSet()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -69,22 +87,11 @@ Partial Class Prehlad
         Me.SpraviťZákazkuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ZmazaťToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SkopírovaťToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NazovDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PopisDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FirmaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VeduciDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DatumDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CenaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DU = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PoznamkaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column1 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Evidoval = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.ListView1 = New System.Windows.Forms.ListView()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RotekDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,6 +101,8 @@ Partial Class Prehlad
         CType(Me.ZoznamFBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -115,15 +124,195 @@ Partial Class Prehlad
         Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NazovDataGridViewTextBoxColumn, Me.PopisDataGridViewTextBoxColumn, Me.FirmaDataGridViewTextBoxColumn, Me.VeduciDataGridViewTextBoxColumn, Me.DatumDataGridViewTextBoxColumn, Me.CenaDataGridViewTextBoxColumn, Me.DU, Me.PoznamkaDataGridViewTextBoxColumn, Me.Column1, Me.Evidoval, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NazovDataGridViewTextBoxColumn, Me.PopisDataGridViewTextBoxColumn, Me.FirmaDataGridViewTextBoxColumn, Me.VeduciDataGridViewTextBoxColumn, Me.DatumDataGridViewTextBoxColumn, Me.CenaDataGridViewTextBoxColumn, Me.DU, Me.PoznamkaDataGridViewTextBoxColumn, Me.Column1, Me.Evidoval, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Vykresy, Me.Vykresy_db})
         Me.DataGridView1.DataSource = Me.CPBindingSource
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 115)
+        Me.DataGridView1.Location = New System.Drawing.Point(0, 159)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(1276, 626)
+        Me.DataGridView1.Size = New System.Drawing.Size(1276, 574)
         Me.DataGridView1.TabIndex = 2
+        '
+        'NazovDataGridViewTextBoxColumn
+        '
+        Me.NazovDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.NazovDataGridViewTextBoxColumn.DataPropertyName = "Nazov"
+        Me.NazovDataGridViewTextBoxColumn.HeaderText = "Nazov"
+        Me.NazovDataGridViewTextBoxColumn.Name = "NazovDataGridViewTextBoxColumn"
+        Me.NazovDataGridViewTextBoxColumn.ReadOnly = True
+        Me.NazovDataGridViewTextBoxColumn.Width = 63
+        '
+        'PopisDataGridViewTextBoxColumn
+        '
+        Me.PopisDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.PopisDataGridViewTextBoxColumn.DataPropertyName = "Popis"
+        Me.PopisDataGridViewTextBoxColumn.HeaderText = "Popis"
+        Me.PopisDataGridViewTextBoxColumn.Name = "PopisDataGridViewTextBoxColumn"
+        Me.PopisDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PopisDataGridViewTextBoxColumn.Width = 58
+        '
+        'FirmaDataGridViewTextBoxColumn
+        '
+        Me.FirmaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.FirmaDataGridViewTextBoxColumn.DataPropertyName = "Firma"
+        Me.FirmaDataGridViewTextBoxColumn.HeaderText = "Firma"
+        Me.FirmaDataGridViewTextBoxColumn.Name = "FirmaDataGridViewTextBoxColumn"
+        Me.FirmaDataGridViewTextBoxColumn.ReadOnly = True
+        Me.FirmaDataGridViewTextBoxColumn.Width = 57
+        '
+        'VeduciDataGridViewTextBoxColumn
+        '
+        Me.VeduciDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.VeduciDataGridViewTextBoxColumn.DataPropertyName = "Veduci"
+        Me.VeduciDataGridViewTextBoxColumn.HeaderText = "Veduci"
+        Me.VeduciDataGridViewTextBoxColumn.Name = "VeduciDataGridViewTextBoxColumn"
+        Me.VeduciDataGridViewTextBoxColumn.ReadOnly = True
+        Me.VeduciDataGridViewTextBoxColumn.Width = 65
+        '
+        'DatumDataGridViewTextBoxColumn
+        '
+        Me.DatumDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.DatumDataGridViewTextBoxColumn.DataPropertyName = "Datum"
+        Me.DatumDataGridViewTextBoxColumn.HeaderText = "Datum"
+        Me.DatumDataGridViewTextBoxColumn.Name = "DatumDataGridViewTextBoxColumn"
+        Me.DatumDataGridViewTextBoxColumn.ReadOnly = True
+        Me.DatumDataGridViewTextBoxColumn.Width = 63
+        '
+        'CenaDataGridViewTextBoxColumn
+        '
+        Me.CenaDataGridViewTextBoxColumn.DataPropertyName = "Cena"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.CenaDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
+        Me.CenaDataGridViewTextBoxColumn.HeaderText = "Cena"
+        Me.CenaDataGridViewTextBoxColumn.Name = "CenaDataGridViewTextBoxColumn"
+        Me.CenaDataGridViewTextBoxColumn.ReadOnly = True
+        Me.CenaDataGridViewTextBoxColumn.Width = 57
+        '
+        'DU
+        '
+        Me.DU.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.DU.DataPropertyName = "DU"
+        Me.DU.HeaderText = "Ukončiť do:"
+        Me.DU.Name = "DU"
+        Me.DU.ReadOnly = True
+        Me.DU.Width = 86
+        '
+        'PoznamkaDataGridViewTextBoxColumn
+        '
+        Me.PoznamkaDataGridViewTextBoxColumn.DataPropertyName = "Poznamka"
+        Me.PoznamkaDataGridViewTextBoxColumn.HeaderText = "Poznamka"
+        Me.PoznamkaDataGridViewTextBoxColumn.Name = "PoznamkaDataGridViewTextBoxColumn"
+        Me.PoznamkaDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PoznamkaDataGridViewTextBoxColumn.Width = 150
+        '
+        'Column1
+        '
+        Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.Column1.HeaderText = "Vyrobiť"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        Me.Column1.Text = "Vyrobiť"
+        Me.Column1.UseColumnTextForButtonValue = True
+        Me.Column1.Width = 46
+        '
+        'Evidoval
+        '
+        Me.Evidoval.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.Evidoval.DataPropertyName = "Evidoval"
+        Me.Evidoval.HeaderText = "Evidoval"
+        Me.Evidoval.Name = "Evidoval"
+        Me.Evidoval.ReadOnly = True
+        Me.Evidoval.Visible = False
+        '
+        'Column2
+        '
+        Me.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.Column2.HeaderText = "Upraviť"
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        Me.Column2.Text = "Upraviť"
+        Me.Column2.UseColumnTextForButtonValue = True
+        Me.Column2.Width = 48
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Spraviť zákazku"
+        Me.Column3.Name = "Column3"
+        Me.Column3.ReadOnly = True
+        Me.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column3.Text = "Sprav"
+        Me.Column3.UseColumnTextForButtonValue = True
+        Me.Column3.Width = 107
+        '
+        'Column4
+        '
+        Me.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.Column4.DataPropertyName = "ID"
+        Me.Column4.HeaderText = "Zmazať"
+        Me.Column4.Name = "Column4"
+        Me.Column4.ReadOnly = True
+        Me.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column4.Text = "Zmazať"
+        Me.Column4.ToolTipText = "Zmazať"
+        Me.Column4.UseColumnTextForButtonValue = True
+        Me.Column4.Width = 68
+        '
+        'Column5
+        '
+        Me.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.Column5.HeaderText = "Otvoriť"
+        Me.Column5.Name = "Column5"
+        Me.Column5.ReadOnly = True
+        Me.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column5.Text = "Otvoriť"
+        Me.Column5.UseColumnTextForButtonValue = True
+        Me.Column5.Width = 64
+        '
+        'Column6
+        '
+        Me.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Column6.HeaderText = "Poslať"
+        Me.Column6.Name = "Column6"
+        Me.Column6.ReadOnly = True
+        Me.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column6.Text = "Poslať"
+        Me.Column6.ToolTipText = "Poslať"
+        Me.Column6.UseColumnTextForButtonValue = True
+        Me.Column6.Width = 60
+        '
+        'Column7
+        '
+        Me.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.Column7.HeaderText = "Skopírovať"
+        Me.Column7.Name = "Column7"
+        Me.Column7.ReadOnly = True
+        Me.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column7.Text = "Skopírovať"
+        Me.Column7.ToolTipText = "Skopírovať"
+        Me.Column7.UseColumnTextForButtonValue = True
+        Me.Column7.Width = 86
+        '
+        'Vykresy
+        '
+        Me.Vykresy.HeaderText = "Výkresy"
+        Me.Vykresy.Name = "Vykresy"
+        Me.Vykresy.ReadOnly = True
+        Me.Vykresy.Text = "Výkresy"
+        Me.Vykresy.UseColumnTextForButtonValue = True
+        '
+        'Vykresy_db
+        '
+        Me.Vykresy_db.DataPropertyName = "Vykresy"
+        Me.Vykresy_db.HeaderText = "Vykresy"
+        Me.Vykresy_db.Name = "Vykresy_db"
+        Me.Vykresy_db.ReadOnly = True
+        Me.Vykresy_db.Visible = False
         '
         'CPBindingSource
         '
@@ -138,7 +327,7 @@ Partial Class Prehlad
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Button1.Location = New System.Drawing.Point(553, 82)
+        Me.Button1.Location = New System.Drawing.Point(574, 82)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(84, 36)
         Me.Button1.TabIndex = 3
@@ -149,12 +338,12 @@ Partial Class Prehlad
         '
         Me.TextBox1.Location = New System.Drawing.Point(12, 88)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(66, 20)
         Me.TextBox1.TabIndex = 4
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(224, 88)
+        Me.TextBox3.Location = New System.Drawing.Point(245, 88)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(100, 20)
         Me.TextBox3.TabIndex = 6
@@ -173,7 +362,7 @@ Partial Class Prehlad
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label3.Location = New System.Drawing.Point(330, 69)
+        Me.Label3.Location = New System.Drawing.Point(351, 69)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(47, 16)
         Me.Label3.TabIndex = 8
@@ -181,7 +370,7 @@ Partial Class Prehlad
         '
         'DateTimePicker1
         '
-        Me.DateTimePicker1.Location = New System.Drawing.Point(330, 88)
+        Me.DateTimePicker1.Location = New System.Drawing.Point(351, 88)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(135, 20)
         Me.DateTimePicker1.TabIndex = 9
@@ -190,7 +379,7 @@ Partial Class Prehlad
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label4.Location = New System.Drawing.Point(224, 69)
+        Me.Label4.Location = New System.Drawing.Point(245, 69)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(42, 16)
         Me.Label4.TabIndex = 10
@@ -200,7 +389,7 @@ Partial Class Prehlad
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label5.Location = New System.Drawing.Point(118, 71)
+        Me.Label5.Location = New System.Drawing.Point(139, 71)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(43, 16)
         Me.Label5.TabIndex = 11
@@ -208,14 +397,14 @@ Partial Class Prehlad
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(118, 88)
+        Me.TextBox2.Location = New System.Drawing.Point(139, 88)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(100, 20)
         Me.TextBox2.TabIndex = 12
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(472, 88)
+        Me.Button2.Location = New System.Drawing.Point(493, 88)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 13
@@ -464,176 +653,67 @@ Partial Class Prehlad
         Me.SkopírovaťToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.SkopírovaťToolStripMenuItem.Text = "Skopírovať"
         '
-        'NazovDataGridViewTextBoxColumn
+        'NumericUpDown1
         '
-        Me.NazovDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.NazovDataGridViewTextBoxColumn.DataPropertyName = "Nazov"
-        Me.NazovDataGridViewTextBoxColumn.HeaderText = "Nazov"
-        Me.NazovDataGridViewTextBoxColumn.Name = "NazovDataGridViewTextBoxColumn"
-        Me.NazovDataGridViewTextBoxColumn.ReadOnly = True
-        Me.NazovDataGridViewTextBoxColumn.Width = 63
+        Me.NumericUpDown1.Location = New System.Drawing.Point(84, 88)
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(49, 20)
+        Me.NumericUpDown1.TabIndex = 17
+        Me.NumericUpDown1.Value = New Decimal(New Integer() {11, 0, 0, 0})
         '
-        'PopisDataGridViewTextBoxColumn
+        'GroupBox2
         '
-        Me.PopisDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.PopisDataGridViewTextBoxColumn.DataPropertyName = "Popis"
-        Me.PopisDataGridViewTextBoxColumn.HeaderText = "Popis"
-        Me.PopisDataGridViewTextBoxColumn.Name = "PopisDataGridViewTextBoxColumn"
-        Me.PopisDataGridViewTextBoxColumn.ReadOnly = True
-        Me.PopisDataGridViewTextBoxColumn.Width = 58
+        Me.GroupBox2.Controls.Add(Me.Button5)
+        Me.GroupBox2.Controls.Add(Me.Button6)
+        Me.GroupBox2.Controls.Add(Me.ListView1)
+        Me.GroupBox2.Location = New System.Drawing.Point(93, 268)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(239, 392)
+        Me.GroupBox2.TabIndex = 18
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "GroupBox2"
+        Me.GroupBox2.Visible = False
         '
-        'FirmaDataGridViewTextBoxColumn
+        'Button5
         '
-        Me.FirmaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.FirmaDataGridViewTextBoxColumn.DataPropertyName = "Firma"
-        Me.FirmaDataGridViewTextBoxColumn.HeaderText = "Firma"
-        Me.FirmaDataGridViewTextBoxColumn.Name = "FirmaDataGridViewTextBoxColumn"
-        Me.FirmaDataGridViewTextBoxColumn.ReadOnly = True
-        Me.FirmaDataGridViewTextBoxColumn.Width = 57
+        Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.Button5.Location = New System.Drawing.Point(127, 356)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(106, 30)
+        Me.Button5.TabIndex = 2
+        Me.Button5.Text = "Pridať text"
+        Me.Button5.UseVisualStyleBackColor = True
+        Me.Button5.Visible = False
         '
-        'VeduciDataGridViewTextBoxColumn
+        'Button6
         '
-        Me.VeduciDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.VeduciDataGridViewTextBoxColumn.DataPropertyName = "Veduci"
-        Me.VeduciDataGridViewTextBoxColumn.HeaderText = "Veduci"
-        Me.VeduciDataGridViewTextBoxColumn.Name = "VeduciDataGridViewTextBoxColumn"
-        Me.VeduciDataGridViewTextBoxColumn.ReadOnly = True
-        Me.VeduciDataGridViewTextBoxColumn.Width = 65
+        Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.Button6.Location = New System.Drawing.Point(6, 356)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(115, 30)
+        Me.Button6.TabIndex = 1
+        Me.Button6.Text = "Pridať súbory"
+        Me.Button6.UseVisualStyleBackColor = True
+        Me.Button6.Visible = False
         '
-        'DatumDataGridViewTextBoxColumn
+        'ListView1
         '
-        Me.DatumDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.DatumDataGridViewTextBoxColumn.DataPropertyName = "Datum"
-        Me.DatumDataGridViewTextBoxColumn.HeaderText = "Datum"
-        Me.DatumDataGridViewTextBoxColumn.Name = "DatumDataGridViewTextBoxColumn"
-        Me.DatumDataGridViewTextBoxColumn.ReadOnly = True
-        Me.DatumDataGridViewTextBoxColumn.Width = 63
-        '
-        'CenaDataGridViewTextBoxColumn
-        '
-        Me.CenaDataGridViewTextBoxColumn.DataPropertyName = "Cena"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.CenaDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
-        Me.CenaDataGridViewTextBoxColumn.HeaderText = "Cena"
-        Me.CenaDataGridViewTextBoxColumn.Name = "CenaDataGridViewTextBoxColumn"
-        Me.CenaDataGridViewTextBoxColumn.ReadOnly = True
-        Me.CenaDataGridViewTextBoxColumn.Width = 57
-        '
-        'DU
-        '
-        Me.DU.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.DU.DataPropertyName = "DU"
-        Me.DU.HeaderText = "Ukončiť do:"
-        Me.DU.Name = "DU"
-        Me.DU.ReadOnly = True
-        Me.DU.Width = 86
-        '
-        'PoznamkaDataGridViewTextBoxColumn
-        '
-        Me.PoznamkaDataGridViewTextBoxColumn.DataPropertyName = "Poznamka"
-        Me.PoznamkaDataGridViewTextBoxColumn.HeaderText = "Poznamka"
-        Me.PoznamkaDataGridViewTextBoxColumn.Name = "PoznamkaDataGridViewTextBoxColumn"
-        Me.PoznamkaDataGridViewTextBoxColumn.ReadOnly = True
-        Me.PoznamkaDataGridViewTextBoxColumn.Width = 150
-        '
-        'Column1
-        '
-        Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.Column1.HeaderText = "Vyrobiť"
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
-        Me.Column1.Text = "Vyrobiť"
-        Me.Column1.UseColumnTextForButtonValue = True
-        Me.Column1.Width = 46
-        '
-        'Evidoval
-        '
-        Me.Evidoval.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.Evidoval.DataPropertyName = "Evidoval"
-        Me.Evidoval.HeaderText = "Evidoval"
-        Me.Evidoval.Name = "Evidoval"
-        Me.Evidoval.ReadOnly = True
-        Me.Evidoval.Visible = False
-        Me.Evidoval.Width = 73
-        '
-        'Column2
-        '
-        Me.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.Column2.HeaderText = "Upraviť"
-        Me.Column2.Name = "Column2"
-        Me.Column2.ReadOnly = True
-        Me.Column2.Text = "Upraviť"
-        Me.Column2.UseColumnTextForButtonValue = True
-        Me.Column2.Width = 48
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Spraviť zákazku"
-        Me.Column3.Name = "Column3"
-        Me.Column3.ReadOnly = True
-        Me.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Column3.Text = "Sprav"
-        Me.Column3.UseColumnTextForButtonValue = True
-        Me.Column3.Width = 107
-        '
-        'Column4
-        '
-        Me.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.Column4.DataPropertyName = "ID"
-        Me.Column4.HeaderText = "Zmazať"
-        Me.Column4.Name = "Column4"
-        Me.Column4.ReadOnly = True
-        Me.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Column4.Text = "Zmazať"
-        Me.Column4.ToolTipText = "Zmazať"
-        Me.Column4.UseColumnTextForButtonValue = True
-        Me.Column4.Width = 68
-        '
-        'Column5
-        '
-        Me.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.Column5.HeaderText = "Otvoriť"
-        Me.Column5.Name = "Column5"
-        Me.Column5.ReadOnly = True
-        Me.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Column5.Text = "Otvoriť"
-        Me.Column5.UseColumnTextForButtonValue = True
-        Me.Column5.Width = 64
-        '
-        'Column6
-        '
-        Me.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.Column6.HeaderText = "Poslať"
-        Me.Column6.Name = "Column6"
-        Me.Column6.ReadOnly = True
-        Me.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Column6.Text = "Poslať"
-        Me.Column6.ToolTipText = "Poslať"
-        Me.Column6.UseColumnTextForButtonValue = True
-        Me.Column6.Width = 60
-        '
-        'Column7
-        '
-        Me.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.Column7.HeaderText = "Skopírovať"
-        Me.Column7.Name = "Column7"
-        Me.Column7.ReadOnly = True
-        Me.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Column7.Text = "Skopírovať"
-        Me.Column7.ToolTipText = "Skopírovať"
-        Me.Column7.UseColumnTextForButtonValue = True
-        Me.Column7.Width = 86
+        Me.ListView1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.ListView1.Location = New System.Drawing.Point(6, 19)
+        Me.ListView1.MultiSelect = False
+        Me.ListView1.Name = "ListView1"
+        Me.ListView1.Size = New System.Drawing.Size(227, 331)
+        Me.ListView1.TabIndex = 0
+        Me.ListView1.UseCompatibleStateImageBehavior = False
+        Me.ListView1.View = System.Windows.Forms.View.List
         '
         'Prehlad
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1276, 741)
+        Me.ClientSize = New System.Drawing.Size(1276, 733)
+        Me.Controls.Add(Me.GroupBox2)
+        Me.Controls.Add(Me.NumericUpDown1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.DataGridView3)
         Me.Controls.Add(Me.DataGridView2)
@@ -663,6 +743,8 @@ Partial Class Prehlad
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -711,6 +793,11 @@ Partial Class Prehlad
     Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
     Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
     Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
+    Friend WithEvents NumericUpDown1 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents Button5 As System.Windows.Forms.Button
+    Friend WithEvents Button6 As System.Windows.Forms.Button
+    Friend WithEvents ListView1 As System.Windows.Forms.ListView
     Friend WithEvents NazovDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PopisDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents FirmaDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -727,4 +814,6 @@ Partial Class Prehlad
     Friend WithEvents Column5 As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents Column6 As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents Column7 As System.Windows.Forms.DataGridViewButtonColumn
+    Friend WithEvents Vykresy As System.Windows.Forms.DataGridViewButtonColumn
+    Friend WithEvents Vykresy_db As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

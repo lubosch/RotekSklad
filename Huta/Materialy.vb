@@ -4,8 +4,8 @@
     Private Sub Materialy_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.MaterialNazovTableAdapter.Fill(Me.RotekDataSet.MaterialNazov)
         Me.MaterialDruhTableAdapter.Fill(Me.RotekDataSet.MaterialDruh)
-
         k = 0
+        hladaj()
 
     End Sub
 
@@ -33,7 +33,7 @@
     End Sub
 
     Private Sub hladajDruh()
-        MaterialDruhBindingSource.Filter = "Nazov LIKE '%" & TextBox4.Text & "%'"
+        MaterialDruhBindingSource.Filter = "Druh_ID IS NULL AND Nazov LIKE '%" & TextBox4.Text & "%'"
     End Sub
     Private Sub hladajNazov()
         MaterialNazovBindingSource.Filter = "Nazov LIKE '%" & TextBox6.Text & "%' AND Druh LIKE '%" & TextBox4.Text & "%'"
@@ -151,7 +151,7 @@
     Private Sub zmazatDruh()
         Dim druh As String
         Dim druh_id As Integer
-        druh = TextBox4.Text
+        druh = TextBox3.Text
         Dim dd As DataTable = New DataTable
         SQL_main.List("SELECT TOP 1 ID FROM MaterialDruh WHERE Nazov = '" & druh & "'", dd)
         If dd.Rows.Count <> 1 Then
@@ -282,5 +282,59 @@
         hladaj()
         Me.MaterialNazovTableAdapter.Fill(Me.RotekDataSet.MaterialNazov)
         Me.MaterialDruhTableAdapter.Fill(Me.RotekDataSet.MaterialDruh)
+    End Sub
+
+
+
+    Private Sub TextBox3_KeyUp(sender As Object, e As KeyEventArgs) Handles TextBox3.KeyUp
+        Try
+            Hpridat.stlacBound(k, TextBox3, ListBox5, e)
+            If e.KeyCode = Keys.Escape Then
+                Me.Close()
+            ElseIf ((e.KeyCode > 64) And (e.KeyCode < 91)) Or ((e.KeyCode < 106) And (e.KeyCode > 95)) Or e.KeyCode = 8 Then
+                MaterialDruhBindingSource.Filter = "Nazov LIKE '%" & TextBox3.Text & "%'"
+            End If
+        Catch ex As Exception
+        End Try
+
+    End Sub
+
+    Private Sub TextBox5_KeyUp(sender As Object, e As KeyEventArgs) Handles TextBox5.KeyUp
+        Try
+            Hpridat.stlacBound(k, TextBox5, ListBox6, e)
+            If e.KeyCode = Keys.Escape Then
+                Me.Close()
+            ElseIf ((e.KeyCode > 64) And (e.KeyCode < 91)) Or ((e.KeyCode < 106) And (e.KeyCode > 95)) Or e.KeyCode = 8 Then
+                MaterialDruhBindingSource1.Filter = "Nazov LIKE '%" & TextBox5.Text & "%'"
+            End If
+        Catch ex As Exception
+        End Try
+
+    End Sub
+
+    Private Sub ListBox6_MouseClick(sender As Object, e As MouseEventArgs) Handles ListBox6.MouseClick
+        If ListBox6.SelectedItems.Count > 0 Then
+            TextBox5.Text = ListBox6.SelectedValue
+            TextBox5.Focus()
+            TextBox5.Select(TextBox5.Text.Length, 0)
+        End If
+    End Sub
+
+    Private Sub ListBox5_MouseClick(sender As Object, e As MouseEventArgs) Handles ListBox5.MouseClick
+        If ListBox5.SelectedItems.Count > 0 Then
+            TextBox3.Text = ListBox5.SelectedValue
+            TextBox3.Focus()
+            TextBox3.Select(TextBox3.Text.Length, 0)
+        End If
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim druh1, druh2 As MaterialDruh_SQL
+        druh1 = New MaterialDruh_SQL(TextBox3.Text)
+        druh2 = New MaterialDruh_SQL(TextBox5.Text)
+        If MessageBox.Show("Naozaj je """ & druh1.nazov & """ to isté ako """ & druh2.nazov & """ ? Táto zmena je nezvratná. ", "Ekvivalencia", MessageBoxButtons.YesNo) = vbYes Then
+            druh2.combineInto(druh1)
+            clear_all()
+        End If
     End Sub
 End Class

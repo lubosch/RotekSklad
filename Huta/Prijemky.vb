@@ -29,21 +29,35 @@ Public Class Prijemky
 
         rozmers()
         poverenie()
+        NumericUpDown1.Value = Now.Year - 2000
+
     End Sub
     Private Sub poverenie()
+
+        Dim dd As List(Of Dictionary(Of String, Boolean)) = New List(Of Dictionary(Of String, Boolean))
+        Dim d As Dictionary(Of String, Boolean)
+
+        dd = Povolenia_SQL.getRights("Príjemka")
         Select Case Form78.heslo
-
             Case Form78.admin
-                DataGridView1.Columns("Zmazat").Visible = True
+                d = dd(0)
             Case Form78.zakazkar
-                DataGridView1.Columns("Zmazat").Visible = False
+                d = dd(1)
             Case Form78.skladnik
-                DataGridView1.Columns("Zmazat").Visible = True
+                d = dd(2)
             Case Else
-                DataGridView1.Columns("Zmazat").Visible = False
-                DataGridView1.Columns("Upravit").Visible = False
-
+                d = dd(3)
         End Select
+
+        If (Not d("Upravovať")) Then
+            DataGridView1.Columns("Upravit").Visible = False
+        End If
+
+        If (Not d("Mazať príjemky")) Then
+            DataGridView1.Columns("Zmazat").Visible = False
+        End If
+
+
     End Sub
     Private Sub rozmers()
         Dim rww As Integer = Me.Width / 2
@@ -63,7 +77,7 @@ Public Class Prijemky
         rozmers()
     End Sub
     Private Sub filtruj()
-        Me.PrijemkyBindingSource.Filter = String.Format("{2} LIKE '%{3}%' AND {4} LIKE '{5}%' AND Dodavatel LIKE '{7}%' AND {8}<='{9}'", RotekDataSet.Prijemka.pocetColumn, 1, RotekDataSet.Prijemky.NazovColumn, TextBox1.Text, RotekDataSet.Prijemky.DodaciListColumn, TextBox2.Text, RotekDataSet.Prijemky.DodavatelColumn, TextBox3.Text, RotekDataSet.Prijemky.Datum_DLColumn, DateTimePicker1.Value.ToString("yyyy-MM-dd"))
+        Me.PrijemkyBindingSource.Filter = String.Format("{2} LIKE '%{3}%' AND {4} LIKE '{5}%' AND Dodavatel LIKE '{7}%' AND {8}<='{9}' AND {8}<='{10}' AND {8}>='{11}'", RotekDataSet.Prijemka.pocetColumn, 1, RotekDataSet.Prijemky.NazovColumn, TextBox1.Text, RotekDataSet.Prijemky.DodaciListColumn, TextBox2.Text, RotekDataSet.Prijemky.DodavatelColumn, TextBox3.Text, RotekDataSet.Prijemky.Datum_DLColumn, DateTimePicker1.Value.ToString("yyyy-MM-dd"), (New DateTime(2000 + CInt(NumericUpDown1.Value), 12, 31)).ToString("yyyy-MM-dd"), (New DateTime(2000 + CInt(NumericUpDown1.Value), 1, 1)).ToString("yyyy-MM-dd"))
 
     End Sub
     Private Sub TextBox1_TextChanged(sender As System.Object, e As System.EventArgs) Handles TextBox1.TextChanged
@@ -378,6 +392,10 @@ Public Class Prijemky
             f.ShowDialog()
             f.Dispose()
         End If
+    End Sub
+
+    Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
+        filtruj()
     End Sub
 
 End Class

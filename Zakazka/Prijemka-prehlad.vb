@@ -25,7 +25,7 @@
     End Sub
 
     Private Sub DataGridView1_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DataGridView1.CellFormatting
-        If e.Value Is Nothing OrElse e.Value.ToString <> "-1" Then
+        If e.Value Is Nothing OrElse Not e.Value.GetType.Equals(New Decimal().GetType) OrElse e.Value <> -1 Then
         Else
             e.Value = ""
         End If

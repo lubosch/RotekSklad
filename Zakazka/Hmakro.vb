@@ -18,6 +18,7 @@ Public Class Hmakro
     'Private zoznam_ine As String
     Private ku As Date
     Public cp As String
+    Public cp_vykresy As String
 
     Shared Property podzakazka As String
     Property tex As String
@@ -154,7 +155,8 @@ Public Class Hmakro
                     ComboBox2.Text = ""
                     ComboBox1.Text = ""
                 Else
-
+                    Button17.Show()
+                    cp_vykresy = cp
                 End If
 
             End If
@@ -323,7 +325,7 @@ Public Class Hmakro
                 Else
                     SQL_main.Odpalovac("Insert INTO Zakazka (Zakazka, pocet, srot, srotcena, D_plan, D_prijatia, Zaevidoval, Zakaznik, Veduci, Povrch_uprava, Tepel_uprava, Rozprac, Kusov, Razy, Meno, P_CNC, P_REZ, P_ELEKTROD, Vykresy, Vydajxa, Objednavka, Cenovka) VALUES ('" + zakazka + "','" & 1 & "','" & 0 & "','" & 0 & "','" + d_ukoncenia.ToString("yyyy-MM-dd") + "','" + d_prijatia.ToString("yyyy-MM-dd") + "','" + zaevidoval + "','" + firma + "','" + veduci + "','" & uprava1 & "','" & uprava2 & "','" & 0 & "','" & kusov & "','" & 0 & "','" + menozakazky + "','" & 0 & "','" & 0 & "','" & 0 & "','" & 1 & "','" & 1 & "', '" & objednavka & "','|" & cp & "')")
                     Try
-                        Dim cesta As String = My.Settings.Rotek3 & "CP\" & cp.Replace("/", "•") & ".xls"
+                        Dim cesta As String = My.Settings.Rotek3 & "CP\" & (Now.Year Mod 2000) & "\" & cp.Replace("/", "•") & ".xls"
                         Dim cesta2 As String = My.Settings.Rotek3
                         cesta2 = cesta2 & "\zakazky\" + zakazka + "\"
                         cesta2 = cesta2 + "Cenova ponuka\"
@@ -370,7 +372,6 @@ Public Class Hmakro
             End If
 
             InsertPoznamka(zakazka)
-
 
             If String.IsNullOrEmpty(cp) Then
             Else
@@ -1348,7 +1349,7 @@ Public Class Hmakro
             Label4.Text = "b [mm]"
             Label2.Text = "a [mm]"
             Label24.Show()
-     
+
         End If
 
         TextBox4.Text = DataGridView1.Rows(kks).Cells(0).Value
@@ -1443,14 +1444,13 @@ Public Class Hmakro
         If openFileDialog1.ShowDialog() = DialogResult.OK Then
             For Each sx As String In openFileDialog1.FileNames
                 s.Add(sx)
-            Next
-
-            For Each sl As String In openFileDialog1.FileNames
-                l.Items.Add(sl.Substring(sl.LastIndexOf("\") + 1))
+                l.Items.Add(sx.Substring(sx.LastIndexOf("\") + 1))
             Next
         End If
-
     End Sub
+
+
+
 
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
         dialog(zoznam_vykresov2, ListBox5, "Vybrať výkresy")
@@ -2103,6 +2103,44 @@ Public Class Hmakro
         System.Console.WriteLine(podzakazka)
         SQL_main.Odpalovac("DELETE FROM ZakazkaPoznamka WHERE Zakazka_ID = (SELECT TOP 1 ID FROM Zakazka WHERE Zakazka = '" & zakazka & "' AND pocet = 2 AND Podzakazka =  '" & podzakazka & "') AND Poznamka LIKE '" & slovo & "'")
         poznamky(zakazka, podzakazka)
+    End Sub
+
+    Private Sub Button17_Click(sender As Object, e As EventArgs) Handles Button17.Click
+        Dim cesta2 As String = My.Settings.Rotek3 + "CP\"
+        cesta2 = cesta2 & (Now.Year Mod 2000) & "\" & cp_vykresy.Replace("/", "•") & "\"
+        Try
+            For Each files In System.IO.Directory.GetFiles(cesta2)
+                ListBox5.Items.Add(files.Substring(files.LastIndexOf("\") + 1))
+                zoznam_vykresov2.Add(files)
+            Next
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub odober_subor(ByRef s As List(Of String), ByRef l As ListBox, ByVal name As String)
+        Dim toRemove As String = ""
+        For Each sx As String In s
+            If sx.Substring(sx.LastIndexOf("\") + 1) = name Then
+                toRemove = sx
+            End If
+        Next
+        If toRemove <> "" Then
+            s.Remove(toRemove)
+            l.Items.Remove(name)
+        End If
+    End Sub
+
+    Private Sub ListBox5_MouseUp(sender As Object, e As MouseEventArgs) Handles ListBox5.MouseUp
+        If e.Button = MouseButtons.Right Then
+
+            Dim item = ListBox5.IndexFromPoint(e.Location)
+            MessageBox.Show(item)
+            If item >= 0 Then
+                ListBox5.SelectedIndex = item
+                odober_subor(zoznam_vykresov2, ListBox5, ListBox5.Items(item))
+            End If
+        End If
     End Sub
 End Class
 

@@ -108,9 +108,9 @@
       <HintPath>Resources\EPPlus.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="GemBox.Spreadsheet, Version=37.3.30.1000, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL">
+    <Reference Include="GemBox.Spreadsheet, Version=33.1.30.1000, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Excel\GemBox.Spreadsheet.dll</HintPath>
+      <HintPath>Excel\GemBox.Spreadsheet.Professional.v2.9\Crack\bin\NET35\Release\GemBox.Spreadsheet.dll</HintPath>
     </Reference>
     <Reference Include="GlacialList1.3">
       <HintPath>Excel\GlacialList1.3.dll</HintPath>
@@ -118,8 +118,8 @@
     <Reference Include="Ionic.Zip">
       <HintPath>Excel\.net 4.0\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs">
+      <HintPath>C:\Users\Fred\brigady\Rotek IS\Rotek IS\Resources\Microsoft.VisualBasic.PowerPacks.Vs.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
       <HintPath>Excel\.net 4.0\NPOI.dll</HintPath>
@@ -281,7 +281,9 @@
     <Compile Include="Formy\CustomDataGridView.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Formy\MultiLineListBox.vb" />
+    <Compile Include="Formy\MultiLineListBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Hlavna\Chyby.vb" />
     <Compile Include="Hlavna\export.Designer.vb">
       <DependentUpon>export.vb</DependentUpon>
@@ -331,6 +333,12 @@
     <Compile Include="Evidencia\Dokoncit.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Hlavna\Povolenia.Designer.vb">
+      <DependentUpon>Povolenia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Hlavna\Povolenia.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Hlavna\Spust.Designer.vb">
       <DependentUpon>Spust.vb</DependentUpon>
     </Compile>
@@ -344,10 +352,22 @@
     <Compile Include="Huta\Dodavatelia.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Huta\Hpridat.designer.vb">
+      <DependentUpon>Hpridat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Huta\Hpridat.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Huta\Materialy.Designer.vb">
       <DependentUpon>Materialy.vb</DependentUpon>
     </Compile>
     <Compile Include="Huta\Materialy.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Huta\Odpady.Designer.vb">
+      <DependentUpon>Odpady.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Huta\Odpady.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Huta\Vydajky.Designer.vb">
@@ -402,6 +422,11 @@
     <Compile Include="RotekDataSet.vb">
       <DependentUpon>RotekDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="RotekDataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RotekDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="RotekDataSet2.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -409,11 +434,14 @@
     </Compile>
     <Compile Include="SQL\Firma_SQL.vb" />
     <Compile Include="SQL\Huta_SQL.vb" />
+    <Compile Include="SQL\MaterialDruh_SQL.vb" />
     <Compile Include="SQL\Material_SQL.vb" />
     <Compile Include="SQL\Podzakazka_SQL.vb" />
+    <Compile Include="SQL\Povolenia_SQL.vb" />
     <Compile Include="SQL\Prijemka_SQL.vb" />
     <Compile Include="SQL\sqlExc.vb" />
     <Compile Include="SQL\SQL_main.vb" />
+    <Compile Include="SQL\SkladList_SQL.vb" />
     <Compile Include="SQL\Vydajka_SQL.vb" />
     <Compile Include="SQL\Zakazka_SQL.vb" />
     <Compile Include="Zakazka\Vydajka-prehlad.Designer.vb">
@@ -444,12 +472,6 @@
       <DependentUpon>HmakroInfo.vb</DependentUpon>
     </Compile>
     <Compile Include="Zakazka\HmakroInfo.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Huta\Hpridat.designer.vb">
-      <DependentUpon>Hpridat.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Huta\Hpridat.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Iné\infosky.Designer.vb">
@@ -731,20 +753,30 @@
     <EmbeddedResource Include="Evidencia\Dokoncit.resx">
       <DependentUpon>Dokoncit.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Hlavna\Povolenia.resx">
+      <DependentUpon>Povolenia.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Hlavna\Spust.resx">
       <DependentUpon>Spust.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Huta\Dodavatelia.resx">
       <DependentUpon>Dodavatelia.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Huta\Hpridat.resx">
+      <DependentUpon>Hpridat.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Huta\Materialy.resx">
       <DependentUpon>Materialy.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Huta\Odpady.resx">
+      <DependentUpon>Odpady.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Huta\Vydajky.resx">
       <DependentUpon>Vydajky.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Huta\Hvydat.resx">
       <DependentUpon>Hvydat.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Huta\Enfo.resx">
       <DependentUpon>Enfo.vb</DependentUpon>
@@ -777,9 +809,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Zakazka\HmakroInfo.resx">
       <DependentUpon>HmakroInfo.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Huta\Hpridat.resx">
-      <DependentUpon>Hpridat.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Iné\infosky.resx">
       <DependentUpon>infosky.vb</DependentUpon>

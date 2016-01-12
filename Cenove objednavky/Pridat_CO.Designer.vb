@@ -320,7 +320,7 @@ Partial Class Pridat_CPO
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PolozkaDataGridViewTextBoxColumn, Me.KusovDataGridViewTextBoxColumn, Me.CenaDataGridViewTextBoxColumn, Me.Col1, Me.Column1})
         Me.DataGridView1.DataSource = Me.COBindingSource
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 173)
+        Me.DataGridView1.Location = New System.Drawing.Point(0, 165)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.Size = New System.Drawing.Size(845, 568)
@@ -579,7 +579,7 @@ Partial Class Pridat_CPO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(845, 741)
+        Me.ClientSize = New System.Drawing.Size(845, 733)
         Me.Controls.Add(Me.DataGridView5)
         Me.Controls.Add(Me.DataGridView2)
         Me.Controls.Add(Me.Button1)

@@ -6,83 +6,140 @@ Roteksklad
 </name>
 </assembly>
 <members>
-<member name="P:WindowsApplication2.POP3Client.RemoteServerAddress">
+<member name="P:WindowsApplication2.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:WindowsApplication2.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:WindowsApplication2.My.Resources.Resources.fajka">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:WindowsApplication2.My.Resources.Resources.krizik">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:WindowsApplication2.My.Resources.Resources.Logo">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:WindowsApplication2.My.Resources.Resources.logo2">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:WindowsApplication2.My.Resources.Resources.Pozadie">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="T:WindowsApplication2.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:WindowsApplication2.MailAttachment.#ctor(System.String)">
  -----------------------------------------------------------------------------
  <summary>
- Return or set the reomte mail server address.
+ Initializes a new instance of the MailAttachment class and specify the attachment file path.
  </summary>
-	<value>IP address or domain name</value>
+	<param name="FilePath">Attachment file path on the disk</param>
 	<remarks>
- It can be a IP address like "10.0.0.1" or a domain name like "mail.yahoo.com"
+	</remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="M:WindowsApplication2.MailAttachment.#ctor(System.String,System.String)">
+ -----------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the MailAttachment class and specify the attachment file path and display file name.
+ </summary>
+	<param name="FilePath">Attachment file path on the disk</param>
+	<param name="FileName">The file name displayed in the mail(For display only).</param>
+	<remarks>
+	</remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="P:WindowsApplication2.MailAttachment.ContentTransferEncoding">
+ -----------------------------------------------------------------------------
+ <summary>
+ Return the content transfer encoding type.
+ </summary>
+	<value>Encoding type string</value>
+	<remarks>
+	</remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="P:WindowsApplication2.MailAttachment.FilePath">
+ -----------------------------------------------------------------------------
+ <summary>
+ Return or set the attachment file path.
+ </summary>
+	<value>File path string</value>
+	<remarks>
+	</remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="P:WindowsApplication2.MailAttachment.FileName">
+ -----------------------------------------------------------------------------
+ <summary>
+ Return or set the attachment display name.
+ </summary>
+	<value>Display file name</value>
+	<remarks>
+ It's optional, for display in mail client program only. 
  </remarks>
 	<history>
  	[Tony]	2005-12-1	Created
  </history>
  -----------------------------------------------------------------------------
 
-</member><member name="P:WindowsApplication2.POP3Client.RemoteServerPort">
+</member><member name="P:WindowsApplication2.MailAttachment.FileSize">
  -----------------------------------------------------------------------------
  <summary>
- Return or set the remote POP3 server's listenning port.
+ Return the attachment size in bytes.
  </summary>
-	<value>An Int16 value.</value>
+	<value>An Int32 value</value>
 	<remarks>
- It should be 0 ~ 65535. Default for POP3 server is 110
+ The unit is BYTE.
  </remarks>
 	<history>
  	[Tony]	2005-12-1	Created
  </history>
  -----------------------------------------------------------------------------
 
-</member><member name="P:WindowsApplication2.POP3Client.UserName">
+</member><member name="P:WindowsApplication2.MailAttachment.Content">
  -----------------------------------------------------------------------------
  <summary>
- Return or set POP3 mail server login user name
+ Return or set the attachment encoded content.
  </summary>
-	<value>User name string</value>
+	<value>Content string</value>
 	<remarks>
-	</remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="P:WindowsApplication2.POP3Client.Password">
- -----------------------------------------------------------------------------
- <summary>
- Return or set POP3 mail server login user password
- </summary>
-	<value>Password string</value>
-	<remarks>
-	</remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="P:WindowsApplication2.POP3Client.IncreaseNetworkCompatible">
- -----------------------------------------------------------------------------
- <summary>
- Return or set whether the working socket should wait for some period of time 
- between sending and receving message.
- </summary>
-	<value>True or False</value>
-	<remarks>
- Set this property to TRUE when you are behide a firewall, using an anti-virus 
- software which scans incoming emails or there is a high network latency. 
- Otherwise, set this property to FALSE, it will increase performance.
+ Not recommended to use this property directly, unless you want to encode/decode the attachment use your own method.
  </remarks>
 	<history>
  	[Tony]	2005-12-1	Created
  </history>
  -----------------------------------------------------------------------------
 
-</member><member name="P:WindowsApplication2.POP3Client.Statue">
+</member><member name="P:WindowsApplication2.MailAttachment.ContentID">
  -----------------------------------------------------------------------------
  <summary>
- Return the working socket's connection state
+ Return the attachment content unique ID.
  </summary>
-	<value>ConnectionState enumeration</value>
+	<value>ID string</value>
 	<remarks>
 	</remarks>
 	<history>
@@ -90,61 +147,25 @@ Roteksklad
  </history>
  -----------------------------------------------------------------------------
 
-</member><member name="M:WindowsApplication2.POP3Client.Login">
+</member><member name="M:WindowsApplication2.MailAttachment.GenerateBase64ContentFromFile">
  -----------------------------------------------------------------------------
  <summary>
- Try loginning the POP3 mail server using the given user name and password.
+ Generate Base64 content for the attachment file.
  </summary>
-	<returns>True, login successful; False, login failed.</returns>
 	<remarks>
-	</remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="M:WindowsApplication2.POP3Client.RetrieveMail(System.String,System.Int32)">
- -----------------------------------------------------------------------------
- <summary>
- Retrieve a whole mail from POP3 server.
- </summary>
-	<param name="UniqueID">The unique ID of the mail required to retrieve</param>
-	<returns>An instance of the EMail class</returns>
-	<remarks>
- The unique ID could be found in the ArrayList returned by GetMailList() method.
- The GetMailList() returns an ArrayList contains many instances of EMail class and
- the properties UniqueID of these instances are already set by that method. 
+ This method will be called automatically in EMail class
  </remarks>
 	<history>
  	[Tony]	2005-12-1	Created
  </history>
  -----------------------------------------------------------------------------
 
-</member><member name="M:WindowsApplication2.POP3Client.RetrieveMail(System.String,System.Boolean)">
+</member><member name="M:WindowsApplication2.MailAttachment.SaveToFile(System.String)">
  -----------------------------------------------------------------------------
  <summary>
- Retrieve a whole mail from POP3 server.
+ Save the attchment to a disk file
  </summary>
-	<param name="UniqueID">The unique ID of the mail required to retrieve</param>
-	<param name="ReturnSourceCode">If True, it will return the whole mail source codes; if False, it will return only the codes of the mail body section.</param>
-	<returns>Mail source codes</returns>
-	<remarks>
- Use this overload version only when you want to decode the mail using your own method.
- </remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="M:WindowsApplication2.POP3Client.DeleteMail(System.String)">
- -----------------------------------------------------------------------------
- <summary>
- Delete a mail from the server permanently.
- </summary>
-	<param name="UniqueID">The unique ID of the mail required to delete</param>
-	<returns>
- An Int16 value, 1 - Successful; 2 - Failed; -1 - No such mail on server(the mail may be already deleted)
-</returns>
+	<param name="SaveFilePath">Disk file path</param>
 	<remarks>
 	</remarks>
 	<history>
@@ -152,126 +173,14 @@ Roteksklad
  </history>
  -----------------------------------------------------------------------------
 
-</member><member name="M:WindowsApplication2.POP3Client.RetrieveAndDeleteMail(System.String)">
- -----------------------------------------------------------------------------
- <summary>
- Retrieve the mail the server and then delete it.
- </summary>
-	<param name="UniqueID">The unique ID of the mail required to retrieve and then delete</param>
-	<returns>An instance of EMail class if success, else it will return Nothing(null in C#)</returns>
-	<remarks>
-	</remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="M:WindowsApplication2.POP3Client.Reset">
- -----------------------------------------------------------------------------
- <summary>
- Reset the connection state.
- </summary>
-	<remarks>
- Not recommended to use this method directly.
- </remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="M:WindowsApplication2.POP3Client.Quit">
- -----------------------------------------------------------------------------
- <summary>
- Leave the mail server and close the connection.
- </summary>
-	<returns>True, success; False, failed.</returns>
-	<remarks>
-	</remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="M:WindowsApplication2.POP3Client.CloseForcedly">
- -----------------------------------------------------------------------------
- <summary>
- Close the connection forcedly.
- </summary>
-	<remarks>
- Not recommended to use this method directly. This may cause data losing or other 
- problems.
- </remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="M:WindowsApplication2.POP3Client.SendCommand(System.String,System.Boolean)">
- -----------------------------------------------------------------------------
- <summary>
- Send a POP3 command to the server
- </summary>
-	<param name="Command">Command name</param>
-	<param name="ReceiveLongData">Optional. If the command will cause the server to return a large text response, set this to True.</param>
-	<returns>Server's response text in bytes array</returns>
-	<remarks>
-	</remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="M:WindowsApplication2.POP3Client.CorrectedResponse(System.Byte[],System.String@)">
- -----------------------------------------------------------------------------
- <summary>
- Check the response of the server.
- </summary>
-	<param name="ReceivedBytes">Server's response, it is in bytes array format.</param>
-	<param name="Message">Optional. The message of the server's response.</param>
-	<returns>True, command execute successful; False, command execute failed.</returns>
-	<remarks>
-	</remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="M:WindowsApplication2.POP3Client.Connect">
- -----------------------------------------------------------------------------
- <summary>
- Make the connection to the mail server.
- </summary>
-	<returns>True, connect successful; False, connect failed.</returns>
-	<remarks>
-	</remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="M:WindowsApplication2.POP3Client.GetUIDList(System.Boolean)">
- -----------------------------------------------------------------------------
- <summary>
- Get mail's unique ID list
- </summary>
-	<param name="UIDAsKey">Indicate whether to use the UID as the key in the return hashtable</param>
-	<returns>A hashtable contains a UID list</returns>
-	<remarks>
- If UIDAsKey is True, the UID is the key of the hashtable, otherwise the mail index will be the key.
- </remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="T:WindowsApplication2.POP3Client">
+</member><member name="T:WindowsApplication2.MailAttachment">
  -----------------------------------------------------------------------------
  Project	 : QMailClient
- Class	 : POP3Client
+ Class	 : MailAttachment
  
  -----------------------------------------------------------------------------
  <summary>
- Represents the object which communicate with a POP3 mail server. This class can be inherited. 
+ Represents a mail attachment. This class can not be inherited. 
  </summary>
 	<remarks>
 	</remarks>
@@ -280,6 +189,11 @@ Roteksklad
  </history>
  -----------------------------------------------------------------------------
 
+</member><member name="M:WindowsApplication2.Povolenia.UpdateRowToDatabase">
+	<SUMMARY>
+ Checks if there is a row with changes and
+ writes it to the database
+ </SUMMARY>
 </member><member name="F:WindowsApplication2.EMail.MailPriority.Low">
  -----------------------------------------------------------------------------
  <summary>
@@ -1261,437 +1175,6 @@ Roteksklad
  </history>
  -----------------------------------------------------------------------------
 
-</member><member name="P:WindowsApplication2.My.Resources.Resources.ResourceManager">
-	<summary>
-  Returns the cached ResourceManager instance used by this class.
-</summary>
-</member><member name="P:WindowsApplication2.My.Resources.Resources.Culture">
-	<summary>
-  Overrides the current thread's CurrentUICulture property for all
-  resource lookups using this strongly typed resource class.
-</summary>
-</member><member name="P:WindowsApplication2.My.Resources.Resources.fajka">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:WindowsApplication2.My.Resources.Resources.krizik">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:WindowsApplication2.My.Resources.Resources.Logo">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:WindowsApplication2.My.Resources.Resources.logo2">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:WindowsApplication2.My.Resources.Resources.Pozadie">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="T:WindowsApplication2.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
-</member><member name="M:WindowsApplication2.MailAttachment.#ctor(System.String)">
- -----------------------------------------------------------------------------
- <summary>
- Initializes a new instance of the MailAttachment class and specify the attachment file path.
- </summary>
-	<param name="FilePath">Attachment file path on the disk</param>
-	<remarks>
-	</remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="M:WindowsApplication2.MailAttachment.#ctor(System.String,System.String)">
- -----------------------------------------------------------------------------
- <summary>
- Initializes a new instance of the MailAttachment class and specify the attachment file path and display file name.
- </summary>
-	<param name="FilePath">Attachment file path on the disk</param>
-	<param name="FileName">The file name displayed in the mail(For display only).</param>
-	<remarks>
-	</remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="P:WindowsApplication2.MailAttachment.ContentTransferEncoding">
- -----------------------------------------------------------------------------
- <summary>
- Return the content transfer encoding type.
- </summary>
-	<value>Encoding type string</value>
-	<remarks>
-	</remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="P:WindowsApplication2.MailAttachment.FilePath">
- -----------------------------------------------------------------------------
- <summary>
- Return or set the attachment file path.
- </summary>
-	<value>File path string</value>
-	<remarks>
-	</remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="P:WindowsApplication2.MailAttachment.FileName">
- -----------------------------------------------------------------------------
- <summary>
- Return or set the attachment display name.
- </summary>
-	<value>Display file name</value>
-	<remarks>
- It's optional, for display in mail client program only. 
- </remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="P:WindowsApplication2.MailAttachment.FileSize">
- -----------------------------------------------------------------------------
- <summary>
- Return the attachment size in bytes.
- </summary>
-	<value>An Int32 value</value>
-	<remarks>
- The unit is BYTE.
- </remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="P:WindowsApplication2.MailAttachment.Content">
- -----------------------------------------------------------------------------
- <summary>
- Return or set the attachment encoded content.
- </summary>
-	<value>Content string</value>
-	<remarks>
- Not recommended to use this property directly, unless you want to encode/decode the attachment use your own method.
- </remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="P:WindowsApplication2.MailAttachment.ContentID">
- -----------------------------------------------------------------------------
- <summary>
- Return the attachment content unique ID.
- </summary>
-	<value>ID string</value>
-	<remarks>
-	</remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="M:WindowsApplication2.MailAttachment.GenerateBase64ContentFromFile">
- -----------------------------------------------------------------------------
- <summary>
- Generate Base64 content for the attachment file.
- </summary>
-	<remarks>
- This method will be called automatically in EMail class
- </remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="M:WindowsApplication2.MailAttachment.SaveToFile(System.String)">
- -----------------------------------------------------------------------------
- <summary>
- Save the attchment to a disk file
- </summary>
-	<param name="SaveFilePath">Disk file path</param>
-	<remarks>
-	</remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="T:WindowsApplication2.MailAttachment">
- -----------------------------------------------------------------------------
- Project	 : QMailClient
- Class	 : MailAttachment
- 
- -----------------------------------------------------------------------------
- <summary>
- Represents a mail attachment. This class can not be inherited. 
- </summary>
-	<remarks>
-	</remarks>
-	<history>
- 	[Tony]	2005-12-1	Created
- </history>
- -----------------------------------------------------------------------------
-
-</member><member name="T:WindowsApplication2.RotekDataSet.EvidenciaDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.ZoznamFDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.FirmyDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.HutaDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.IneDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.MajetokDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.RotekDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.SkladDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.VzacnostiDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.ZakazkaDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.PrijemkaDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.VydajkaDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.OdpadDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.CPDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.CODataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.MailyDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.UcetDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.VydajkyDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.Material_VydajkaDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.Reklamacia_VydajkaDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.EmployerDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.DodavatelDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.Material_PrijemkaDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.PrijemkyDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.MaterialCenaDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.MaterialDruhDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.MaterialDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.OdpadyDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.MaterialVseobecneDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.MaterialNazovDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.ZakazkaPoznamkaDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.EvidenciaRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.ZoznamFRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.FirmyRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.HutaRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.IneRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.MajetokRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.RotekRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.SkladRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.VzacnostiRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.ZakazkaRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.PrijemkaRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.VydajkaRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.OdpadRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.CPRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.CORow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.MailyRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.UcetRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.VydajkyRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.Material_VydajkaRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.Reklamacia_VydajkaRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.EmployerRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.DodavatelRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.Material_PrijemkaRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.PrijemkyRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.MaterialCenaRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.MaterialDruhRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.MaterialRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.OdpadyRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.MaterialVseobecneRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.MaterialNazovRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSet.ZakazkaPoznamkaRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
 </member><member name="T:WindowsApplication2.RotekDataSet.EvidenciaRowChangeEvent">
 	<summary>
 Row event argument class
@@ -1816,133 +1299,13 @@ Row event argument class
 	<summary>
 Row event argument class
 </summary>
-</member><member name="T:WindowsApplication2.RotekDataSet">
+</member><member name="T:WindowsApplication2.RotekDataSet.PovoleniaRowChangeEvent">
 	<summary>
-Represents a strongly typed in-memory cache of data.
+Row event argument class
 </summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.EvidenciaTableAdapter">
+</member><member name="T:WindowsApplication2.RotekDataSet.SkladListRowChangeEvent">
 	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.ZoznamFTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.FirmyTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.HutaTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.IneTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.MajetokTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.RotekTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.SkladTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.VzacnostiTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.ZakazkaTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.PrijemkaTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.VydajkaTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.OdpadTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.CPTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.COTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.MailyTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.UcetTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.VydajkyTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.Material_VydajkaTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.Reklamacia_VydajkaTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.EmployerTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.DodavatelTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.Material_PrijemkaTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.PrijemkyTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.MaterialCenaTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.MaterialDruhTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.MaterialTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.OdpadyTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.MaterialVseobecneTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.MaterialNazovTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.ZakazkaPoznamkaTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
+Row event argument class
 </summary>
 </member><member name="M:WindowsApplication2.RotekDataSetTableAdapters.TableAdapterManager.UpdateUpdatedRows(WindowsApplication2.RotekDataSet,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
 	<summary>
@@ -1972,10 +1335,684 @@ Update Order Option
 	<summary>
 Used to sort self-referenced table's rows
 </summary>
+</member><member name="T:WindowsApplication2.RotekDataSet">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.PrijemkaTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.RotekTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.ZakazkaTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.VydajkyTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.MaterialTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.OdpadyTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.Material_VydajkaTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.MaterialDruhTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.PrijemkyTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
 </member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.TableAdapterManager">
 	<summary>
 TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
 </summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.SkladListTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.PovoleniaTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.ZakazkaPoznamkaTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.MaterialNazovTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.MaterialVseobecneTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.MaterialCenaTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.Material_PrijemkaTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.DodavatelTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.EmployerTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.Reklamacia_VydajkaTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.UcetTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.MailyTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.COTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.CPTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.OdpadTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.VydajkaTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.VzacnostiTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.SkladTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.MajetokTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.IneTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.HutaTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.FirmyTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.ZoznamFTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSetTableAdapters.EvidenciaTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.HutaDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.ZakazkaDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.MailyDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.SkladListRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.PovoleniaRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.ZakazkaPoznamkaRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.MaterialNazovRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.MaterialVseobecneRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.OdpadyRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.MaterialRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.MaterialDruhRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.MaterialCenaRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.PrijemkyRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.Material_PrijemkaRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.DodavatelRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.EmployerRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.Reklamacia_VydajkaRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.Material_VydajkaRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.VydajkyRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.UcetRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.MailyRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.CORow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.CPRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.OdpadRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.VydajkaRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.PrijemkaRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.ZakazkaRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.VzacnostiRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.SkladRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.RotekRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.MajetokRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.IneRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.HutaRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.FirmyRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.ZoznamFRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.EvidenciaRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.SkladListDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.PovoleniaDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.ZakazkaPoznamkaDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.MaterialNazovDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.MaterialVseobecneDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.OdpadyDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.MaterialDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.MaterialDruhDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.MaterialCenaDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.PrijemkyDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.Material_PrijemkaDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.DodavatelDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.EmployerDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.Reklamacia_VydajkaDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.Material_VydajkaDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.VydajkyDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.UcetDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.CODataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.CPDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.OdpadDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.VydajkaDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.PrijemkaDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.VzacnostiDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.SkladDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.RotekDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.MajetokDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.IneDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.FirmyDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.ZoznamFDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:WindowsApplication2.RotekDataSet.EvidenciaDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="P:WindowsApplication2.POP3Client.RemoteServerAddress">
+ -----------------------------------------------------------------------------
+ <summary>
+ Return or set the reomte mail server address.
+ </summary>
+	<value>IP address or domain name</value>
+	<remarks>
+ It can be a IP address like "10.0.0.1" or a domain name like "mail.yahoo.com"
+ </remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="P:WindowsApplication2.POP3Client.RemoteServerPort">
+ -----------------------------------------------------------------------------
+ <summary>
+ Return or set the remote POP3 server's listenning port.
+ </summary>
+	<value>An Int16 value.</value>
+	<remarks>
+ It should be 0 ~ 65535. Default for POP3 server is 110
+ </remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="P:WindowsApplication2.POP3Client.UserName">
+ -----------------------------------------------------------------------------
+ <summary>
+ Return or set POP3 mail server login user name
+ </summary>
+	<value>User name string</value>
+	<remarks>
+	</remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="P:WindowsApplication2.POP3Client.Password">
+ -----------------------------------------------------------------------------
+ <summary>
+ Return or set POP3 mail server login user password
+ </summary>
+	<value>Password string</value>
+	<remarks>
+	</remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="P:WindowsApplication2.POP3Client.IncreaseNetworkCompatible">
+ -----------------------------------------------------------------------------
+ <summary>
+ Return or set whether the working socket should wait for some period of time 
+ between sending and receving message.
+ </summary>
+	<value>True or False</value>
+	<remarks>
+ Set this property to TRUE when you are behide a firewall, using an anti-virus 
+ software which scans incoming emails or there is a high network latency. 
+ Otherwise, set this property to FALSE, it will increase performance.
+ </remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="P:WindowsApplication2.POP3Client.Statue">
+ -----------------------------------------------------------------------------
+ <summary>
+ Return the working socket's connection state
+ </summary>
+	<value>ConnectionState enumeration</value>
+	<remarks>
+	</remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="M:WindowsApplication2.POP3Client.Login">
+ -----------------------------------------------------------------------------
+ <summary>
+ Try loginning the POP3 mail server using the given user name and password.
+ </summary>
+	<returns>True, login successful; False, login failed.</returns>
+	<remarks>
+	</remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="M:WindowsApplication2.POP3Client.RetrieveMail(System.String,System.Int32)">
+ -----------------------------------------------------------------------------
+ <summary>
+ Retrieve a whole mail from POP3 server.
+ </summary>
+	<param name="UniqueID">The unique ID of the mail required to retrieve</param>
+	<returns>An instance of the EMail class</returns>
+	<remarks>
+ The unique ID could be found in the ArrayList returned by GetMailList() method.
+ The GetMailList() returns an ArrayList contains many instances of EMail class and
+ the properties UniqueID of these instances are already set by that method. 
+ </remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="M:WindowsApplication2.POP3Client.RetrieveMail(System.String,System.Boolean)">
+ -----------------------------------------------------------------------------
+ <summary>
+ Retrieve a whole mail from POP3 server.
+ </summary>
+	<param name="UniqueID">The unique ID of the mail required to retrieve</param>
+	<param name="ReturnSourceCode">If True, it will return the whole mail source codes; if False, it will return only the codes of the mail body section.</param>
+	<returns>Mail source codes</returns>
+	<remarks>
+ Use this overload version only when you want to decode the mail using your own method.
+ </remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="M:WindowsApplication2.POP3Client.DeleteMail(System.String)">
+ -----------------------------------------------------------------------------
+ <summary>
+ Delete a mail from the server permanently.
+ </summary>
+	<param name="UniqueID">The unique ID of the mail required to delete</param>
+	<returns>
+ An Int16 value, 1 - Successful; 2 - Failed; -1 - No such mail on server(the mail may be already deleted)
+</returns>
+	<remarks>
+	</remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="M:WindowsApplication2.POP3Client.RetrieveAndDeleteMail(System.String)">
+ -----------------------------------------------------------------------------
+ <summary>
+ Retrieve the mail the server and then delete it.
+ </summary>
+	<param name="UniqueID">The unique ID of the mail required to retrieve and then delete</param>
+	<returns>An instance of EMail class if success, else it will return Nothing(null in C#)</returns>
+	<remarks>
+	</remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="M:WindowsApplication2.POP3Client.Reset">
+ -----------------------------------------------------------------------------
+ <summary>
+ Reset the connection state.
+ </summary>
+	<remarks>
+ Not recommended to use this method directly.
+ </remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="M:WindowsApplication2.POP3Client.Quit">
+ -----------------------------------------------------------------------------
+ <summary>
+ Leave the mail server and close the connection.
+ </summary>
+	<returns>True, success; False, failed.</returns>
+	<remarks>
+	</remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="M:WindowsApplication2.POP3Client.CloseForcedly">
+ -----------------------------------------------------------------------------
+ <summary>
+ Close the connection forcedly.
+ </summary>
+	<remarks>
+ Not recommended to use this method directly. This may cause data losing or other 
+ problems.
+ </remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="M:WindowsApplication2.POP3Client.SendCommand(System.String,System.Boolean)">
+ -----------------------------------------------------------------------------
+ <summary>
+ Send a POP3 command to the server
+ </summary>
+	<param name="Command">Command name</param>
+	<param name="ReceiveLongData">Optional. If the command will cause the server to return a large text response, set this to True.</param>
+	<returns>Server's response text in bytes array</returns>
+	<remarks>
+	</remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="M:WindowsApplication2.POP3Client.CorrectedResponse(System.Byte[],System.String@)">
+ -----------------------------------------------------------------------------
+ <summary>
+ Check the response of the server.
+ </summary>
+	<param name="ReceivedBytes">Server's response, it is in bytes array format.</param>
+	<param name="Message">Optional. The message of the server's response.</param>
+	<returns>True, command execute successful; False, command execute failed.</returns>
+	<remarks>
+	</remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="M:WindowsApplication2.POP3Client.Connect">
+ -----------------------------------------------------------------------------
+ <summary>
+ Make the connection to the mail server.
+ </summary>
+	<returns>True, connect successful; False, connect failed.</returns>
+	<remarks>
+	</remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="M:WindowsApplication2.POP3Client.GetUIDList(System.Boolean)">
+ -----------------------------------------------------------------------------
+ <summary>
+ Get mail's unique ID list
+ </summary>
+	<param name="UIDAsKey">Indicate whether to use the UID as the key in the return hashtable</param>
+	<returns>A hashtable contains a UID list</returns>
+	<remarks>
+ If UIDAsKey is True, the UID is the key of the hashtable, otherwise the mail index will be the key.
+ </remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
+</member><member name="T:WindowsApplication2.POP3Client">
+ -----------------------------------------------------------------------------
+ Project	 : QMailClient
+ Class	 : POP3Client
+ 
+ -----------------------------------------------------------------------------
+ <summary>
+ Represents the object which communicate with a POP3 mail server. This class can be inherited. 
+ </summary>
+	<remarks>
+	</remarks>
+	<history>
+ 	[Tony]	2005-12-1	Created
+ </history>
+ -----------------------------------------------------------------------------
+
 </member>
 </members>
 </doc>

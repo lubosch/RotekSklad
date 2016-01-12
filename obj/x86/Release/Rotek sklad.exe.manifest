@@ -43,19 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="System.Data.SqlServerCe" version="3.5.1.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Bullzip.PDFWriter.dll" size="60416">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Bullzip.PDFWriter.dll" size="91136">
       <assemblyIdentity name="Bullzip.PdfWriter" version="4.0.0.0" publicKeyToken="041D71CACB6E853C" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>jccVOpyRJTijlAgRGZtFUpg6Quk=</dsig:DigestValue>
+        <dsig:DigestValue>5XGqPb3EHKGx3Mf8fIIxJXkq8RM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -84,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GemBox.Spreadsheet.dll" size="503808">
-      <assemblyIdentity name="GemBox.Spreadsheet" version="33.1.30.1000" publicKeyToken="B1B72C69714D4847" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GemBox.Spreadsheet.dll" size="290816">
+      <assemblyIdentity name="GemBox.Spreadsheet" version="29.3.35.1000" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>EhsEOJg9p4gmAKy6KfMJCMiOaeQ=</dsig:DigestValue>
+        <dsig:DigestValue>6/SmQcR380dUOTLID13VDruHios=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -204,14 +199,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Rotek sklad.exe" size="3190272">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Rotek sklad.exe" size="3283456">
       <assemblyIdentity name="Rotek sklad" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>m+afSJW/Sdolnjm0ZPsNFCI4JY4=</dsig:DigestValue>
+        <dsig:DigestValue>JyiCZPrpbMaIGGQffY2ZQYzHLXE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -223,7 +218,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>UZAHZZR7VtiZe7NqUHhwsZ62H0o=</dsig:DigestValue>
+        <dsig:DigestValue>rCq5pZiaa5TT8oG3tK8e7pZvCoA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -284,13 +279,13 @@
       <dsig:DigestValue>1+eudNjyzsc56kaT4ArrYCdk8KA=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Rotek sklad.exe.config" size="2754">
+  <file name="Rotek sklad.exe.config" size="3128">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>9G6ZS1Z5RvXsKWt1sT1IGN+09Mg=</dsig:DigestValue>
+      <dsig:DigestValue>KK08KaRVKBdnZ1gAaWoIoosaEvg=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

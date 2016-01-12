@@ -18,6 +18,10 @@
 
         Dim dd As DataTable = New DataTable
         SQL_main.List("SELECT * FROM Zakazka WHERE Zakazka = '" & zakazka & "' AND pocet = 1", dd)
+        If (dd.Rows.Count = 0) Then
+            Return
+        End If
+
         Me.Odovzdat = dd.Rows(0).Item("Veduci")
         Me.Zaevidoval = dd.Rows(0).Item("Zaevidoval")
         Me.Firma = New Firma_SQL(dd.Rows(0).Item("Zakaznik"))

@@ -24,19 +24,6 @@ Partial Class Prijemky
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.PrijemkyBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.RotekDataSet = New WindowsApplication2.RotekDataSet()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.PrijemkyTableAdapter = New WindowsApplication2.RotekDataSetTableAdapters.PrijemkyTableAdapter()
         Me.NazovDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DodaciListDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DatumDLDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -47,9 +34,24 @@ Partial Class Prijemky
         Me.Export = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Upravit = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Zmazat = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.PrijemkyBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.RotekDataSet = New WindowsApplication2.RotekDataSet()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.PrijemkyTableAdapter = New WindowsApplication2.RotekDataSetTableAdapters.PrijemkyTableAdapter()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PrijemkyBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RotekDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -67,103 +69,6 @@ Partial Class Prijemky
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.Size = New System.Drawing.Size(1019, 420)
         Me.DataGridView1.TabIndex = 0
-        '
-        'PrijemkyBindingSource
-        '
-        Me.PrijemkyBindingSource.DataMember = "Prijemky"
-        Me.PrijemkyBindingSource.DataSource = Me.RotekDataSet
-        '
-        'RotekDataSet
-        '
-        Me.RotekDataSet.DataSetName = "RotekDataSet"
-        Me.RotekDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Viner Hand ITC", 36.0!, System.Drawing.FontStyle.Bold)
-        Me.Label1.Location = New System.Drawing.Point(277, 9)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(504, 78)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Evidencia príjemiek"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(41, 104)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(118, 20)
-        Me.TextBox1.TabIndex = 2
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(38, 88)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(38, 13)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Názov"
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(166, 104)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox2.TabIndex = 4
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(166, 87)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(58, 13)
-        Me.Label3.TabIndex = 5
-        Me.Label3.Text = "Dodací list"
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Location = New System.Drawing.Point(398, 104)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox3.TabIndex = 6
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(398, 88)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(58, 13)
-        Me.Label4.TabIndex = 7
-        Me.Label4.Text = "Dodávateľ"
-        '
-        'DateTimePicker1
-        '
-        Me.DateTimePicker1.Location = New System.Drawing.Point(273, 104)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(119, 20)
-        Me.DateTimePicker1.TabIndex = 8
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(273, 87)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(78, 13)
-        Me.Label5.TabIndex = 9
-        Me.Label5.Text = "Dátum pridania"
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(505, 101)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(89, 23)
-        Me.Button1.TabIndex = 11
-        Me.Button1.Text = "Zmaž filter"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'PrijemkyTableAdapter
-        '
-        Me.PrijemkyTableAdapter.ClearBeforeFill = True
         '
         'NazovDataGridViewTextBoxColumn
         '
@@ -249,11 +154,119 @@ Partial Class Prijemky
         Me.Zmazat.UseColumnTextForButtonValue = True
         Me.Zmazat.Width = 49
         '
+        'PrijemkyBindingSource
+        '
+        Me.PrijemkyBindingSource.DataMember = "Prijemky"
+        Me.PrijemkyBindingSource.DataSource = Me.RotekDataSet
+        Me.PrijemkyBindingSource.Sort = "Nazov DESC"
+        '
+        'RotekDataSet
+        '
+        Me.RotekDataSet.DataSetName = "RotekDataSet"
+        Me.RotekDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Viner Hand ITC", 36.0!, System.Drawing.FontStyle.Bold)
+        Me.Label1.Location = New System.Drawing.Point(277, 9)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(504, 78)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "Evidencia príjemiek"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(38, 88)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(38, 13)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "Názov"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(113, 103)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox2.TabIndex = 4
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(113, 86)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(58, 13)
+        Me.Label3.TabIndex = 5
+        Me.Label3.Text = "Dodací list"
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(398, 104)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox3.TabIndex = 6
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(398, 88)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(58, 13)
+        Me.Label4.TabIndex = 7
+        Me.Label4.Text = "Dodávateľ"
+        '
+        'DateTimePicker1
+        '
+        Me.DateTimePicker1.Location = New System.Drawing.Point(273, 104)
+        Me.DateTimePicker1.Name = "DateTimePicker1"
+        Me.DateTimePicker1.Size = New System.Drawing.Size(119, 20)
+        Me.DateTimePicker1.TabIndex = 8
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(273, 87)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(78, 13)
+        Me.Label5.TabIndex = 9
+        Me.Label5.Text = "Dátum pridania"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(505, 101)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(89, 23)
+        Me.Button1.TabIndex = 11
+        Me.Button1.Text = "Zmaž filter"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'PrijemkyTableAdapter
+        '
+        Me.PrijemkyTableAdapter.ClearBeforeFill = True
+        '
+        'NumericUpDown1
+        '
+        Me.NumericUpDown1.Location = New System.Drawing.Point(218, 103)
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(49, 20)
+        Me.NumericUpDown1.TabIndex = 19
+        Me.NumericUpDown1.Value = New Decimal(New Integer() {11, 0, 0, 0})
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(41, 103)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(66, 20)
+        Me.TextBox1.TabIndex = 18
+        '
         'Prijemky
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1019, 550)
+        Me.Controls.Add(Me.NumericUpDown1)
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.DateTimePicker1)
@@ -262,7 +275,6 @@ Partial Class Prijemky
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.DataGridView1)
         Me.Name = "Prijemky"
@@ -271,13 +283,13 @@ Partial Class Prijemky
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PrijemkyBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RotekDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
@@ -299,4 +311,6 @@ Partial Class Prijemky
     Friend WithEvents Export As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents Upravit As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents Zmazat As System.Windows.Forms.DataGridViewButtonColumn
+    Friend WithEvents NumericUpDown1 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
 End Class

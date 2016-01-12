@@ -16,18 +16,16 @@ Public Class Hvydat
 
     Property rozmerrr As String
 
-
-
-    Public Sub New(ByVal druh As String, ByVal nazov As String, ByVal sirka As Integer, ByVal rozmer As Integer, ByVal velkost As Integer, ByVal s_rozmer As Integer, ByVal typ As String)
+    Public Sub New(ByVal druh As String, ByVal nazov As String, ByVal sirka As Decimal, ByVal rozmer As Decimal, ByVal velkost As Integer, ByVal s_rozmer As Decimal, ByVal typ As String)
         InitializeComponent()
 
         typ_oznac(typ)
 
         TextBox4.Text = druh
         TextBox6.Text = nazov
-        TextBox1.Text = velkost
+        novaDlzka.Text = velkost
 
-        TextBox1.Focus()
+        novaDlzka.Focus()
         TextBox9.Focus()
     End Sub
 
@@ -67,12 +65,11 @@ Public Class Hvydat
         Me.VydajkyTableAdapter.Fill(Me.RotekDataSet.Vydajky)
         Me.Material_VydajkaTableAdapter.FillByVydajkaNazov(Me.RotekDataSet2.Material_Vydajka, vydajka_nazov)
 
-
         ComboBox1.DataSource = dd
         ComboBox1.ValueMember = "ID"
         ComboBox1.DisplayMember = "Surname"
 
-        CheckBox1.Checked = False
+        RadioButton9.Checked = True
 
         NumericUpDown1.Value = Now.Year.ToString.Substring(2)
 
@@ -94,18 +91,25 @@ Public Class Hvydat
                 End Try
                 NumericUpDown2.Value = Form78.rok
 
+
             Else
                 'Me.PrijemkaBindingSource.Filter = String.Format("{0} = '{1}' AND {2}='{3}'", RotekDataSet.Prijemka.pocetColumn, 1, RotekDataSet.Prijemka.NazovColumn, Label16.Text)
 
-                Dim vydajka As Vydajka_SQL = New Vydajka_SQL
-                vydajka.find_by_nazov(vydajka_nazov)
+                Dim vydajka As Vydajka_SQL = New Vydajka_SQL(vydajka_nazov)
                 TextBox15.Text = vydajka.vyhotovil
                 If vydajka.zakazka.IndexOf("/") > -1 Then TextBox11.Text = vydajka.zakazka.Substring(0, vydajka.zakazka.IndexOf("/"))
                 DateTimePicker1.Value = vydajka.datum
                 If vydajka.pokazil_ID <> "" Then
-                    CheckBox1.Checked = True
                     ComboBox1.SelectedValue = vydajka.pokazil_ID
                 End If
+                If vydajka.firemna_rezia Then
+                    RadioButton11.Checked = True
+                ElseIf (Not String.IsNullOrEmpty(vydajka.zakazka)) Then
+                    TextBox11.Text = vydajka.zakazka.Substring(0, vydajka.zakazka.IndexOf("/"))
+                    NumericUpDown1.Value = vydajka.zakazka.Substring(vydajka.zakazka.IndexOf("/") + 1)
+                End If
+
+                TextBox16.Text = vydajka.poznamka
             End If
 
             hladaj()
@@ -129,19 +133,39 @@ Public Class Hvydat
         DataGridView3.DataSource = Nothing
         DataGridView3.Columns.Clear()
         DataGridView3.DataSource = Vydajka_SQL.materialByName(vydajka_nazov)
+
         Dim btnColumn As DataGridViewButtonColumn = New DataGridViewButtonColumn()
+        btnColumn.Name = "Zmazať"
         btnColumn.HeaderText = "Zmazať"
         btnColumn.UseColumnTextForButtonValue = True
         btnColumn.Text = "Zmazať"
-        Select Case Form78.heslo
-            Case Form78.admin
-                btnColumn.Visible = True
-            Case Else
-                btnColumn.Visible = False
-
-        End Select
 
         DataGridView3.Columns.Add(btnColumn)
+
+        DataGridView3.Columns("ID").Visible = False
+        DataGridView3.Columns("mz_ID").Visible = False
+
+        poverenia()
+    End Sub
+    Private Sub poverenia()
+        Dim dd As List(Of Dictionary(Of String, Boolean)) = New List(Of Dictionary(Of String, Boolean))
+        Dim d As Dictionary(Of String, Boolean)
+
+        dd = Povolenia_SQL.getRights("Výdajka")
+        Select Case Form78.heslo
+            Case Form78.admin
+                d = dd(0)
+            Case Form78.zakazkar
+                d = dd(1)
+            Case Form78.skladnik
+                d = dd(2)
+            Case Else
+                d = dd(3)
+        End Select
+
+        If (Not d("Mazať položky")) Then
+            DataGridView3.Columns("Zmazať").Visible = False
+        End If
 
     End Sub
 
@@ -165,7 +189,8 @@ Public Class Hvydat
 
     Public Shared Function get_rozmery(sirka_tb As String, rozmer_tb As String, srozmer_tb As String, velkost_tb As String, typ As String) As Rozmery
         Dim rozmery As Rozmery = New Rozmery
-        Dim sirka, rozmer, s_rozmer, velkost As Integer
+        Dim sirka, rozmer, s_rozmer As Decimal
+        Dim velkost As Decimal
 
         Try
             rozmer = rozmer_tb
@@ -196,25 +221,20 @@ Public Class Hvydat
         If typ = "Valec" Then
             sirka = -1
             s_rozmer = -1
-        ElseIf typ = "Plech" Then
-            s_rozmer = -1
 
         ElseIf typ = "Rurka" Then
             s_rozmer = -1
             If rozmer < sirka Then
-                Dim t As Integer = rozmer
+                Dim t As Decimal = rozmer
                 rozmer = sirka
                 sirka = t
-                '                    Chyby.Show("D musí byť väčšie ako d")
-                '                   Exit Sub
             End If
         ElseIf typ = "6 - hran" Then
             sirka = -1
             s_rozmer = -1
         ElseIf typ = "L - profil" Then
-
             If rozmer > sirka Then
-                Dim pom As Integer = sirka
+                Dim pom As Decimal = sirka
                 sirka = rozmer
                 rozmer = pom
             End If
@@ -223,8 +243,7 @@ Public Class Hvydat
                 Chyby.Show("Nefunkcne hodnoty")
                 Return Nothing
             End If
-        ElseIf typ = "Hranol" Then
-
+        ElseIf typ = "Hranol" Or typ = "Plech" Then
             Dim pom As ArrayList = New ArrayList()
             pom.Add(sirka)
             pom.Add(rozmer)
@@ -233,10 +252,10 @@ Public Class Hvydat
             sirka = pom(1)
             rozmer = pom(0)
             velkost = pom(2)
+            s_rozmer = -1
         Else
-
             If rozmer > sirka Then
-                Dim pom As Integer = sirka
+                Dim pom As Decimal = sirka
                 sirka = rozmer
                 rozmer = pom
             End If
@@ -283,8 +302,15 @@ Public Class Hvydat
             pozn = "-"
         End If
 
-        Dim reklamacia As Boolean = CheckBox1.Checked
-
+        Dim reklamacia As Boolean
+        Dim firemna_rezia As Integer
+        If RadioButton11.Checked Then
+            firemna_rezia = 1
+            reklamacia = False
+        Else
+            reklamacia = RadioButton10.Checked
+            firemna_rezia = 0
+        End If
 
         Dim zakazka As String = TextBox11.Text & "/" & NumericUpDown1.Value
 
@@ -292,10 +318,10 @@ Public Class Hvydat
 
         Dim id As String = VydajkyTableAdapter.byNazov(vydajka_nazov).ToString
 
-        Dim sql As String
         If id = "" Then
 
-            SQL_main.AddCommand("INSERT INTO Vydajky (Nazov, Datum, Vyhotovil, Poznamka, Zakazka_ID) VALUES('" + vydajka_nazov() + "','" + datum.ToString("yyyy-MM-dd") + "','" + TextBox15.Text + "','" + pozn + "', (SELECT ID FROM Zakazka WHERE pocet = 1 AND Zakazka = '" & zakazka & "')  )")
+            SQL_main.AddCommand("INSERT INTO Vydajky (Nazov, Datum, Vyhotovil, Poznamka, Zakazka_ID, Firemna_rezia) VALUES('" + vydajka_nazov() + "','" + datum.ToString("yyyy-MM-dd") + "','" + TextBox15.Text + "','" + pozn + "', (SELECT ID FROM Zakazka WHERE pocet = 1 AND Zakazka = '" & zakazka & "') , " & firemna_rezia & ")")
+
             If reklamacia Then
                 Dim zamestnanec_ID As String = ComboBox1.SelectedValue
                 SQL_main.AddCommand("INSERT INTO Reklamacia_Vydajka (Vydajka_ID, Zamestnanec_ID) VALUES( (SELECT SCOPE_IDENTITY()) , " & zamestnanec_ID & ")")
@@ -331,124 +357,115 @@ Public Class Hvydat
 
         Try
 
-            Dim druh, nazov As String
-            druh = TextBox4.Text.Trim
-            nazov = TextBox6.Text.Trim
-            If TextBox8.Text.Length = 0 Then TextBox8.Text = 0
-            If TextBox2.Text.Length = 0 Then TextBox2.Text = 0
-            If TextBox3.Text.Length = 0 Then TextBox3.Text = 0
-            If TextBox10.Text.Length = 0 Then TextBox10.Text = 0
-            If TextBox17.Text.Length = 0 Then TextBox17.Text = 0
+            'Dim druh, nazov As String
+            'druh = TextBox4.Text.Trim
+            'nazov = TextBox6.Text.Trim
+            'If TextBox8.Text.Length = 0 Then TextBox8.Text = 0
+            'If TextBox2.Text.Length = 0 Then TextBox2.Text = 0
+            'If TextBox3.Text.Length = 0 Then TextBox3.Text = 0
+            'If TextBox10.Text.Length = 0 Then TextBox10.Text = 0
+            'If TextBox17.Text.Length = 0 Then TextBox17.Text = 0
 
 
-            If druh.Length = 0 Or nazov.Length = 0 Then
-                Chyby.Show("Niečo nie je zadané druh alebo nazov")
-                Exit Sub
-            End If
+            'If druh.Length = 0 Or nazov.Length = 0 Then
+            '    Chyby.Show("Niečo nie je zadané druh alebo nazov")
+            '    Exit Sub
+            'End If
 
             For i As Integer = 0 To DataGridView4.Rows.Count - 1
 
                 Dim kusov, kusov_pouzil, kusov_zvysku As Integer
+                Dim material As Material_SQL
+                Dim material_zvysok As Material_SQL
+                Dim stara_dlzka As Integer
 
                 Try
+                    material = New Material_SQL(DataGridView4.Rows(i).Cells(base + 5).Value)
+                    material_zvysok = New Material_SQL(DataGridView4.Rows(i).Cells(base + 5).Value)
+                    'druh = material.druh
+                    'nazov = material.nazov
+                    Dim velkost_zvysok As String = DataGridView4.Rows(i).Cells(base + 3).Value
+                    If (IsHranol()) Then
+                        Dim hrana As String = DataGridView4.Rows(i).Cells(0).Value
+                        If hrana = "Šírka" Then
+                            material_zvysok.sirka = velkost_zvysok
+                        ElseIf hrana = "Hrúbka" Then
+                            material_zvysok.rozmer = velkost_zvysok
+                        ElseIf hrana = "Veľkosť" Then
+                            material_zvysok.velkost = velkost_zvysok
+                        End If
+                    ElseIf IsPlech() Then
+                        material_zvysok.velkost = 0
+                    Else
+                        material_zvysok.velkost = velkost_zvysok
+                    End If
+                    material_zvysok.resetRozmery()
+                    stara_dlzka = StaraDlzka.Text
+                Catch ex As Exception
+                    Chyby.Show("Nenasiel sa material")
+                    Exit Sub
+                End Try
 
+                Try
                     kusov = DataGridView4.Rows(i).Cells(base + 1).Value
                     kusov = 0 - kusov
-                    kusov_pouzil = TextBox13.Text
+                    kusov_pouzil = ksTakychto.Text
                     kusov_zvysku = DataGridView4.Rows(i).Cells(base + 4).Value
-
                 Catch ex As Exception
                     Chyby.Show("Zle zadaný počet kusov")
                     Exit Sub
                 End Try
 
-                Dim velkost As String = DataGridView4.Rows(i).Cells(base).Value
-                Dim velkost_zvysok As String = DataGridView4.Rows(i).Cells(3).Value
-
-                Dim rozmery_zvysok As Rozmery
-                Dim rozmery As Rozmery
-                Try
-                    If (IsHranol()) Then
-                        Dim typ As String = DataGridView4.Rows(i).Cells(0).Value
-                        rozmery = get_rozmery(TextBox8.Text, TextBox10.Text, TextBox3.Text, TextBox2.Text, typ, velkost)
-                        rozmery_zvysok = get_rozmery(TextBox8.Text, TextBox10.Text, TextBox3.Text, TextBox2.Text, typ, velkost_zvysok)
-                    Else
-                        rozmery = get_rozmery(TextBox8.Text, TextBox10.Text, TextBox3.Text, velkost, typ_slovom)
-                        rozmery_zvysok = get_rozmery(TextBox8.Text, TextBox10.Text, TextBox3.Text, velkost_zvysok, typ_slovom)
-                    End If
-                    If rozmery_zvysok.velkost < 0 Then
-                        Chyby.Show("Použitá dĺžka je väčšia ako na sklade")
-                    End If
-                Catch ex As Exception
-                    Exit Sub
-                End Try
-
-
                 Dim vydajka_id As Integer = VydajkyTableAdapter.byNazov(vydajka_nazov)
-                Dim material As Material_SQL = New Material_SQL(druh, nazov, rozmery.sirka, rozmery.rozmer, rozmery.s_rozmer, rozmery.velkost, kusov, rozmery.typ)
                 Dim material_id As Integer = material.save
 
-                Dim material_zvysok As Material_SQL = New Material_SQL(druh, nazov, rozmery_zvysok.sirka, rozmery_zvysok.rozmer, rozmery_zvysok.s_rozmer, rozmery_zvysok.velkost, kusov_zvysku, rozmery_zvysok.typ)
                 Dim material_zobrat_id As String = "NULL"
                 material_zobrat_id = material_zvysok.save
 
-                Dim material_plochac_zvysok As Material_SQL = Nothing
                 Dim material_plochac As Material_SQL = Nothing
-                If RadioButton2.Checked Then
-                    material_plochac = New Material_SQL(druh, nazov, -1, -1, -1, rozmery.velkost, rozmery.rozmer * rozmery.sirka * kusov, rozmery.typ)
+                If IsPlech() Then
+                    material_plochac = material.GetPlochac
                     Dim material_plochac_id As String = "NULL"
                     material_plochac_id = material_plochac.save
-                    material_plochac_zvysok = New Material_SQL(druh, nazov, -1, -1, -1, rozmery_zvysok.velkost, rozmery_zvysok.sirka * rozmery_zvysok.rozmer * kusov_zvysku, rozmery_zvysok.typ)
-                    Dim material_plochac_zvysok_id As String = "NULL"
-                    material_plochac_zvysok_id = material_plochac_zvysok.save
+
                 End If
+
+
+                'Me.MaterialVydajkaBindingSource.Clear()
+                'Me.MaterialVydajkaBindingSource.DataSource = Nothing
+                Me.Material_VydajkaTableAdapter.FillByVydajkaNazov(Me.RotekDataSet2.Material_Vydajka, vydajka_nazov)
+                Me.MaterialVydajkaBindingSource.ResetBindings(False)
 
                 Me.MaterialVydajkaBindingSource.Filter = String.Format("{0} = '{1}' AND {2}='{3}' ", RotekDataSet.Material_Vydajka.Vydajka_IDColumn, vydajka_id, RotekDataSet.Material_Vydajka.Material_IDColumn, material_id)
                 If DataGridView1.RowCount = 1 Then
                     If DataGridView1.Rows(0).Cells("mat_zvysok").Value.ToString <> "" Then
                         Debug.WriteLine(DataGridView1.Rows(0).Cells("mat_zvysok").Value.ToString + "|||")
                         Dim material_zvysok_povodny As Material_SQL = New Material_SQL(DataGridView1.Rows(0).Cells("mat_zvysok").Value)
-                        Dim material_zvysok_povodny_kusov As Integer = DataGridView1.Rows(0).Cells(3).Value
-                        If RadioButton2.Checked Then
-                            Dim material_zvysok_povodny_plochac As Material_SQL = material_zvysok_povodny.GetPlochac
-                            material_zvysok_povodny_plochac.add_to_stock(0 - material_zvysok_povodny_kusov * material_zvysok_povodny.sirka * material_zvysok_povodny.rozmer)
-                        Else
+                        Dim material_zvysok_povodny_kusov As Integer = DataGridView1.Rows(0).Cells("Zvysok_ks").Value
+                        If RadioButton2.Checked = False Then
                             material_zvysok_povodny.add_to_stock(0 - material_zvysok_povodny_kusov)
                         End If
                     End If
 
-                    SQL_main.Odpalovac("UPDATE Material_Vydajka SET Ks=" & kusov & ", Material_zvysok_ID = " & material_zobrat_id & " , Zvysok_ks = " & (kusov_zvysku) & ", Ks1Ks = " & kusov_pouzil & " WHERE Vydajka_ID = (SELECT ID FROM Vydajky WHERE Nazov='" + vydajka_nazov() + "') AND Material_ID = " & material_id)
-                    If RadioButton2.Checked Then
-                        material_plochac_zvysok.add_to_stock(kusov_zvysku * material_plochac.sirka * material_plochac.rozmer)
-                        kusov = kusov - DataGridView1.Rows(0).Cells(3).Value
-                        material_plochac.add_to_stock(kusov * material.sirka * material.rozmer)
-                    Else
-                        material_zvysok.add_to_stock(kusov_zvysku)
-                        kusov = kusov - DataGridView1.Rows(0).Cells(3).Value
-                        material.add_to_stock(kusov)
-                    End If
                     If TextBox9.Text = 0 Then
                         SQL_main.Odpalovac("DELETE FROM Material_Vydajka WHERE Vydajka_ID = " & vydajka_id & " AND Material_ID = " & material_id)
+                    Else
+                        SQL_main.Odpalovac("UPDATE Material_Vydajka SET Ks=" & kusov & ", Material_zvysok_ID = " & material_zobrat_id & " , Zvysok_ks = " & (kusov_zvysku) & ", Ks1Ks = " & kusov_pouzil & " WHERE Vydajka_ID = (SELECT ID FROM Vydajky WHERE Nazov='" + vydajka_nazov() + "') AND Material_ID = " & material_id)
+                    End If
+                    If IsPlech() Then
+                        kusov = kusov - DataGridView1.Rows(0).Cells("Ks").Value
                     End If
                 Else
-
-                    'If material_zvysok.velkost = 0 Then
-                    'SQL_main.Odpalovac("INSERT INTO Material_Vydajka (Vydajka_ID, Material_ID, Ks) VALUES ( " & vydajka_id & " , " & material_id & " , " & kusov & " )")
-                    'Else
-                    SQL_main.Odpalovac("INSERT INTO Material_Vydajka (Vydajka_ID, Material_ID, Ks, Material_zvysok_ID, Zvysok_ks, Ks1Ks) VALUES ( " & vydajka_id & " , " & material_id & " , " & kusov & " , " & material_zobrat_id & " , " & (kusov_zvysku) & " , " & kusov_pouzil & " )")
-                    'End If
-
-
-                    If RadioButton2.Checked Then
-                        material_plochac_zvysok.add_to_stock(kusov_zvysku * material.rozmer * material.sirka)
-                        material_plochac.add_to_stock(kusov * material.sirka * material.rozmer)
-                    Else
-                        material_zvysok.add_to_stock(kusov_zvysku)
-                        material.add_to_stock(kusov)
-                    End If
-
+                    SQL_main.Odpalovac("INSERT INTO Material_Vydajka (Vydajka_ID, Material_ID, Ks, Material_zvysok_ID, Zvysok_ks, Ks1Ks, Taken) VALUES ( " & vydajka_id & " , " & material_id & " , " & kusov & " , " & material_zobrat_id & " , " & (kusov_zvysku) & " , " & kusov_pouzil & " , " & stara_dlzka & ")")
                 End If
 
+
+                If RadioButton2.Checked Then
+                    material_plochac.add_to_stock(kusov * material.sirka * material.velkost)
+                Else
+                    material_zvysok.add_to_stock(kusov_zvysku)
+                    material.add_to_stock(kusov)
+                End If
 
             Next
 
@@ -463,14 +480,15 @@ Public Class Hvydat
 
             TextBox4.Text = ""
             TextBox6.Text = ""
-            TextBox1.Text = ""
-            TextBox2.Text = ""
-            TextBox3.Text = ""
-            TextBox8.Text = ""
-            TextBox9.Text = "1"
-            TextBox10.Text = ""
-            TextBox13.Text = "1"
-            TextBox17.Text = ""
+
+            Dim rButton As RadioButton = GroupBox1.Controls.OfType(Of RadioButton)().Where(Function(r) r.Checked = True).FirstOrDefault()
+            rButton.Checked = False
+            rButton.Checked = True
+
+
+            'DataGridView4.Rows.Clear()
+            'DataGridView2.Rows.Clear()
+
             VelkostFilter()
 
             hladaj()
@@ -487,7 +505,7 @@ Public Class Hvydat
 
     End Sub
 
-    Private Sub TextBox1_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TextBox1.KeyUp
+    Private Sub TextBox1_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles novaDlzka.KeyUp
 
         Try
             If e.KeyCode = Keys.Escape Then
@@ -567,6 +585,7 @@ Public Class Hvydat
 
     Private Sub hladajDruh()
         MaterialDruhBindingSource.Filter = "Nazov LIKE '%" & TextBox4.Text & "%'"
+        ListBox1.DataSource = MaterialDruhTableAdapter.GetDataByNazov(TextBox4.Text)
     End Sub
     Private Sub hladajNazov()
         MaterialNazovBindingSource.Filter = "Nazov LIKE '%" & TextBox6.Text & "%' AND Druh LIKE '%" & TextBox4.Text & "%'"
@@ -662,15 +681,15 @@ Public Class Hvydat
         End Try
     End Sub
     Private Sub prepocet1()
-        If (TextBox1.Text.Length <> 0) And (TextBox8.Text.Length <> 0) Then
+        If (novaDlzka.Text.Length <> 0) And (TextBox8.Text.Length <> 0) Then
             Try
                 TextBox10.Text = TextBox8.Text / TextBox9.Text
                 Dim hmotnost As Double = TextBox10.Text
-                Dim velkost As Double = TextBox1.Text
+                Dim velkost As Double = novaDlzka.Text
                 Dim hustota As Double
                 Dim typ As String = typ_slovom()
 
-                TextBox2.Text = hustota
+                StaraDlzka.Text = hustota
                 'Chyby.Show(hustota)
 
             Catch ex As Exception
@@ -779,9 +798,13 @@ Public Class Hvydat
             TextBox10.Text = ""
         End Try
         Try
-
-
+            If TextBox9.Text > TextBox9.Tag Then
+                formatRed()
+            Else
+                formatNormal()
+            End If
         Catch ex As Exception
+            formatNormal()
 
         End Try
 
@@ -814,11 +837,11 @@ Public Class Hvydat
 
     Private Sub TextBox2_TextChanged(sender As System.Object, e As System.EventArgs)
         Try
-            TextBox2.Text = TextBox2.Text.Replace(".", ",")
-            If TextBox2.Text.IndexOf(",") <> TextBox2.Text.Length - 1 Then
-                TextBox2.Text = Math.Floor(CDec(TextBox2.Text) * 1000) / 1000
+            StaraDlzka.Text = StaraDlzka.Text.Replace(".", ",")
+            If StaraDlzka.Text.IndexOf(",") <> StaraDlzka.Text.Length - 1 Then
+                StaraDlzka.Text = Math.Floor(CDec(StaraDlzka.Text) * 1000) / 1000
             End If
-            TextBox2.SelectionStart = TextBox2.Text.Length
+            StaraDlzka.SelectionStart = StaraDlzka.Text.Length
         Catch ex As Exception
         End Try
 
@@ -886,7 +909,7 @@ Public Class Hvydat
     End Function
 
 
-    Private Sub TextBox1_Enter(sender As System.Object, e As System.EventArgs) Handles TextBox1.Leave
+    Private Sub TextBox1_Enter(sender As System.Object, e As System.EventArgs) Handles novaDlzka.Leave
         getKusov()
 
     End Sub
@@ -896,7 +919,7 @@ Public Class Hvydat
             Dim druh, nazov, rozmer, sirka, s_rozmer, typ, velkost As String
             druh = TextBox4.Text
             nazov = TextBox6.Text
-            velkost = TextBox1.Text
+            velkost = novaDlzka.Text
 
             typ = typ_slovom()
             If druh.Length = 0 Or nazov.Length = 0 Or rozmer.Length = 0 Then
@@ -969,6 +992,7 @@ Public Class Hvydat
             Label10.Text = "Šírka [mm]"
             Label8.Text = "Dĺžka [mm]"
 
+
         End If
     End Sub
 
@@ -1011,10 +1035,10 @@ Public Class Hvydat
             If e.RowIndex = -1 Then
                 Exit Sub
             End If
-            If e.ColumnIndex = 14 Then
-                data_click(e.RowIndex)
-                TextBox9.Text = 0
-                stuk()
+            If e.ColumnIndex = DataGridView3.Columns("Zmazať").Index Then
+                zmazat(e.RowIndex)
+                Napln_tabulku()
+                Me.Material_VydajkaTableAdapter.FillByVydajkaNazov(Me.RotekDataSet2.Material_Vydajka, vydajka_nazov)
             Else
                 data_click(e.RowIndex)
 
@@ -1025,29 +1049,38 @@ Public Class Hvydat
         End Try
     End Sub
 
+    Private Sub zmazat(riadok As Integer)
+
+        Dim vydajka As Vydajka_SQL = New Vydajka_SQL(vydajka_nazov)
+        Dim material_id As Integer = DataGridView3.Rows(riadok).Cells("ID").Value
+        vydajka.zmazat(material_id)
+        Napln_tabulku()
+        nacitaj_moznosti()
+
+
+    End Sub
+
+
     Private Sub data_click(riadok As Integer)
-        Dim typ As String = DataGridView3.Rows(riadok).Cells(2).Value
-        TextBox4.Text = DataGridView3.Rows(riadok).Cells(0).Value
-        TextBox6.Text = DataGridView3.Rows(riadok).Cells(1).Value
+        Dim typ As String = DataGridView3.Rows(riadok).Cells("Typ").Value
+        TextBox4.Text = DataGridView3.Rows(riadok).Cells("Druh").Value
+        TextBox6.Text = DataGridView3.Rows(riadok).Cells("Názov").Value
 
         typ_oznac(typ)
 
-        TextBox1.Text = DataGridView3.Rows(riadok).Cells(6).Value
-        TextBox9.Text = DataGridView3.Rows(riadok).Cells(7).Value
+        'novaDlzka.Text = DataGridView3.Rows(riadok).Cells(6).Value
+        'TextBox9.Text = DataGridView3.Rows(riadok).Cells(7).Value
 
-        If DataGridView3.Rows(riadok).Cells(8).Value.ToString <> "" Then
-            TextBox8.Text = DataGridView3.Rows(riadok).Cells(8).Value
-            TextBox10.Text = DataGridView3.Rows(riadok).Cells(9).Value
-            TextBox3.Text = DataGridView3.Rows(riadok).Cells(10).Value
-            TextBox2.Text = DataGridView3.Rows(riadok).Cells(11).Value
-        Else
-            TextBox8.Text = DataGridView3.Rows(riadok).Cells(3).Value
-            TextBox10.Text = DataGridView3.Rows(riadok).Cells(4).Value
-            TextBox3.Text = DataGridView3.Rows(riadok).Cells(5).Value
-            TextBox2.Text = DataGridView3.Rows(riadok).Cells(6).Value
+        If DataGridView3.Rows(riadok).Cells("Šírka").Value.ToString <> "" Then
+            TextBox8.Text = DataGridView3.Rows(riadok).Cells("Šírka").Value.ToString
+            TextBox10.Text = DataGridView3.Rows(riadok).Cells("Priemer / Hrúbka").Value.ToString
+            TextBox3.Text = DataGridView3.Rows(riadok).Cells("Stena").Value.ToString
+            'StaraDlzka.Text = DataGridView3.Rows(riadok).Cells("Veľkosť").Value.ToString
+            ksTakychto.Text = DataGridView3.Rows(riadok).Cells("Narezených kusov").Value.ToString
         End If
-        TextBox13.Text = DataGridView3.Rows(riadok).Cells(12).Value
-        TextBox17.Text = TextBox13.Text * TextBox2.Text
+        'vypocitajCelkovo()
+        'nacitaj_moznosti()
+
         TextBox9.Focus()
 
     End Sub
@@ -1056,27 +1089,47 @@ Public Class Hvydat
     Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
         If RadioButton2.Checked = True Then
             radio_visiblity(1, 1, 0, 0)
-            Label8.Text = "Hrúbka [mm]"
-            Label10.Text = "Dĺžka [mm]"
-            Label12.Text = "Šírka [mm]"
-            Label12.Hide()
-            Label10.Hide()
-            TextBox10.Hide()
-            TextBox8.Hide()
+            Label12.Text = "Hrúbka [mm]"
+            Label2.Text = "Hrúbka [mm]"
+            Label8.Text = "Dĺžka [mm]"
+            Label10.Text = "Šírka [mm]"
+            Label11.Text = "Zo skladu plocha [mm]"
 
-            TextBox13.Hide()
-            Label19.Hide()
-            Label21.Hide()
-            TextBox17.Hide()
-            TextBox13.Text = "1"
-
+            ksTakychto.Text = "1"
+            If (DataGridView2.Columns.Count > 0) Then
+                DataGridView2.Columns(0).HeaderText = "Hrúbka"
+                DataGridView2.Columns(1).HeaderText = "Plocha"
+                DataGridView4.Columns(0).HeaderText = "Hrúbka"
+                DataGridView4.Columns(1).HeaderText = "Plocha"
+            End If
 
         End If
     End Sub
 
     Private Sub radio_visiblity(sirka As Integer, rozmer As Integer, srozmer As Integer, kusov As Integer)
+        If (DataGridView2.Columns.Count > 0) Then
+            DataGridView2.Columns(0).HeaderText = "Veľkosť"
+            DataGridView2.Columns(1).HeaderText = "Kusov"
+            DataGridView4.Columns(0).HeaderText = "Veľkosť"
+            DataGridView4.Columns(1).HeaderText = "Kusov"
+        End If
+
+        Label12.Text = "Hrúbka [mm]"
+        Label2.Text = "Hrúbka [mm]"
         Label8.Text = "Do dĺžky [mm]"
-        TextBox13.Show()
+        Label10.Text = "Šírka [mm]"
+        Label11.Text = "Zo skladu kusov [mm]"
+
+        StaraDlzka.Clear()
+        TextBox17.Clear()
+        ksTakychto.Text = "1"
+        novaDlzka.Clear()
+        TextBox9.Clear()
+        TextBox5.Clear()
+        TextBox18.Clear()
+
+
+        ksTakychto.Show()
         Label19.Show()
         Label21.Show()
         TextBox17.Show()
@@ -1108,11 +1161,23 @@ Public Class Hvydat
             TextBox3.Text = "-1"
             TextBox3.Hide()
         End If
-        'If kusov = 1 Then
-        '    Label11.Text = "Takýchto kusov:"
-        'Else
-        '    Label11.Text = "Plocha [mm2]"
-        'End If
+
+        If kusov = 1 Then
+            Label21.Text = "Celková dĺžka [mm]"
+            Label2.Text = "Dĺžka [mm]"
+            Label11.Text = "Zo skladu kusov"
+            Label24.Text = "Zvyšok [mm]"
+            Label25.Show()
+            TextBox18.Show()
+        Else
+            Label21.Text = "Celková plocha [dm2]"
+            Label2.Text = "Hrúbka [mm]"
+            Label11.Text = "Na sklade [dm2]"
+            Label24.Text = "Zvyšok [dm2]"
+            Label25.Hide()
+            TextBox18.Text = "0"
+            TextBox18.Hide()
+        End If
 
     End Sub
 
@@ -1165,7 +1230,7 @@ Public Class Hvydat
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs)
-        TextBox2.Text = TextBox1.Text
+        StaraDlzka.Text = novaDlzka.Text
     End Sub
 
 
@@ -1173,7 +1238,7 @@ Public Class Hvydat
     End Sub
 
     Private Sub Button7_Click(sender As Object, e As EventArgs)
-        TextBox2.Text = TextBox1.Text
+        StaraDlzka.Text = novaDlzka.Text
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs)
@@ -1191,6 +1256,11 @@ Public Class Hvydat
         Try
             Dim x As Integer = TextBox11.Text
             TextBox11.Text = Format(x, "0000")
+            Dim zakazka As Zakazka_SQL = New Zakazka_SQL(TextBox11.Text & "/" & NumericUpDown1.Value)
+            'If (zakazka.Firma <> Nothing) Then
+            TextBox7.Text = zakazka.Firma.Nazov
+            'End If
+
         Catch ex As Exception
             'Chyby.Show(ex.ToString)
         End Try
@@ -1212,17 +1282,6 @@ Public Class Hvydat
 
     End Sub
 
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        If CheckBox1.Checked Then
-            ComboBox1.Show()
-            Label16.Show()
-        Else
-            ComboBox1.Hide()
-            Label16.Hide()
-        End If
-
-    End Sub
-
     Private Sub Button8_Click(sender As Object, e As EventArgs)
         getKusov()
 
@@ -1234,13 +1293,14 @@ Public Class Hvydat
 
     End Sub
 
-    Private Sub TextBox1_Enter_1(sender As Object, e As EventArgs) Handles TextBox1.Enter
+    Private Sub TextBox1_Enter_1(sender As Object, e As EventArgs) Handles novaDlzka.Enter
         VelkostFilter()
     End Sub
     Private Sub VelkostFilter()
         Dim dd As DataTable = New DataTable
         Dim druh, nazov As String
-        Dim rozmer, sirka, srozmer, velkost As Integer
+        Dim rozmer, sirka, srozmer As Decimal
+        Dim velkost As Integer
 
         Try
             druh = TextBox4.Text
@@ -1250,9 +1310,9 @@ Public Class Hvydat
         End Try
 
         velkost = 0
-        If TextBox1.Text.Length > 0 Then
+        If novaDlzka.Text.Length > 0 Then
             Try
-                velkost = TextBox1.Text
+                velkost = novaDlzka.Text
             Catch ex As Exception
                 Exit Sub
             End Try
@@ -1293,8 +1353,8 @@ Public Class Hvydat
     Private Sub ListBox2_MouseClick(sender As Object, e As MouseEventArgs)
         Try
             getKusov()
-            TextBox1.Focus()
-            TextBox1.Select(0, TextBox1.Text.Length)
+            novaDlzka.Focus()
+            novaDlzka.Select(0, novaDlzka.Text.Length)
         Catch ex As Exception
 
         End Try
@@ -1302,19 +1362,21 @@ Public Class Hvydat
     End Sub
 
     Private Sub DataGridView3_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DataGridView3.CellFormatting
-        If e.Value Is Nothing OrElse e.Value.ToString <> "-1" Then
+        If e.Value Is Nothing OrElse Not e.Value.GetType.Equals(New Decimal().GetType) OrElse e.Value <> -1 Then
+
         Else
             e.Value = ""
         End If
 
     End Sub
 
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles novaDlzka.TextChanged
     End Sub
 
-    Private Sub TextBox13_TextChanged(sender As Object, e As EventArgs) Handles TextBox13.TextChanged
+    Private Sub TextBox13_TextChanged(sender As Object, e As EventArgs) Handles ksTakychto.TextChanged
         Try
-            TextBox17.Text = TextBox13.Text * TextBox2.Text
+            vypocitajCelkovo()
+            vymazMoznosti()
 
         Catch ex As Exception
 
@@ -1322,18 +1384,31 @@ Public Class Hvydat
 
     End Sub
 
-    Private Sub TextBox2_KeyUp_1(sender As Object, e As KeyEventArgs) Handles TextBox2.KeyUp
+    Private Sub TextBox2_KeyUp_1(sender As Object, e As KeyEventArgs) Handles StaraDlzka.KeyUp
         Try
             If e.KeyCode = Keys.Escape Then
                 Me.Close()
             ElseIf e.KeyCode = Keys.Enter Then
-                stuk()
+                SendKeys.Send("{TAB}")
             ElseIf ((e.KeyCode > 64) And (e.KeyCode < 91)) Or ((e.KeyCode < 106) And (e.KeyCode > 95)) Or e.KeyCode = 8 Then
-                TextBox17.Text = TextBox2.Text * TextBox13.Text
-
+                vypocitajCelkovo()
+                vymazMoznosti()
             End If
 
         Catch ex As Exception
+        End Try
+    End Sub
+    Private Sub vypocitajCelkovo()
+        Try
+
+
+            If (IsPlech()) Then
+                TextBox17.Text = StaraDlzka.Text * ksTakychto.Text * TextBox8.Text / 10000
+            Else
+                TextBox17.Text = StaraDlzka.Text * ksTakychto.Text
+            End If
+        Catch ex As Exception
+
         End Try
     End Sub
 
@@ -1342,17 +1417,17 @@ Public Class Hvydat
             If e.KeyCode = Keys.Escape Then
                 Me.Close()
             ElseIf e.KeyCode = Keys.Enter Then
-                stuk()
+                nacitaj_moznosti()
             ElseIf ((e.KeyCode > 64) And (e.KeyCode < 91)) Or ((e.KeyCode < 106) And (e.KeyCode > 95)) Or e.KeyCode = 8 Then
-                TextBox2.Text = TextBox17.Text / TextBox13.Text
+                StaraDlzka.Text = TextBox17.Text / ksTakychto.Text
             End If
         Catch ex As Exception
         End Try
     End Sub
 
     Private Sub Button4_Click_1(sender As Object, e As EventArgs) Handles Button4.Click
+        vypocitajCelkovo()
         nacitaj_moznosti()
-
     End Sub
 
     Private Sub nacitaj_moznosti()
@@ -1361,26 +1436,40 @@ Public Class Hvydat
             Dim druh As String = TextBox4.Text
 
             Dim nazov As String = TextBox6.Text
+            Dim rozmery As Rozmery = New Rozmery
+            Dim rozmery_orig As Rozmery = New Rozmery
+            rozmery = get_rozmery(TextBox8.Text, TextBox10.Text, TextBox3.Text, StaraDlzka.Text, typ_slovom)
+            rozmery_orig.sirka = TextBox8.Text
+            rozmery_orig.rozmer = TextBox10.Text
+            rozmery_orig.velkost = StaraDlzka.Text
 
-            Dim sirka As Integer = TextBox8.Text
-            Dim rozmer As Integer = TextBox10.Text
-            Dim srozmer As Integer = TextBox3.Text
-            Dim velkostMIN As Integer = TextBox2.Text
-            Dim kusov As Integer = TextBox13.Text
+            'TextBox8.Text = rozmery.sirka
+            'TextBox10.Text = rozmery.rozmer
+            'StaraDlzka.Text = rozmery.velkost
+            'If (IsHranol()) Then
+            '    rozmery.velkost = StaraDlzka.Text
+            '    If (TextBox8.Text > TextBox10.Text) Then
+            '        rozmery.sirka = TextBox8.Text
+            '        rozmery.rozmer = TextBox10.Text
+            '    Else
+            '        rozmery.sirka = TextBox10.Text
+            '        rozmery.rozmer = TextBox8.Text
+            '    End If
+            'End If
 
-            Dim material As Material_SQL = New Material_SQL(druh, nazov, sirka, rozmer, srozmer, velkostMIN, kusov, typ_slovom)
+            Dim kusov As Integer = ksTakychto.Text
+            Dim material As Material_SQL = New Material_SQL(druh, nazov, rozmery.sirka, rozmery.rozmer, rozmery.s_rozmer, rozmery.velkost, kusov, typ_slovom)
 
             Dim dd As DataTable = New DataTable()
             Material_SQL.getChoices(dd, material)
 
             DataGridView2.Rows.Clear()
-
             If (IsHranol()) Then
-                If DataGridView2.Columns.Count = 3 Then
+                If DataGridView2.Columns.Count = 4 Then
                     addHranolColumns()
                 End If
             Else
-                If DataGridView2.Columns.Count = 5 Then
+                If DataGridView2.Columns.Count = 6 Then
                     removeHranolColumns()
                     DataGridView2.Size = New Size(308, 150)
                 End If
@@ -1388,18 +1477,22 @@ Public Class Hvydat
 
             For i As Integer = 0 To dd.Rows.Count - 1
                 DataGridView2.Rows.Add()
-                If (typ_slovom() = "Hranol") Then
+                If (IsHranol()) Then
 
                     Dim sirkaGet As String = dd.Rows(i)(0).ToString()
                     Dim rozmerGet As String = dd.Rows(i)(1).ToString()
                     Dim velkostGet As String = dd.Rows(i)(2).ToString()
 
-                    If (sirkaGet <> sirka) Then
+                    If (sirkaGet <> rozmery_orig.sirka And velkostGet = rozmery_orig.velkost And rozmerGet = rozmery.rozmer) Then
                         DataGridView2.Rows(i).Cells(0).Value = sirkaGet
-                    ElseIf (rozmerGet <> rozmer) Then
+                    ElseIf (sirkaGet <> rozmery_orig.velkost And velkostGet = rozmery_orig.sirka And rozmerGet = rozmery.rozmer) Then
+                        DataGridView2.Rows(i).Cells(2).Value = sirkaGet
+                    ElseIf (sirkaGet = rozmery.sirka And velkostGet = rozmery.velkost And rozmerGet <> rozmery.rozmer) Then
                         DataGridView2.Rows(i).Cells(1).Value = rozmerGet
-                    ElseIf (velkostGet <> velkostMIN) Then
+                    ElseIf (sirkaGet = rozmery_orig.sirka And velkostGet <> rozmery_orig.velkost And rozmerGet = rozmery.rozmer) Then
                         DataGridView2.Rows(i).Cells(2).Value = velkostGet
+                    ElseIf (sirkaGet = rozmery_orig.velkost And velkostGet <> rozmery_orig.sirka And rozmerGet = rozmery.rozmer) Then
+                        DataGridView2.Rows(i).Cells(0).Value = velkostGet
                     Else
                         DataGridView2.Rows(i).Cells(0).Value = sirkaGet
                         DataGridView2.Rows(i).Cells(1).Value = rozmerGet
@@ -1408,24 +1501,32 @@ Public Class Hvydat
 
                     DataGridView2.Rows(i).Cells(3).Value = dd.Rows(i)(3).ToString()
                     DataGridView2.Rows(i).Cells(4).Value = dd.Rows(i)(3).ToString()
+                    DataGridView2.Rows(i).Cells(5).Value = dd.Rows(i)(4).ToString()
 
                 Else
-                    DataGridView2.Rows(i).Cells(0).Value = dd.Rows(i)(2).ToString()
-                    DataGridView2.Rows(i).Cells(1).Value = dd.Rows(i)(3).ToString()
-                    DataGridView2.Rows(i).Cells(2).Value = dd.Rows(i)(3).ToString()
-                End If
+                    If (IsPlech()) Then
+                        DataGridView2.Rows(i).Cells(0).Value = dd.Rows(i)(1).ToString()
+                        DataGridView2.Rows(i).Cells(1).Value = dd.Rows(i)(3).ToString() / 10000
 
+                    Else
+                        DataGridView2.Rows(i).Cells(0).Value = dd.Rows(i)(2).ToString()
+                        DataGridView2.Rows(i).Cells(1).Value = dd.Rows(i)(3).ToString()
+                    End If
+
+                    DataGridView2.Rows(i).Cells(2).Value = dd.Rows(i)(3).ToString()
+                    DataGridView2.Rows(i).Cells(3).Value = dd.Rows(i)(4).ToString()
+                End If
 
             Next
 
         Catch ex As Exception
-            Chyby.Show(ex.ToString)
+            'Chyby.Show(ex.ToString)
         End Try
     End Sub
 
     Private Sub addHranolColumns()
         addColumnDGV2("Strana", "Strana", DataGridView4)
-        addColumnDGV2("Rozmer", "Rozmer", DataGridView2)
+        addColumnDGV2("Hrubka", "Hrúbka", DataGridView2)
         addColumnDGV2("Sirka", "Šírka", DataGridView2)
 
     End Sub
@@ -1452,86 +1553,152 @@ Public Class Hvydat
 
     Private Sub TextBox17_TextChanged(sender As Object, e As EventArgs) Handles TextBox17.TextChanged
         sum_velkost()
+
     End Sub
 
     Private Sub DataGridView2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellClick
-        If e.RowIndex = -1 Then
-            Exit Sub
-        End If
+        Try
 
-        Dim velkost = TextBox2.Text
-        Label2.Text = "Veľkosť: [mm]"
-
-        If (typ_slovom() = "Hranol") Then
-            If DataGridView2.Rows(e.RowIndex).Cells(2).Value IsNot Nothing Then
-                TextBox1.Text = DataGridView2.Rows(e.RowIndex).Cells(2).Value.ToString
-            ElseIf DataGridView2.Rows(e.RowIndex).Cells(1).Value IsNot Nothing Then
-                Label2.Text = "Rozmer: [mm]"
-                velkost = TextBox10.Text
-                TextBox1.Text = DataGridView2.Rows(e.RowIndex).Cells(1).Value.ToString
-            ElseIf DataGridView2.Rows(e.RowIndex).Cells(0).Value IsNot Nothing Then
-                Label2.Text = "Šírka: [mm]"
-                velkost = TextBox8.Text
-                TextBox1.Text = DataGridView2.Rows(e.RowIndex).Cells(0).Value.ToString
+            If e.RowIndex = -1 Then
+                Exit Sub
             End If
-        Else
-            TextBox1.Text = DataGridView2.Rows(e.RowIndex).Cells(0).Value.ToString
-        End If
 
+            Dim naSkladeKusov As Integer
+            Dim velkost = StaraDlzka.Text
+            Dim rozmery As Rozmery = get_rozmery(TextBox8.Text, TextBox10.Text, TextBox3.Text, StaraDlzka.Text, typ_slovom)
+            Dim rozmery_orig As Rozmery = New Rozmery
+            rozmery = get_rozmery(TextBox8.Text, TextBox10.Text, TextBox3.Text, StaraDlzka.Text, typ_slovom)
+            rozmery_orig.sirka = TextBox8.Text
+            rozmery_orig.rozmer = TextBox10.Text
+            rozmery_orig.velkost = StaraDlzka.Text
+            Label2.Text = "Veľkosť: [mm]"
 
-        Dim need_ks As Integer = Math.Ceiling((TextBox13.Text) / Math.Floor(TextBox1.Text / velkost))
-        TextBox9.Text = need_ks
-
-        Dim zJedneho As Integer = (Math.Floor(TextBox1.Text / velkost))
-
-        If (TextBox13.Text Mod zJedneho = 0) Then
-            If (TextBox1.Text Mod velkost = 0) Then
-                TextBox18.Text = "0"
-                TextBox5.Text = "0"
+            If (IsHranol()) Then
+                naSkladeKusov = DataGridView2.Rows(e.RowIndex).Cells(3).Value.ToString
+                If DataGridView2.Rows(e.RowIndex).Cells(2).Value IsNot Nothing Then
+                    novaDlzka.Text = DataGridView2.Rows(e.RowIndex).Cells(2).Value.ToString
+                    velkost = rozmery_orig.velkost
+                ElseIf DataGridView2.Rows(e.RowIndex).Cells(1).Value IsNot Nothing Then
+                    Label2.Text = "Hrúbka: [mm]"
+                    novaDlzka.Text = DataGridView2.Rows(e.RowIndex).Cells(1).Value.ToString
+                    velkost = rozmery_orig.rozmer
+                ElseIf DataGridView2.Rows(e.RowIndex).Cells(0).Value IsNot Nothing Then
+                    Label2.Text = "Šírka: [mm]"
+                    novaDlzka.Text = DataGridView2.Rows(e.RowIndex).Cells(0).Value.ToString
+                    velkost = rozmery_orig.sirka
+                End If
+                TextBox17.Text = velkost * ksTakychto.Text
+                Label7.Text = TextBox17.Text
+                Label28.Text = DataGridView2.Rows(e.RowIndex).Cells(5).Value.ToString
+            ElseIf IsPlech() Then
+                naSkladeKusov = DataGridView2.Rows(e.RowIndex).Cells(1).Value.ToString
+                novaDlzka.Text = DataGridView2.Rows(e.RowIndex).Cells(0).Value.ToString
+                Label28.Text = DataGridView2.Rows(e.RowIndex).Cells(3).Value.ToString
             Else
-                TextBox18.Text = need_ks
-                TextBox5.Text = TextBox1.Text - velkost
+                naSkladeKusov = DataGridView2.Rows(e.RowIndex).Cells(1).Value.ToString
+                novaDlzka.Text = DataGridView2.Rows(e.RowIndex).Cells(0).Value.ToString
+                Label28.Text = DataGridView2.Rows(e.RowIndex).Cells(3).Value.ToString
             End If
-        Else
-            TextBox5.Text = TextBox1.Text - velkost * (TextBox13.Text - Math.Floor(TextBox13.Text / zJedneho) * zJedneho)
-            TextBox18.Text = "1"
-        End If
+            TextBox9.Tag = naSkladeKusov
+            If IsPlech() Then
+                TextBox9.Text = DataGridView2.Rows(e.RowIndex).Cells(1).Value
+                TextBox5.Text = TextBox9.Text - TextBox8.Text * StaraDlzka.Text * ksTakychto.Text / 10000
+                TextBox18.Text = "0"
+            Else
+                Dim need_ks As Integer = Math.Ceiling(((velkost * ksTakychto.Text - Label6.Text) / velkost) / Math.Floor(novaDlzka.Text / velkost))
+                TextBox9.Text = need_ks
+                Dim zJedneho As Integer = (Math.Floor(novaDlzka.Text / velkost))
 
+                If (ksTakychto.Text Mod zJedneho = 0) Then
+                    If (novaDlzka.Text Mod velkost = 0) Then
+                        TextBox18.Text = "0"
+                        TextBox5.Text = "0"
+                    Else
+                        TextBox18.Text = need_ks
+                        TextBox5.Text = novaDlzka.Text - velkost * zJedneho
+                    End If
+                Else
+                    TextBox5.Text = novaDlzka.Text - velkost * (ksTakychto.Text - Math.Floor(ksTakychto.Text / zJedneho) * zJedneho)
+                    TextBox18.Text = "1"
+                End If
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub formatRed()
+        Button3.BackColor = Color.Red
+    End Sub
+
+    Private Sub formatNormal()
+        Button3.BackColor = DefaultBackColor
 
     End Sub
-    Private Function IsHranol() As Boolean
-        If (RadioButton8.Checked) Then
-            Return True
-        Else
-            Return False
-        End If
 
+    Private Function IsHranol() As Boolean
+        Return RadioButton8.Checked
     End Function
+
+    Private Function IsPlech() As Boolean
+        Return RadioButton2.Checked
+    End Function
+
     Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
         Dim i As Integer = DataGridView4.Rows.Count
         Dim base As Integer = 0
+
+        Dim material_id As Integer = Label28.Text
+        Dim material As Material_SQL = New Material_SQL(material_id)
 
         DataGridView4.Rows.Add()
 
         If IsHranol() Then
             base = 1
-            DataGridView4.Rows(i).Cells(base - 1).Value = Label2.Text.Substring(0, Label2.Text.Length - 6)
+            If (novaDlzka.Text = material.sirka) Then
+                DataGridView4.Rows(i).Cells(base - 1).Value = "Šírka"
+            ElseIf (novaDlzka.Text = material.rozmer) Then
+                DataGridView4.Rows(i).Cells(base - 1).Value = "Hrúbka"
+            ElseIf (novaDlzka.Text = material.velkost) Then
+                DataGridView4.Rows(i).Cells(base - 1).Value = "Veľkosť"
+
+            End If
         End If
 
-        DataGridView4.Rows(i).Cells(base).Value = TextBox1.Text
+        DataGridView4.Rows(i).Cells(base).Value = novaDlzka.Text
         DataGridView4.Rows(i).Cells(base + 1).Value = TextBox9.Text
         DataGridView4.Rows(i).Cells(base + 3).Value = TextBox5.Text
         DataGridView4.Rows(i).Cells(base + 4).Value = TextBox18.Text
 
-        Dim zJedneho As Integer = (Math.Floor(TextBox1.Text / TextBox2.Text))
+        Dim zJedneho As Integer = (Math.Floor(novaDlzka.Text / StaraDlzka.Text))
+        Dim celkovo As Decimal
+        If IsPlech() Then
+            celkovo = TextBox9.Text - TextBox5.Text
+            If (TextBox8.Text > StaraDlzka.Text) Then
+                material.velkost = TextBox8.Text
+                material.sirka = StaraDlzka.Text
+            Else
+                material.sirka = TextBox8.Text
+                material.velkost = StaraDlzka.Text
+            End If
 
-        Dim celkovo As Integer = (TextBox9.Text - TextBox18.Text) * zJedneho * TextBox2.Text + (TextBox18.Text * Math.Floor((TextBox1.Text - TextBox5.Text) / TextBox2.Text) * TextBox2.Text)
-        If celkovo > TextBox2.Text * TextBox13.Text Then
-            celkovo = TextBox2.Text * TextBox13.Text
+            material_id = material.save
+            DataGridView4.Rows(i).Cells(base + 1).Value = ksTakychto.Text
+
+        Else
+            celkovo = (TextBox9.Text - TextBox18.Text) * zJedneho * StaraDlzka.Text + (TextBox18.Text * Math.Floor((novaDlzka.Text - TextBox5.Text) / StaraDlzka.Text) * StaraDlzka.Text)
+
         End If
+
+        'If celkovo > StaraDlzka.Text * ksTakychto.Text Then
+        '    celkovo = StaraDlzka.Text * ksTakychto.Text
+        'End If
+        DataGridView4.Rows(i).Cells(base + 5).Value = material_id
         DataGridView4.Rows(i).Cells(base + 2).Value = celkovo
 
         sum_velkost()
+
     End Sub
 
 
@@ -1543,12 +1710,17 @@ Public Class Hvydat
             Else
                 base = 0
             End If
-            Dim sucet As Integer = 0
+            Dim sucet As Decimal = 0
             For i As Integer = 0 To DataGridView4.Rows.Count - 1
                 sucet += DataGridView4.Rows(i).Cells(base + 2).Value
             Next
+
             Label6.Text = sucet
-            Label7.Text = TextBox2.Text * TextBox13.Text - sucet
+            If (IsPlech()) Then
+                Label7.Text = StaraDlzka.Text * ksTakychto.Text * TextBox8.Text / 10000 - sucet
+            Else
+                Label7.Text = StaraDlzka.Text * ksTakychto.Text - sucet
+            End If
         Catch ex As Exception
 
         End Try
@@ -1557,23 +1729,125 @@ Public Class Hvydat
     Private Sub DataGridView4_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView4.CellMouseClick
         If e.Button = MouseButtons.Right Then
             DataGridView4.Rows.RemoveAt(e.RowIndex)
-            If IsHranol() Then
-                sum_velkost()
-            Else
-                sum_velkost()
-            End If
+            sum_velkost()
         End If
     End Sub
 
+    Private Sub NumericUpDown1_Leave(sender As Object, e As EventArgs) Handles NumericUpDown1.Leave
+        Dim zakazka As Zakazka_SQL = New Zakazka_SQL(TextBox11.Text & "/" & NumericUpDown1.Value)
+        TextBox7.Text = zakazka.Firma.Nazov
+    End Sub
 
+    Private Sub RadioButton9_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton9.CheckedChanged
+        showNonZakazkaFields()
+        Label16.Visible = False
+        ComboBox1.Visible = False
+        ComboBox1.Text = ""
+    End Sub
+
+    Private Sub RadioButton10_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton10.CheckedChanged
+        showNonZakazkaFields()
+    End Sub
+
+    Private Sub RadioButton11_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton11.CheckedChanged
+        hideNonZakazkaFields()
+    End Sub
+    Private Sub showNonZakazkaFields()
+        Label14.Visible = True
+        Label27.Visible = True
+        Label16.Visible = True
+        Label17.Visible = True
+        TextBox11.Visible = True
+        TextBox7.Visible = True
+        ComboBox1.Visible = True
+        NumericUpDown1.Visible = True
+    End Sub
+
+    Private Sub hideNonZakazkaFields()
+        Label14.Visible = False
+        Label27.Visible = False
+        Label16.Visible = False
+        Label17.Visible = False
+        TextBox11.Visible = False
+        TextBox7.Visible = False
+        ComboBox1.Visible = False
+        NumericUpDown1.Visible = False
+    End Sub
+
+    Private Sub TextBox8_TextChanged_1(sender As Object, e As EventArgs) Handles TextBox8.TextChanged
+        vymazMoznosti()
+
+    End Sub
+
+    Private Sub vymazMoznosti()
+        DataGridView2.Rows.Clear()
+        DataGridView4.Rows.Clear()
+        novaDlzka.Clear()
+        TextBox9.Clear()
+        TextBox5.Clear()
+        TextBox18.Clear()
+        Label28.Text = ""
+
+    End Sub
+
+    Private Sub TextBox10_TextChanged_1(sender As Object, e As EventArgs) Handles TextBox10.TextChanged
+        vymazMoznosti()
+
+    End Sub
+
+    Private Sub TextBox3_TextChanged_1(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
+        vymazMoznosti()
+
+    End Sub
+
+    Private Sub TextBox8_KeyUp_1(sender As Object, e As KeyEventArgs) Handles TextBox8.KeyUp
+        If (e.KeyCode = Keys.Enter) Then
+            SendKeys.Send("{TAB}")
+        End If
+    End Sub
+
+    Private Sub TextBox10_KeyUp_1(sender As Object, e As KeyEventArgs) Handles TextBox10.KeyUp
+        If (e.KeyCode = Keys.Enter) Then
+            SendKeys.Send("{TAB}")
+        ElseIf ((e.KeyCode > 64) And (e.KeyCode < 91)) Or ((e.KeyCode < 106) And (e.KeyCode > 95)) Or e.KeyCode = 8 Then
+            If RadioButton3.Checked Then
+                Try
+                    TextBox3.Text = TextBox10.Text - TextBox8.Text
+                Catch ex As Exception
+
+                End Try
+
+            End If
+
+        End If
+    End Sub
+
+    Private Sub TextBox3_KeyUp_2(sender As Object, e As KeyEventArgs) Handles TextBox3.KeyUp
+        If (e.KeyCode = Keys.Enter) Then
+            SendKeys.Send("{TAB}")
+        End If
+
+    End Sub
+
+    Private Sub ksTakychto_KeyUp(sender As Object, e As KeyEventArgs) Handles ksTakychto.KeyUp
+
+        If (e.KeyCode = Keys.Enter) Then
+            SendKeys.Send("{TAB}")
+        End If
+
+    End Sub
+
+    Private Sub Button5_Click_1(sender As Object, e As EventArgs) Handles Button5.Click
+        prijemka_databaza()
+        Chyby.Show("Zmenen")
+    End Sub
 End Class
 
 Public Class Rozmery
-    Public sirka As Integer
-    Public rozmer As Integer
-    Public s_rozmer As Integer
+    Public sirka As Decimal
+    Public rozmer As Decimal
+    Public s_rozmer As Decimal
     Public velkost As Integer
     Public typ As String
     Public ok As Boolean
 End Class
-

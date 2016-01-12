@@ -22,9 +22,15 @@ Partial Class Vydajka_prehlad
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.RotekDataSet = New WindowsApplication2.RotekDataSet()
+        Me.VydajkyBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.VydajkyTableAdapter = New WindowsApplication2.RotekDataSetTableAdapters.VydajkyTableAdapter()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RotekDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VydajkyBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -51,6 +57,20 @@ Partial Class Vydajka_prehlad
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "Label1"
         '
+        'RotekDataSet
+        '
+        Me.RotekDataSet.DataSetName = "RotekDataSet"
+        Me.RotekDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'VydajkyBindingSource
+        '
+        Me.VydajkyBindingSource.DataMember = "Vydajky"
+        Me.VydajkyBindingSource.DataSource = Me.RotekDataSet
+        '
+        'VydajkyTableAdapter
+        '
+        Me.VydajkyTableAdapter.ClearBeforeFill = True
+        '
         'Vydajka_prehlad
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -61,10 +81,15 @@ Partial Class Vydajka_prehlad
         Me.Name = "Vydajka_prehlad"
         Me.Text = "Vydajka prehlad"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RotekDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VydajkyBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents RotekDataSet As WindowsApplication2.RotekDataSet
+    Friend WithEvents VydajkyBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents VydajkyTableAdapter As WindowsApplication2.RotekDataSetTableAdapters.VydajkyTableAdapter
 End Class

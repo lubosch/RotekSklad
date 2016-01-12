@@ -234,7 +234,7 @@ Partial Class Pridat_CP
         Me.Label7.Font = New System.Drawing.Font("Arial", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(296, 9)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(248, 27)
+        Me.Label7.Size = New System.Drawing.Size(249, 27)
         Me.Label7.TabIndex = 12
         Me.Label7.Text = "Pridať cenovú ponuku"
         '
@@ -321,7 +321,7 @@ Partial Class Pridat_CP
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PolozkaDataGridViewTextBoxColumn, Me.KusovDataGridViewTextBoxColumn, Me.CenaDataGridViewTextBoxColumn, Me.Col1, Me.Column1})
         Me.DataGridView1.DataSource = Me.CPBindingSource
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 173)
+        Me.DataGridView1.Location = New System.Drawing.Point(0, 165)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.Size = New System.Drawing.Size(980, 568)
@@ -599,7 +599,7 @@ Partial Class Pridat_CP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(980, 741)
+        Me.ClientSize = New System.Drawing.Size(980, 733)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.DateTimePicker2)
         Me.Controls.Add(Me.DataGridView5)

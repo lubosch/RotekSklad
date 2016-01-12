@@ -16,7 +16,7 @@ Public Class Hpridat
 
     Property rozmerrr As String
 
-    Public Sub New(ByVal druh As String, ByVal nazov As String, ByVal sirka As Integer, ByVal rozmer As Integer, ByVal velkost As Integer, ByVal s_rozmer As Integer, ByVal typ As String)
+    Public Sub New(ByVal druh As String, ByVal nazov As String, ByVal sirka As Decimal, ByVal rozmer As Decimal, ByVal velkost As Integer, ByVal s_rozmer As Decimal, ByVal typ As String)
         InitializeComponent()
 
         typ_oznac(typ)
@@ -58,7 +58,18 @@ Public Class Hpridat
 
             If Label16.Text = "Label16" Then
                 Dim prijemkyTableAdapter As PrijemkyTableAdapter = New PrijemkyTableAdapter
-                Label16.Text = "P" & String.Format("{0:00000}", prijemkyTableAdapter.pocet + 1)
+
+                Dim vydajka As String = prijemkyTableAdapter.maxNazov(Form78.rok)
+                If vydajka Is Nothing Then vydajka = ""
+                vydajka = vydajka.Replace("P", "")
+                vydajka = vydajka.Replace("/" & Form78.rok(), "")
+                Try
+                    Dim i As Integer = vydajka
+                    Label16.Text = "P" & Format(i + 1, "0000") & "/" & Form78.rok
+                Catch ex As Exception
+                    Label16.Text = "P" & Format(0, "0000") & "/" & Form78.rok
+                End Try
+
                 TextBox15.Text = Form78.uzivatel
                 TextBox12.Focus()
             Else
@@ -204,9 +215,9 @@ Public Class Hpridat
         End Try
 
         Dim rozmery As Rozmery
-        rozmery = Hvydat.get_rozmery(TextBox5.Text, TextBox7.Text, TextBox14.Text, TextBox1.Text, typ_slovom)
-
         Try
+            rozmery = Hvydat.get_rozmery(TextBox5.Text, TextBox7.Text, TextBox14.Text, TextBox1.Text, typ_slovom)
+
 
             If kusov < 0 AndAlso Form78.heslo <> Form78.admin Then
                 Chyby.Show("Nemáte právo nechávať zmiznúť zo skladu materiál. To môže len administrator")
@@ -254,7 +265,7 @@ Public Class Hpridat
             Dim material_id As Integer = material.save
             Dim material_plochac As Material_SQL = Nothing
             If RadioButton2.Checked Then
-                material_plochac = New Material_SQL(druh, nazov, -1, -1, -1, rozmery.velkost, 0, rozmery.typ)
+                material_plochac = New Material_SQL(druh, nazov, -1, rozmery.rozmer, -1, -1, 0, rozmery.typ)
                 material_plochac.save()
             End If
 
@@ -266,7 +277,8 @@ Public Class Hpridat
                     kusov = kusov - DataGridView4.Rows(0).Cells(3).Value
                 End If
                 If RadioButton2.Checked Then
-                    material_plochac.add_to_stock(kusov * material.rozmer * material.sirka)
+                    material_plochac.add_to_stock(kusov * material.velkost * material.sirka)
+                    'Chyby.Show(material.velkost & " " & material.sirka)
                 Else
                     material.add_to_stock(kusov)
                 End If
@@ -276,7 +288,7 @@ Public Class Hpridat
             Else
                 SQL_main.Odpalovac("INSERT INTO Material_Prijemka (Material_ID, Prijemka_ID, Ks, KsKg, Kg, CenaKg, Cena) VALUES ( " & material_id & " , " & prijemka_ID & " , " & kusov & " , " & kskg & " , " & kg & " , " & cenaKg & " , " & cena & " )")
                 If RadioButton2.Checked Then
-                    material_plochac.add_to_stock(kusov * material.rozmer * material.sirka)
+                    material_plochac.add_to_stock(kusov * material.velkost * material.sirka)
                 Else
                     material.add_to_stock(kusov)
                 End If
@@ -387,6 +399,28 @@ Public Class Hpridat
 
     End Function
 
+    Private Sub poverenia()
+        Dim dd As List(Of Dictionary(Of String, Boolean)) = New List(Of Dictionary(Of String, Boolean))
+        Dim d As Dictionary(Of String, Boolean)
+
+        dd = Povolenia_SQL.getRights("Príjemka")
+        Select Case Form78.heslo
+            Case Form78.admin
+                d = dd(0)
+            Case Form78.zakazkar
+                d = dd(1)
+            Case Form78.skladnik
+                d = dd(2)
+            Case Else
+                d = dd(3)
+        End Select
+
+        If (Not d("Mazať položky")) Then
+            DataGridView3.Columns("Zmazať").Visible = False
+        End If
+
+    End Sub
+
     Private Sub Napln_tabulku()
         Me.MaterialNazovTableAdapter.Fill(Me.RotekDataSet.MaterialNazov)
         Me.MaterialDruhTableAdapter.Fill(Me.RotekDataSet.MaterialDruh)
@@ -397,15 +431,14 @@ Public Class Hpridat
         DataGridView3.DataSource = Prijemka_SQL.materialByName(Label16.Text)
         Dim btnColumn As DataGridViewButtonColumn = New DataGridViewButtonColumn()
         btnColumn.HeaderText = "Zmazať"
+        btnColumn.Name = "Zmazať"
         btnColumn.UseColumnTextForButtonValue = True
         btnColumn.Text = "Zmazať"
-        btnColumn.Visible = False
-        Select Case Form78.heslo
-            Case Form78.admin
-                btnColumn.Visible = True
-        End Select
-
+        btnColumn.Visible = True
         DataGridView3.Columns.Add(btnColumn)
+
+        poverenia()
+
 
     End Sub
 
@@ -430,13 +463,13 @@ Public Class Hpridat
     End Sub
     Private Sub prepocet2()
         If (TextBox7.Text.Length <> 0) And (TextBox5.Text.Length <> 0) And (TextBox1.Text.Length <> 0) And (TextBox2.Text.Length <> 0) Then  Else Return
-        Dim hmotnost As Double
-        Dim velkost As Double
-        Dim rozmer As Integer
+        Dim hmotnost As Decimal
+        Dim velkost As Decimal
+        Dim rozmer As Decimal
         Dim hustota As Double
         Dim kusov As Integer
-        Dim sirka As Integer
-        Dim s_rozmer As Integer
+        Dim sirka As Decimal
+        Dim s_rozmer As Decimal
 
         Try
             kusov = TextBox9.Text
@@ -530,7 +563,8 @@ Public Class Hpridat
     End Sub
 
     Private Sub hladajDruh()
-        MaterialDruhBindingSource.Filter = "Nazov LIKE '%" & TextBox4.Text & "%'"
+        ListBox1.DataSource = MaterialDruhTableAdapter.GetDataByNazov(TextBox4.Text)
+
     End Sub
     Private Sub hladajNazov()
         MaterialNazovBindingSource.Filter = "Nazov LIKE '%" & TextBox6.Text & "%' AND Druh LIKE '%" & TextBox4.Text & "%'"
@@ -620,13 +654,31 @@ Public Class Hpridat
 
             If e.KeyCode = Keys.Escape Then
                 Me.Close()
+            ElseIf ((e.KeyCode > 64) And (e.KeyCode < 91)) Or ((e.KeyCode < 106) And (e.KeyCode > 95)) Or e.KeyCode = 8 Then
+                uprav_values(TextBox7)
             End If
 
         Catch ex As Exception
         End Try
     End Sub
 
+    Private Sub uprav_values(textac As TextBox)
+        Try
+            textac.Text = textac.Text.Replace(",", ".")
+            If (textac.Text.Chars(textac.Text.Length - 1) = "0" And textac.Text.IndexOf(".") > 0) Then
+                Return
+            End If
 
+            If textac.Text.IndexOf(".") <> textac.Text.Length - 1 Then
+                Dim d As Decimal = Math.Floor(CDec(textac.Text) * 100)
+                d = d / 100
+                textac.Text = d
+            End If
+
+            textac.SelectionStart = textac.Text.Length
+        Catch ex As Exception
+        End Try
+    End Sub
     Private Sub TextBox3_KeyUp_1(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TextBox3.KeyUp
 
         Try
@@ -960,10 +1012,6 @@ Public Class Hpridat
 
     End Sub
 
-    Private Sub TextBox7_Click(sender As System.Object, e As System.EventArgs) Handles TextBox7.Click
-        TextBox7.Text = ""
-
-    End Sub
 
     Private Sub TextBox14_KeyUp(sender As System.Object, e As System.Windows.Forms.KeyEventArgs)
         If e.KeyCode = Keys.Escape Then
@@ -1033,10 +1081,6 @@ Public Class Hpridat
             TextBox5.Text = TextBox5.Text.Replace("x", "")
             TextBox7.Focus()
         End If
-        Try
-            If RadioButton3.Checked = True Then TextBox14.Text = (TextBox7.Text - TextBox5.Text)
-        Catch ex As Exception
-        End Try
 
     End Sub
 
@@ -1046,14 +1090,20 @@ Public Class Hpridat
             TextBox1.Focus()
         End If
         Try
-            If RadioButton3.Checked = True Then TextBox14.Text = (TextBox7.Text - TextBox5.Text)
+            If RadioButton3.Checked = True Then TextBox14.Text = (TextBox7.Text - TextBox5.Text) / 2
         Catch ex As Exception
         End Try
     End Sub
 
 
     Private Sub TextBox5_KeyUp(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles TextBox5.KeyUp
-
+        If ((e.KeyCode > 64) And (e.KeyCode < 91)) Or ((e.KeyCode < 106) And (e.KeyCode > 95)) Or e.KeyCode = 8 Then
+            Try
+                If RadioButton3.Checked = True Then TextBox14.Text = (TextBox7.Text - TextBox5.Text) / 2
+            Catch ex As Exception
+            End Try
+            uprav_values(TextBox5)
+        End If
     End Sub
 
     Private Sub TextBox5_Leave(sender As System.Object, e As System.EventArgs) Handles TextBox5.Leave
@@ -1093,7 +1143,8 @@ Public Class Hpridat
         nazov = DataGridView3.Rows(row).Cells(1).Value
         typ = DataGridView3.Rows(row).Cells(2).Value
 
-        Dim rozmer, sirka, srozmer, velkost, kusov As Integer
+        Dim rozmer, sirka, srozmer As Decimal
+        Dim velkost, kusov As Integer
         sirka = DataGridView3.Rows(row).Cells(3).Value
         rozmer = DataGridView3.Rows(row).Cells(4).Value
         srozmer = DataGridView3.Rows(row).Cells(5).Value
@@ -1108,8 +1159,8 @@ Public Class Hpridat
 
 
         TextBox5.Text = sirka
-        TextBox7.Text = rozmer
         TextBox14.Text = srozmer
+        TextBox7.Text = rozmer
         TextBox1.Text = velkost
 
         TextBox9.Text = kusov
@@ -1121,8 +1172,8 @@ Public Class Hpridat
         If RadioButton2.Checked = True Then
             radio_visiblity(1, 1, 0)
             Label2.Text = "Šírka [mm]"
-            Label4.Text = "Dĺžka [mm]"
-            Label5.Text = "Hrúbka [mm]"
+            Label5.Text = "Dĺžka [mm]"
+            Label4.Text = "Hrúbka [mm]"
         End If
     End Sub
 
@@ -1175,13 +1226,6 @@ Public Class Hpridat
         End If
     End Sub
 
-    Private Sub TextBox14_TextChanged(sender As Object, e As EventArgs) Handles TextBox14.TextChanged
-        Try
-            If RadioButton3.Checked = True Then TextBox5.Text = TextBox7.Text - TextBox14.Text / 2 - TextBox14.Text / 2
-        Catch ex As Exception
-
-        End Try
-    End Sub
 
 
     Private Sub ListBox3_MouseClick(sender As Object, e As MouseEventArgs) Handles ListBox3.MouseClick
@@ -1202,12 +1246,23 @@ Public Class Hpridat
     End Sub
 
     Private Sub DataGridView3_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DataGridView3.CellFormatting
-        If e.Value Is Nothing OrElse e.Value.ToString <> "-1" Then
+        If e.Value Is Nothing OrElse Not e.Value.GetType.Equals(New Decimal().GetType) OrElse e.Value <> -1 Then
         Else
             e.Value = ""
         End If
 
     End Sub
 
+
+    Private Sub TextBox14_KeyUp_1(sender As Object, e As KeyEventArgs) Handles TextBox14.KeyUp
+        If ((e.KeyCode > 64) And (e.KeyCode < 91)) Or ((e.KeyCode < 106) And (e.KeyCode > 95)) Or e.KeyCode = 8 Then
+            Try
+                If RadioButton3.Checked = True Then TextBox5.Text = TextBox7.Text - TextBox14.Text * 2
+            Catch ex As Exception
+            End Try
+            uprav_values(TextBox14)
+        End If
+
+    End Sub
 
 End Class

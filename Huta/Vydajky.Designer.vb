@@ -47,10 +47,14 @@ Partial Class Vydajky
         Me.Button1 = New System.Windows.Forms.Button()
         Me.VydajkyTableAdapter = New WindowsApplication2.RotekDataSetTableAdapters.VydajkyTableAdapter()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VydajkyBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RotekDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -160,6 +164,7 @@ Partial Class Vydajky
         '
         Me.VydajkyBindingSource.DataMember = "Vydajky"
         Me.VydajkyBindingSource.DataSource = Me.RotekDataSet
+        Me.VydajkyBindingSource.Sort = "Nazov DESC"
         '
         'RotekDataSet
         '
@@ -180,7 +185,7 @@ Partial Class Vydajky
         '
         Me.TextBox1.Location = New System.Drawing.Point(41, 104)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(118, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(77, 20)
         Me.TextBox1.TabIndex = 2
         '
         'Label2
@@ -195,16 +200,16 @@ Partial Class Vydajky
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(166, 104)
+        Me.TextBox2.Location = New System.Drawing.Point(124, 104)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox2.Size = New System.Drawing.Size(88, 20)
         Me.TextBox2.TabIndex = 4
         '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label3.Location = New System.Drawing.Point(163, 84)
+        Me.Label3.Location = New System.Drawing.Point(121, 84)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(62, 17)
         Me.Label3.TabIndex = 5
@@ -242,7 +247,7 @@ Partial Class Vydajky
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(558, 98)
+        Me.Button1.Location = New System.Drawing.Point(630, 101)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(89, 23)
         Me.Button1.TabIndex = 11
@@ -264,11 +269,39 @@ Partial Class Vydajky
         Me.CheckBox1.Text = "Reklamácia"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
+        'NumericUpDown1
+        '
+        Me.NumericUpDown1.Location = New System.Drawing.Point(218, 104)
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(49, 20)
+        Me.NumericUpDown1.TabIndex = 20
+        Me.NumericUpDown1.Value = New Decimal(New Integer() {11, 0, 0, 0})
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(504, 107)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox3.TabIndex = 21
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.Label4.Location = New System.Drawing.Point(501, 87)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(74, 17)
+        Me.Label4.TabIndex = 22
+        Me.Label4.Text = "Poznámka"
+        '
         'Vydajky
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1019, 550)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.NumericUpDown1)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.DataGridView2)
@@ -287,6 +320,7 @@ Partial Class Vydajky
         CType(Me.VydajkyBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RotekDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -315,4 +349,7 @@ Partial Class Vydajky
     Friend WithEvents Zmazat As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
+    Friend WithEvents NumericUpDown1 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
+    Friend WithEvents Label4 As System.Windows.Forms.Label
 End Class

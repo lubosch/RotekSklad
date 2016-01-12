@@ -15,7 +15,7 @@ Public Class Prehlad
 
     Private Sub Prehlad_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Dim timer As Stopwatch = New Stopwatch()
-        timer.Start
+        timer.Start()
         'TODO: This line of code loads data into the 'RotekDataSet.ZoznamF' table. You can move, or remove it, as needed.
         Me.ZoznamFTableAdapter.Fill(Me.RotekDataSet.ZoznamF)
         'TODO: This line of code loads data into the 'RotekDataSet.CP' table. You can move, or remove it, as needed.
@@ -24,6 +24,8 @@ Public Class Prehlad
         rozmers()
         napln()
         poverenie()
+
+        NumericUpDown1.Value = Now.Year - 2000
 
     End Sub
     Private Sub poverenie()
@@ -60,13 +62,14 @@ Public Class Prehlad
         End Select
     End Sub
     Private Sub napln()
-        Me.CPBindingSource.Filter = String.Format("{0} = '{1}' AND {2} LIKE '%{3}%' AND {4} LIKE '{5}%' AND {6} LIKE '{7}%'", RotekDataSet.CP.pocetColumn, 1, RotekDataSet.CP.NazovColumn, TextBox1.Text, RotekDataSet.CP.PopisColumn, TextBox2.Text, RotekDataSet.CP.FirmaColumn, TextBox3.Text)
+
+        Me.CPBindingSource.Filter = String.Format("{0} = '{1}' AND {2} LIKE '%{3}%' AND {2} LIKE '%{4}' AND {5} LIKE '{6}%' AND {7} LIKE '{8}%'", RotekDataSet.CP.pocetColumn, 1, RotekDataSet.CP.NazovColumn, TextBox1.Text, NumericUpDown1.Value.ToString, RotekDataSet.CP.PopisColumn, TextBox2.Text, RotekDataSet.CP.FirmaColumn, TextBox3.Text)
     End Sub
     Private Sub rozmers()
         Dim rww As Integer = Me.Width / 2
         Dim sw As Integer = Me.Height
 
-        DataGridView1.Size = New Size(rww * 2, sw - 165)
+        DataGridView1.Size = New Size(rww * 2, sw - 185)
         Dim g As System.Drawing.Graphics = Me.CreateGraphics
         Dim strSz As SizeF = g.MeasureString("Cenové ponuky", Label1.Font)
         Dim stred As Integer
@@ -123,8 +126,13 @@ Public Class Prehlad
             Exit Sub
         End If
 
+        Dim folder_path As String = My.Settings.Rotek3 & "CP\" & (Now.Year - 2000) & "\"
+        If (Not Directory.Exists(folder_path)) Then
+            Directory.CreateDirectory(folder_path)
+        End If
 
-        Dim strPath As String = My.Settings.Rotek3 & "CP\" & cp.Replace("/", "•") & ".xls"
+        Dim strPath As String = folder_path & cp.Replace("/", "•") & ".xls"
+
         '        strPath = strPath.Replace(".xlsx", ".ods")
         Dim cesta As String = My.Settings.Rotek3 & "CP.xls"
 
@@ -235,7 +243,7 @@ Public Class Prehlad
             excelApp.SaveXls(strPath)
             'excelApp.Workbooks.Open(strPath)
             'excelSheet.ExportAsFixedFormat(XlFixedFormatType.xlTypePDF, strPath.Replace(".xls", ""), XlFixedFormatQuality.xlQualityStandard, True, True, 1, 1, True)
-            Prehlad.img_excel(strPath, "acert.png")
+            img_excel(strPath, "acert.png")
 
             Process.Start(strPath)
 
@@ -243,7 +251,7 @@ Public Class Prehlad
             Chyby.Show(ex.ToString)
         End Try
     End Sub
-    Public Shared Sub img_excel(ByVal strPath As String, ByVal obrazok As String)
+    Public Sub img_excel(ByVal strPath As String, ByVal obrazok As String)
         Dim fss As FileStream = New FileStream(strPath, FileMode.Open, FileAccess.ReadWrite)
         Dim wb As HSSFWorkbook = New HSSFWorkbook(fss, True)
         Dim sheet As ISheet = wb.GetSheetAt(0)
@@ -306,7 +314,7 @@ Public Class Prehlad
         ElseIf e.ColumnIndex = 13 Then ' Otvorit
             Me.riadok = e.RowIndex
             Dim cp As String = DataGridView1.Rows(riadok).Cells(0).Value
-            Dim strPath As String = My.Settings.Rotek3 & "CP\" & cp.Replace("/", "•") & ".xls"
+            Dim strPath As String = My.Settings.Rotek3 & "CP\" & (Now.Year - 2000) & "\" & cp.Replace("/", "•") & ".xls"
             If File.Exists(strPath) Then
                 Process.Start(strPath)
             Else
@@ -324,7 +332,44 @@ Public Class Prehlad
 
         ElseIf e.ColumnIndex = 14 Then ' Posli mail
             posli_mail(e.RowIndex)
+        ElseIf e.ColumnIndex = DataGridView1.Columns("Vykresy").Index Then 'Vykresy
+            Dim point2 As Point
+            point2 = New Point(CInt(Math.Round(CDec((Cursor.Position.X - (CDec(Me.GroupBox1.Size.Width) / 2))))), (200 + (Me.DataGridView1.Rows.Item(0).Height * (e.RowIndex + 1))))
+            Me.GroupBox2.Location = point2
+            Me.GroupBox2.Tag = e.RowIndex
+            Me.subory("Cenov" & ChrW(233) & " ponuky")
         End If
+
+    End Sub
+
+    Private Sub subory(ByVal cesta As String)
+        GroupBox2.Text = cesta
+        GroupBox2.Show()
+        Button5.Show()
+        Button6.Show()
+        ListView1.Clear()
+        Dim cesta2 As String
+        Dim cp As String = Me.DataGridView1.Rows.Item(GroupBox2.Tag).Cells.Item(0).Value
+        cesta2 = My.Settings.Rotek3 + "CP\"
+        cesta2 = cesta2 & (Now.Year Mod 2000) & "\" & cp.Replace("/", "•") & "\"
+
+        If IsDBNull(DataGridView1.Rows(GroupBox2.Tag).Cells("Vykresy_db").Value) = False Then
+            ListView1.Items.Add("Papiere:")
+            Dim potvrdenia As String = DataGridView1.Rows(GroupBox2.Tag).Cells("Vykresy_db").Value
+            While potvrdenia.IndexOf("|") >= 0
+                ListView1.Items.Add(potvrdenia.Substring(potvrdenia.LastIndexOf("|") + 1))
+                potvrdenia = potvrdenia.Substring(0, potvrdenia.LastIndexOf("|"))
+            End While
+        End If
+        ListView1.Items.Add("Súbory:")
+        Try
+            For Each files In System.IO.Directory.GetFiles(cesta2)
+                ListView1.Items.Add(files.Substring(files.LastIndexOf("\") + 1), "")
+            Next
+        Catch ex As Exception
+
+        End Try
+
 
     End Sub
     Private Sub posli_mail(ByVal riadok As Integer)
@@ -458,7 +503,7 @@ Public Class Prehlad
     End Sub
 
     Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles Button3.Click
-        RadioButton2.Checked=True
+        'RadioButton2.Checked = True
         tlac("")
     End Sub
 
@@ -479,6 +524,11 @@ Public Class Prehlad
         If (GroupBox1.Visible) And ((Cursor.Position.X < GroupBox1.Location.X) Or (Cursor.Position.X > (GroupBox1.Location.X + GroupBox1.Size.Width)) Or (Cursor.Position.Y < GroupBox1.Location.Y) Or (Cursor.Position.Y > (GroupBox1.Location.Y + GroupBox1.Size.Height))) Then
             GroupBox1.Hide()
         End If
+        If (GroupBox2.Visible) And ((Cursor.Position.X < GroupBox2.Location.X) Or (Cursor.Position.X > (GroupBox2.Location.X + GroupBox2.Size.Width)) Or (Cursor.Position.Y < GroupBox2.Location.Y) Or (Cursor.Position.Y > (GroupBox2.Location.Y + GroupBox2.Size.Height))) Then
+            GroupBox2.Hide()
+        End If
+
+
     End Sub
 
     Private Sub DataGridView1_Click(sender As System.Object, e As System.EventArgs) Handles DataGridView1.Click
@@ -538,7 +588,8 @@ Public Class Prehlad
     Private Sub OtvoriťToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OtvoriťToolStripMenuItem.Click
         Me.riadok = ContextMenuStrip1.Tag
         Dim cp As String = DataGridView1.Rows(riadok).Cells(0).Value
-        Dim strPath As String = My.Settings.Rotek3 & "CP\" & cp.Replace("/", "•") & ".xls"
+        Dim strPath As String = My.Settings.Rotek3 & "CP\" & (Now.Year - 2000) & "\" & cp.Replace("/", "•") & ".xls"
+
         If File.Exists(strPath) Then
             Process.Start(strPath)
         Else
@@ -588,9 +639,109 @@ Public Class Prehlad
             If GroupBox1.Location.X < 0 Then
                 GroupBox1.Location = New Point(1, GroupBox1.Location.Y)
             End If
-            If GroupBox1.Location.y + GroupBox1.Size.Height > me.Height Then
+            If GroupBox1.Location.Y + GroupBox1.Size.Height > Me.Height Then
                 GroupBox1.Location = New Point(GroupBox1.Location.X, GroupBox1.Location.Y - GroupBox1.Height - 70)
             End If
+        End If
+    End Sub
+
+    Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
+        napln()
+    End Sub
+
+    Private Sub GroupBox2_VisibleChanged(sender As Object, e As EventArgs) Handles GroupBox2.VisibleChanged
+        If GroupBox2.Location.Y + GroupBox2.Size.Height > Me.Height Then
+            GroupBox2.Location = New System.Drawing.Point(GroupBox2.Location.X, MousePosition.Y - 50 - GroupBox2.Size.Height)
+            If GroupBox2.Location.Y + GroupBox2.Size.Height > Me.Height Or GroupBox2.Location.Y < Me.Location.Y Then
+                GroupBox2.Location = New System.Drawing.Point(GroupBox2.Location.X, Me.Height - 50 - GroupBox2.Size.Height)
+            End If
+        End If
+
+        If GroupBox2.Location.X + GroupBox2.Size.Width > Me.Width Then
+            GroupBox2.Location = New System.Drawing.Point(MousePosition.X - GroupBox2.Size.Width, GroupBox2.Location.Y)
+            If GroupBox2.Location.X + GroupBox2.Size.Width > Me.Width Or GroupBox2.Location.X < Me.Location.X Then
+                GroupBox2.Location = New System.Drawing.Point(Me.Width - GroupBox2.Size.Width, GroupBox2.Location.Y)
+            End If
+        End If
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        If Form78.heslo = Form78.admin Or Form78.heslo = Form78.zakazkar Then
+        Else
+            Exit Sub
+        End If
+
+        Dim cp As String = Me.DataGridView1.Rows.Item(GroupBox2.Tag).Cells.Item(0).Value
+        Dim text As String = ""
+        ListView1.Items.Add("Papiere:")
+        If IsDBNull(DataGridView1.Rows(GroupBox2.Tag).Cells("Vykresy_db").Value) = False Then
+            text = DataGridView1.Rows(GroupBox2.Tag).Cells("Vykresy_db").Value
+        End If
+
+        Dim slovo As String = InputBox("Napis identifikaciu cenovej ponuky", "Cenova ponuka")
+        If slovo.Length > 0 Then
+            text = text + "|" + slovo
+            Dim sql As String
+            sql = "UPDATE CP SET Vykresy='" + text + "' WHERE Nazov='" + cp + "' AND pocet=" & 1
+            MessageBox.Show(sql)
+            Form78.sqa(sql)
+            ListView1.Items.Add(slovo)
+            CPTableAdapter.Fill(Me.RotekDataSet.CP)
+            napln()
+        End If
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        If Form78.heslo = Form78.admin Or Form78.heslo = Form78.zakazkar Then
+        Else
+            Exit Sub
+        End If
+
+        Dim cp As String = Me.DataGridView1.Rows.Item(GroupBox2.Tag).Cells.Item(0).Value
+
+        Dim cesta2 As String = My.Settings.Rotek3
+        cesta2 = cesta2 & "CP\" & (Now.Year Mod 2000) & "\" & cp.Replace("/", "•") + "\"
+
+
+        Dim openFileDialog1 As New OpenFileDialog
+        openFileDialog1.Title = "Pridať súbory"
+        openFileDialog1.InitialDirectory = "\\192.168.1.150"
+        openFileDialog1.Filter = "Všetky súbory(*.*)|*.*"
+        openFileDialog1.FilterIndex = 1
+        openFileDialog1.RestoreDirectory = True
+        openFileDialog1.Multiselect = True
+        If openFileDialog1.ShowDialog() = DialogResult.OK Then
+
+            For Each sl As String In openFileDialog1.FileNames
+                If System.IO.Directory.Exists(cesta2) Then
+                Else
+                    System.IO.Directory.CreateDirectory(cesta2)
+                End If
+                My.Computer.FileSystem.CopyFile(sl, cesta2 + sl.Substring(sl.LastIndexOf("\") + 1), True)
+                ListView1.Items.Add(sl.Substring(sl.LastIndexOf("\") + 1))
+            Next
+        End If
+    End Sub
+
+    Private Sub ListView1_DoubleClick(sender As Object, e As EventArgs) Handles ListView1.DoubleClick
+
+        Dim cp As String = Me.DataGridView1.Rows.Item(GroupBox2.Tag).Cells.Item(0).Value
+        Dim cesta2 As String = My.Settings.Rotek3
+        cesta2 = cesta2 & "CP\" & (Now.Year Mod 2000) & "\" & cp.Replace("/", "•") + "\"
+
+        cesta2 = cesta2 & ListView1.SelectedItems(0).Text
+        cesta2 = cesta2.Replace("/", "\")
+        cesta2 = cesta2.Replace("\\", "\")
+        cesta2 = "\" + cesta2
+
+        If System.IO.File.Exists(cesta2) Then
+            If cesta2.LastIndexOf(".") > 20 Then
+                Process.Start(cesta2)
+            End If
+        ElseIf ListView1.SelectedItems(0).Text = "Súbory:" Then
+            Shell("explorer " & cesta2.Replace(ListView1.SelectedItems(0).Text, ""))
+        Else
+            Shell("explorer " & cesta2)
         End If
     End Sub
 End Class

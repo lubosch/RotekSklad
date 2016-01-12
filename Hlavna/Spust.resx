@@ -139,7 +139,17 @@
     <value>612, 17</value>
   </metadata>
   <data name="RichTextBox1.Text" xml:space="preserve">
-    <value>19.9.2013
+    <value>3.2.2015
+- Pridané oddeľovanie podľa rokov pre príjemky aj výdajky
+- Možnosť zjednotiť druh materiálov
+30.12.2014
+- Hutný sklad zrýchlený
+- Inštalačka 2
+13.2.2014
+-Výkresy sa dajú pridávať k CP
+-Výkresy sa dajú pridať k zákazke z CP
+-Hutný sklad funkčný
+19.9.2013
 -Pri zákazkach sa dajú pridávať už aj malé sumy
 -Prerobený hutný sklad, ešte trochu nezrozumiteľne, ale funguje úplne. Kusy sú pri kvádroch plocha, inak je to zrozumiteľné všetko.
 3.9.2013

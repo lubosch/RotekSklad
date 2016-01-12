@@ -20,7 +20,7 @@
 
     Public Shared Function materialByName(nazov As String) As DataTable
         Dim dd As DataTable = New DataTable
-        SQL_main.AddCommand("SELECT md.Nazov Druh, mn.Nazov Názov, m.Typ Typ, m.Sirka Šírka, m.Rozmer Rozmer, m.S_rozmer 'S-rozmer', m.Velkost Veľkosť, mp.ks Kusov, mp.KsKg 'Kg/1ks', mp.Kg Kg, mp.CenaKg 'Cena/1Kg', mp.Cena 'Cena' FROM Material_Prijemka mp")
+        SQL_main.AddCommand("SELECT md.Nazov Druh, mn.Nazov Názov, m.Typ Typ, m.Sirka Šírka, m.Rozmer 'Priemer / Hrúbka', m.S_rozmer 'Stena', m.Velkost 'Dĺžka', mp.ks 'Kusov', mp.KsKg 'Kg/1ks', mp.Kg Kg, mp.CenaKg 'Cena/1Kg', mp.Cena 'Cena' FROM Material_Prijemka mp")
         SQL_main.AddCommand("~JOIN Prijemky p ON p.ID = Prijemka_ID ")
         SQL_main.AddCommand("~JOIN Material m ON m.ID = mp.Material_ID")
         SQL_main.AddCommand("~JOIN MaterialVseobecne mv ON mv.ID = m.Material_ID")
