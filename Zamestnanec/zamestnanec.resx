@@ -1827,7 +1827,7 @@
     <value>RotekDataSet</value>
   </data>
   <data name="&gt;&gt;RotekDataSet.Type" xml:space="preserve">
-    <value>WindowsApplication2.RotekDataSet, RotekDataSet.Designer.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>WindowsApplication2.RotekDataSet, RotekDataSet2.Designer.vb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;RotekTableAdapter.Name" xml:space="preserve">
     <value>RotekTableAdapter</value>

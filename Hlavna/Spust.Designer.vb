@@ -23,11 +23,10 @@ Partial Class Spust
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Spust))
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button17 = New System.Windows.Forms.Button()
         Me.Button16 = New System.Windows.Forms.Button()
@@ -49,12 +48,16 @@ Partial Class Spust
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Button6 = New System.Windows.Forms.Button()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.SkladListBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.SkladListTableAdapter = New WindowsApplication2.RotekDataSetTableAdapters.SkladListTableAdapter()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RotekDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MailyBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.UcetBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SkladListBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureBox1
@@ -71,24 +74,12 @@ Partial Class Spust
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Button1.Location = New System.Drawing.Point(12, 132)
+        Me.Button1.Location = New System.Drawing.Point(96, 132)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(109, 42)
         Me.Button1.TabIndex = 2
         Me.Button1.Text = "Hutný sklad"
         Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.AllowDrop = True
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.Button2.Location = New System.Drawing.Point(185, 144)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(135, 42)
-        Me.Button2.TabIndex = 0
-        Me.Button2.Text = "Sklad"
-        Me.Button2.UseVisualStyleBackColor = True
-        Me.Button2.Visible = False
         '
         'Button3
         '
@@ -199,8 +190,8 @@ Partial Class Spust
         'Pocet
         '
         Me.Pocet.DataPropertyName = "Pocet"
-        DataGridViewCellStyle1.NullValue = "0"
-        Me.Pocet.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.NullValue = "0"
+        Me.Pocet.DefaultCellStyle = DataGridViewCellStyle2
         Me.Pocet.HeaderText = "Pocet"
         Me.Pocet.Name = "Pocet"
         Me.Pocet.ReadOnly = True
@@ -272,6 +263,26 @@ Partial Class Spust
         Me.Button6.Text = "Pridať požiadavku"
         Me.Button6.UseVisualStyleBackColor = True
         '
+        'ListBox1
+        '
+        Me.ListBox1.DataSource = Me.SkladListBindingSource
+        Me.ListBox1.DisplayMember = "Nazov"
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(12, 132)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(89, 43)
+        Me.ListBox1.TabIndex = 32
+        Me.ListBox1.ValueMember = "ID"
+        '
+        'SkladListBindingSource
+        '
+        Me.SkladListBindingSource.DataMember = "SkladList"
+        Me.SkladListBindingSource.DataSource = Me.RotekDataSet
+        '
+        'SkladListTableAdapter
+        '
+        Me.SkladListTableAdapter.ClearBeforeFill = True
+        '
         'Spust
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -280,6 +291,7 @@ Partial Class Spust
         Me.BackgroundImage = Global.WindowsApplication2.My.Resources.Resources.Pozadie
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(658, 262)
+        Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.Button5)
@@ -291,7 +303,6 @@ Partial Class Spust
         Me.Controls.Add(Me.Button17)
         Me.Controls.Add(Me.Button16)
         Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Label3)
@@ -306,13 +317,13 @@ Partial Class Spust
         CType(Me.MailyBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.UcetBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SkladListBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents Button17 As System.Windows.Forms.Button
     Friend WithEvents Button16 As System.Windows.Forms.Button
@@ -334,4 +345,7 @@ Partial Class Spust
     Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Button6 As System.Windows.Forms.Button
+    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
+    Friend WithEvents SkladListBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents SkladListTableAdapter As WindowsApplication2.RotekDataSetTableAdapters.SkladListTableAdapter
 End Class

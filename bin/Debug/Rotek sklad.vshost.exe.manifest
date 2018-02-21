@@ -199,14 +199,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Rotek sklad.exe" size="3515392">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Rotek sklad.exe" size="3399168">
       <assemblyIdentity name="Rotek sklad" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>v641/WbIUp7G5Rxu/E8osjwDYb0=</dsig:DigestValue>
+        <dsig:DigestValue>iTfoCuzp1ziLyc5qzicKxHw0CKQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -218,7 +218,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>/khg8Yr71miJg9EMd53Hubw21Jc=</dsig:DigestValue>
+        <dsig:DigestValue>nvY24XEiKBEOIQIFts7nRZsX/iw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -279,13 +279,13 @@
       <dsig:DigestValue>1+eudNjyzsc56kaT4ArrYCdk8KA=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Rotek sklad.exe.config" size="2902">
+  <file name="Rotek sklad.exe.config" size="3229">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>sWpZjItBNrnvxupFRZsOtbazCgs=</dsig:DigestValue>
+      <dsig:DigestValue>WkzdvxCqsQe0Pit3HljsS761l1Y=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

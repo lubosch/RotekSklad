@@ -8,6 +8,7 @@ Public Class Hpridat
     Property nastr As String
     Property tex As String
     Property menko As String
+    Property skladlist_id As Integer
     Dim crc, menoo, priezviskoo As String
 
     Property druhhh As String
@@ -261,11 +262,11 @@ Public Class Hpridat
 
             Dim prijemkaTableAdapter As PrijemkyTableAdapter = New PrijemkyTableAdapter
             Dim prijemka_ID As Integer = prijemkaTableAdapter.byNazov(Label16.Text)
-            Dim material As Material_SQL = New Material_SQL(druh, nazov, rozmery.sirka, rozmery.rozmer, rozmery.s_rozmer, rozmery.velkost, 0, rozmery.typ)
+            Dim material As Material_SQL = New Material_SQL(skladlist_id, druh, nazov, rozmery.sirka, rozmery.rozmer, rozmery.s_rozmer, rozmery.velkost, 0, rozmery.typ)
             Dim material_id As Integer = material.save
             Dim material_plochac As Material_SQL = Nothing
             If RadioButton2.Checked Then
-                material_plochac = New Material_SQL(druh, nazov, -1, rozmery.rozmer, -1, -1, 0, rozmery.typ)
+                material_plochac = New Material_SQL(skladlist_id, druh, nazov, -1, rozmery.rozmer, -1, -1, 0, rozmery.typ)
                 material_plochac.save()
             End If
 

@@ -14,6 +14,8 @@ Public Class Vydajky
     Private excelSheet As ExcelWorksheet
     Dim vyska As Integer = 15
 
+    Property skladlist_id As Integer
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -28,7 +30,7 @@ Public Class Vydajky
 
     Private Sub Prijemky_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'RotekDataSet.Vydajky' table. You can move, or remove it, as needed.
-        Me.VydajkyTableAdapter.Fill(Me.RotekDataSet.Vydajky)
+        Me.VydajkyTableAdapter.FillBySkladListId(Me.RotekDataSet.Vydajky, skladlist_id)
         'TODO: This line of code loads data into the 'RotekDataSet.Vydajka' table. You can move, or remove it, as needed.
         'Me.PrijemkaTableAdapter.Fill(Me.RotekDataSet.Prijemka)
         'Me.PrijemkaBindingSource.Filter = String.Format("{0} = '{1}'", RotekDataSet.Prijemka.pocetColumn, 1)
@@ -121,13 +123,14 @@ Public Class Vydajky
             Dim f As New Hvydat(nazov)
             f.ShowDialog()
             f.Dispose()
-            Me.VydajkyTableAdapter.Fill(Me.RotekDataSet.Vydajky)
+            Me.VydajkyTableAdapter.FillBySkladListId(Me.RotekDataSet.Vydajky, skladlist_id)
+
             filtruj()
         ElseIf e.ColumnIndex = DataGridView1.Columns("Zmazat").Index Then 'zmazat
             Dim nazov As String = DataGridView1.Rows(e.RowIndex).Cells(0).Value
             Dim vydajka_sql As Vydajka_SQL = New Vydajka_SQL(nazov)
             vydajka_sql.delete_me()
-            Me.VydajkyTableAdapter.Fill(Me.RotekDataSet.Vydajky)
+            Me.VydajkyTableAdapter.FillBySkladListId(Me.RotekDataSet.Vydajky, skladlist_id)
             filtruj()
 
         End If

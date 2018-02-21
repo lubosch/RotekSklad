@@ -14,6 +14,9 @@ Public Class Prijemky
     Private excelSheet As ExcelWorksheet
     Dim vyska As Integer = 15
 
+    Property skladlist_id As Integer
+
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -25,7 +28,7 @@ Public Class Prijemky
 
     End Sub
     Private Sub Prijemky_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        Me.PrijemkyTableAdapter.Fill(Me.RotekDataSet.Prijemky)
+        Me.PrijemkyTableAdapter.FillBySkladListID(Me.RotekDataSet.Prijemky, skladlist_id)
 
         rozmers()
         poverenie()
@@ -112,7 +115,7 @@ Public Class Prijemky
             SQL_main.AddCommand("DELETE FROM Material_Prijemka WHERE Prijemka_ID = (SELECT ID FROM Prijemky WHERE Nazov = '" + nazov + "')")
             SQL_main.AddCommand("DELETE FROM Prijemky WHERE Nazov = '" + nazov + "'")
             SQL_main.Commit_Transaction()
-            Me.PrijemkyTableAdapter.Fill(Me.RotekDataSet.Prijemky)
+            Me.PrijemkyTableAdapter.FillBySkladListID(Me.RotekDataSet.Prijemky, skladlist_id)
 
         End If
 

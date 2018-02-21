@@ -439,3 +439,90 @@ C:\Users\Fred\brigady\WindowsApplication2\WindowsApplication2\obj\x86\Release\Ro
 C:\Users\Fred\brigady\WindowsApplication2\WindowsApplication2\obj\x86\Release\Rotek sklad.exe
 C:\Users\Fred\brigady\WindowsApplication2\WindowsApplication2\obj\x86\Release\Rotek sklad.xml
 C:\Users\Fred\brigady\WindowsApplication2\WindowsApplication2\obj\x86\Release\Rotek sklad.pdb
+C:\Users\Fred\brigady\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.vbprojResolveAssemblyReference.cache
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\bin\Release\Rotek sklad.exe.config
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.vbproj.ResolveComReference.cache
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\Rotek sklad.exe
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\Rotek sklad.xml
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\Rotek sklad.pdb
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.vbprojResolveAssemblyReference.cache
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.PrehladO.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Pridat_CPO.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Zobraz_CPO.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Mail.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Prehlad.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Pridat_CP.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Zobraz_CP.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Evidencia.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.nastF.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.mForm78.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.mpozicat.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.mPridat.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.msklad.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.msrotC.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.msrotV.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.mvymazať.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.mzamestnanec.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.mvratit.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.export.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.export_sklad.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Form2.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Fotk.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Heslozmen.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Heslo.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.datum_box.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Dokoncit.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Povolenia.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Spust.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Dodavatelia.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Hpridat.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Materialy.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Odpady.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Vydajky.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Hvydat.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.enfo.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Evid_Uprav.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Firma.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Odpadky.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Odpadky_pridat.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Vydajka_prehlad.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Hchyba.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.hForm78.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Hmakro.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.HmakroInfo.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.infosky.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.nastrIne.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.skladIne.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.srotIne.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.infoFirma.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Majetok.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.M_odstranit.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.M_pridat.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.info_nastroj.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Form1.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.nastrvz.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Pridatt.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Form78.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.skladvz.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Prijemka_prehlad.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Prijemky.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.DL.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Z_Info.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Z_Main.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.pridatIne.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.srotC.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.srotV.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.srotVz.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.vymazať.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.SrotZIne.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.VratitIne.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.VratitNaSklad.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.zamestnanec.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.sklad.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.nastrclovek.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.nastrsklad.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.Resources.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.zamestnanec.sk.resources
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\WindowsApplication2.vbproj.GenerateResource.Cache
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\sk\Rotek sklad.resources.dll
+C:\Users\fred\work\rotek\WindowsApplication2\WindowsApplication2\obj\x86\Release\Rotek sklad.TrustInfo.xml

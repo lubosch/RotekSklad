@@ -89,7 +89,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -415,16 +415,9 @@
     </Compile>
     <Compile Include="POP3Client.vb" />
     <Compile Include="RotekDataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RotekDataSet.xsd</DependentUpon>
+      <DependentUpon>RotekDataSet.vb</DependentUpon>
     </Compile>
     <Compile Include="RotekDataSet.vb">
-      <DependentUpon>RotekDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="RotekDataSet1.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>RotekDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="RotekDataSet2.Designer.vb">
@@ -866,6 +859,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Zakazka\Z_Main.resx">
       <DependentUpon>Z_Main.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Zamestnanec\pridatIne.resx">
       <DependentUpon>pridatIne.vb</DependentUpon>

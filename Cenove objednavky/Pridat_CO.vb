@@ -306,8 +306,8 @@ Public Class Pridat_CPO
                     End If
 
                     If TextBox6.Text.IndexOf(".") <> TextBox6.Text.Length - 1 Then
-                        Dim d As Decimal = Math.Floor(CDec(TextBox6.Text) * 100)
-                        d = d / 100
+                        Dim d As Decimal = Math.Floor(CDec(TextBox6.Text) * 10000)
+                        d = d / 10000
                         TextBox6.Text = d
                     End If
                     TextBox7.Text = TextBox6.Text * TextBox5.Text
@@ -332,7 +332,7 @@ Public Class Pridat_CPO
 
                     TextBox7.Text = TextBox7.Text.Replace(",", ".")
                     If TextBox7.Text.IndexOf(".") <> TextBox7.Text.Length - 1 Then
-                        TextBox7.Text = Math.Floor(CDec(TextBox7.Text) * 100) / 100
+                        TextBox7.Text = Math.Floor(CDec(TextBox7.Text) * 10000) / 10000
                     End If
                     TextBox6.Text = TextBox7.Text / TextBox5.Text
                     TextBox7.SelectionStart = TextBox7.Text.Length

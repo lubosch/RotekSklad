@@ -179,7 +179,14 @@
             SQL_main.AddCommand("~(SELECT mv.ID FROM MaterialVseobecne mv JOIN MaterialNazov mn ON mn.Vseobecne_ID = mv.ID WHERE mn.Druh_ID = " & druh_id & " ) ")
 
             SQL_main.AddCommand("DELETE FROM MaterialNazov WHERE Druh_ID = " & druh_id & " ")
+
+            SQL_main.AddCommand("DELETE FROM Material WHERE Material_ID IN ")
+            SQL_main.AddCommand("~(SELECT mv.ID FROM MaterialVseobecne mv WHERE ID NOT IN ( SELECT Vseobecne_ID FROM MaterialNazov ))")
+
             SQL_main.AddCommand("DELETE FROM MaterialVseobecne WHERE ID NOT IN ( SELECT Vseobecne_ID FROM MaterialNazov )")
+
+            SQL_main.AddCommand("UPDATE MaterialDruh SET Druh_ID = NULL WHERE Druh_ID = " & druh_id & " ")
+
             SQL_main.AddCommand("DELETE FROM MaterialDruh WHERE ID = " & druh_id & " ")
 
             SQL_main.Commit_Transaction()

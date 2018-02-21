@@ -20,6 +20,8 @@ Public Class hForm78
 
     Shared Property Cenka As Double
 
+    Property sklad_list_id As Integer
+
     Public Sub rozmers()
         Label1.Text = "Hutný sklad"
         Dim rww As Integer = Me.Width / 2
@@ -283,13 +285,13 @@ Public Class hForm78
             filt = String.Format("{0} AND 1=1", filt)
 
             Debug.WriteLine("Pred materialom " & stopky.ElapsedMilliseconds)
-            Me.MaterialTableAdapter.FillFiltered(Me.RotekDataSet.Material, druh, typ, nazov, filt)
 
+            Me.MaterialTableAdapter.FillFiltered(Me.RotekDataSet.Material, sklad_list_id, druh, typ, nazov, filt)
             'Material_SQL.fillFiltered(Me.RotekDataSet.Material, filt, nazov)
             Debug.WriteLine("Material " & stopky.ElapsedMilliseconds)
-            Me.VydajkyTableAdapter.fillFiltered(Me.RotekDataSet.Vydajky, NumericUpDown1.Value, druh, typ, nazov, filt)
+            Me.VydajkyTableAdapter.fillFiltered(Me.RotekDataSet.Vydajky, sklad_list_id, NumericUpDown1.Value, druh, typ, nazov, filt)
             Debug.WriteLine("Vydajka " & stopky.ElapsedMilliseconds)
-            Me.PrijemkyTableAdapter.fillFiltered(Me.RotekDataSet.Prijemky, typ, nazov, NumericUpDown1.Value, "rok2", druh, filt)
+            Me.PrijemkyTableAdapter.fillFiltered(Me.RotekDataSet.Prijemky, sklad_list_id, typ, nazov, NumericUpDown1.Value, "rok2", druh, filt)
             Debug.WriteLine("Prijemka " & stopky.ElapsedMilliseconds)
             stopky.Stop()
         Catch ex As Exception
@@ -365,6 +367,7 @@ Public Class hForm78
 
     Private Sub Button17_Click(sender As System.Object, e As System.EventArgs) Handles Button17.Click
         Dim f As New Prijemky
+        f.skladlist_id = sklad_list_id
         Me.Hide()
         f.ShowDialog()
         f.Dispose()
@@ -458,6 +461,7 @@ Public Class hForm78
 
     Private Sub Button7_Click_1(sender As Object, e As EventArgs) Handles Button7.Click
         Dim f As New Vydajky
+        f.skladlist_id = sklad_list_id
         Me.Hide()
         f.ShowDialog()
         f.Dispose()
@@ -467,8 +471,8 @@ Public Class hForm78
 
     Private Sub Button8_Click_1(sender As Object, e As EventArgs) Handles Button8.Click
         Dim f As New Hvydat
+        f.skladlist_id = sklad_list_id
         f.TopLevel = True
-
         f.Dock = DockStyle.None
         f.ShowDialog()
         f.Dispose()
@@ -482,6 +486,8 @@ Public Class hForm78
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim f As New Hpridat()
+        f.skladlist_id = sklad_list_id
+
         f.TopLevel = True
         f.Dock = DockStyle.None
         f.ShowDialog()
@@ -551,6 +557,7 @@ Public Class hForm78
     Private Sub UpraviťToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpraviťToolStripMenuItem.Click
         Dim nazov As String = DataGridView3.Rows(ContextMenuStrip1.Tag).Cells(0).Value
         Dim f As New Hvydat(nazov)
+        f.skladlist_id = sklad_list_id
         f.ShowDialog()
         f.Dispose()
         zmena()
@@ -568,6 +575,8 @@ Public Class hForm78
     Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
         Dim nazov As String = DataGridView2.Rows(ContextMenuStrip2.Tag).Cells(0).Value
         Dim f As New Hpridat(nazov)
+        f.skladlist_id = sklad_list_id
+
         f.ShowDialog()
         f.Dispose()
         zmena()
@@ -635,7 +644,7 @@ Public Class hForm78
     Private Sub Button10_Click_1(sender As Object, e As EventArgs) Handles Button10.Click
         For Each row As DataGridViewRow In DataGridView1.Rows
             If row.Cells("VKusov").Value IsNot Nothing Then
-                
+
                 Vyhod_Material(row.Index)
             End If
         Next

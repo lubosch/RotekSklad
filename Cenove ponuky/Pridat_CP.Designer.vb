@@ -80,6 +80,8 @@ Partial Class Pridat_CP
         Me.ICODataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.TextBox8 = New System.Windows.Forms.TextBox()
         CType(Me.ZoznamFBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RotekDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ZoznamFBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -194,7 +196,7 @@ Partial Class Pridat_CP
         'DateTimePicker1
         '
         Me.DateTimePicker1.CalendarMonthBackground = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.DateTimePicker1.Location = New System.Drawing.Point(534, 71)
+        Me.DateTimePicker1.Location = New System.Drawing.Point(12, 119)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(133, 20)
         Me.DateTimePicker1.TabIndex = 8
@@ -203,7 +205,7 @@ Partial Class Pridat_CP
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label5.Location = New System.Drawing.Point(534, 52)
+        Me.Label5.Location = New System.Drawing.Point(12, 100)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(104, 17)
         Me.Label5.TabIndex = 9
@@ -212,7 +214,7 @@ Partial Class Pridat_CP
         'TextBox3
         '
         Me.TextBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox3.Location = New System.Drawing.Point(812, 71)
+        Me.TextBox3.Location = New System.Drawing.Point(658, 71)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(164, 20)
         Me.TextBox3.TabIndex = 10
@@ -221,7 +223,7 @@ Partial Class Pridat_CP
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label6.Location = New System.Drawing.Point(812, 52)
+        Me.Label6.Location = New System.Drawing.Point(658, 52)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(74, 17)
         Me.Label6.TabIndex = 11
@@ -241,7 +243,7 @@ Partial Class Pridat_CP
         'TextBox4
         '
         Me.TextBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox4.Location = New System.Drawing.Point(12, 141)
+        Me.TextBox4.Location = New System.Drawing.Point(12, 188)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(204, 20)
         Me.TextBox4.TabIndex = 14
@@ -250,7 +252,7 @@ Partial Class Pridat_CP
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label8.Location = New System.Drawing.Point(12, 121)
+        Me.Label8.Location = New System.Drawing.Point(12, 168)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(58, 17)
         Me.Label8.TabIndex = 15
@@ -259,7 +261,7 @@ Partial Class Pridat_CP
         'TextBox5
         '
         Me.TextBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox5.Location = New System.Drawing.Point(236, 141)
+        Me.TextBox5.Location = New System.Drawing.Point(236, 188)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(100, 20)
         Me.TextBox5.TabIndex = 16
@@ -268,7 +270,7 @@ Partial Class Pridat_CP
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label9.Location = New System.Drawing.Point(236, 121)
+        Me.Label9.Location = New System.Drawing.Point(236, 168)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(47, 17)
         Me.Label9.TabIndex = 17
@@ -277,7 +279,7 @@ Partial Class Pridat_CP
         'TextBox6
         '
         Me.TextBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox6.Location = New System.Drawing.Point(357, 141)
+        Me.TextBox6.Location = New System.Drawing.Point(357, 188)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(100, 20)
         Me.TextBox6.TabIndex = 18
@@ -286,7 +288,7 @@ Partial Class Pridat_CP
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label10.Location = New System.Drawing.Point(357, 121)
+        Me.Label10.Location = New System.Drawing.Point(357, 168)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(79, 17)
         Me.Label10.TabIndex = 19
@@ -295,7 +297,7 @@ Partial Class Pridat_CP
         'TextBox7
         '
         Me.TextBox7.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox7.Location = New System.Drawing.Point(479, 141)
+        Me.TextBox7.Location = New System.Drawing.Point(479, 188)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.Size = New System.Drawing.Size(100, 20)
         Me.TextBox7.TabIndex = 20
@@ -304,7 +306,7 @@ Partial Class Pridat_CP
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label11.Location = New System.Drawing.Point(479, 122)
+        Me.Label11.Location = New System.Drawing.Point(479, 169)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(93, 17)
         Me.Label11.TabIndex = 21
@@ -321,10 +323,10 @@ Partial Class Pridat_CP
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PolozkaDataGridViewTextBoxColumn, Me.KusovDataGridViewTextBoxColumn, Me.CenaDataGridViewTextBoxColumn, Me.Col1, Me.Column1})
         Me.DataGridView1.DataSource = Me.CPBindingSource
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 165)
+        Me.DataGridView1.Location = New System.Drawing.Point(0, 214)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(980, 568)
+        Me.DataGridView1.Size = New System.Drawing.Size(980, 519)
         Me.DataGridView1.TabIndex = 22
         '
         'PolozkaDataGridViewTextBoxColumn
@@ -377,7 +379,7 @@ Partial Class Pridat_CP
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(586, 141)
+        Me.Button1.Location = New System.Drawing.Point(586, 188)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(81, 23)
         Me.Button1.TabIndex = 23
@@ -580,7 +582,7 @@ Partial Class Pridat_CP
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.Label12.Location = New System.Drawing.Point(673, 52)
+        Me.Label12.Location = New System.Drawing.Point(151, 100)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(118, 17)
         Me.Label12.TabIndex = 27
@@ -589,17 +591,38 @@ Partial Class Pridat_CP
         'DateTimePicker2
         '
         Me.DateTimePicker2.CalendarMonthBackground = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.DateTimePicker2.Location = New System.Drawing.Point(673, 71)
+        Me.DateTimePicker2.Location = New System.Drawing.Point(151, 119)
         Me.DateTimePicker2.Name = "DateTimePicker2"
         Me.DateTimePicker2.Size = New System.Drawing.Size(133, 20)
         Me.DateTimePicker2.TabIndex = 26
         Me.DateTimePicker2.Value = New Date(1800, 1, 1, 0, 0, 0, 0)
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.Label13.Location = New System.Drawing.Point(533, 52)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(113, 17)
+        Me.Label13.TabIndex = 29
+        Me.Label13.Text = "Číslo požiadavky"
+        '
+        'TextBox8
+        '
+        Me.TextBox8.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.TextBox8.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox8.Location = New System.Drawing.Point(533, 71)
+        Me.TextBox8.Name = "TextBox8"
+        Me.TextBox8.Size = New System.Drawing.Size(119, 20)
+        Me.TextBox8.TabIndex = 28
         '
         'Pridat_CP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(980, 733)
+        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.TextBox8)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.DateTimePicker2)
         Me.Controls.Add(Me.DataGridView5)
@@ -702,4 +725,6 @@ Partial Class Pridat_CP
     Friend WithEvents CenaDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Col1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column1 As System.Windows.Forms.DataGridViewButtonColumn
+    Friend WithEvents Label13 As Label
+    Friend WithEvents TextBox8 As TextBox
 End Class

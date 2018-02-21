@@ -68,12 +68,13 @@ Public Class Pridat_CP
         Try
             Me.CPTableAdapter.Fill(Me.RotekDataSet.CP)
 
-            Dim nazov, popis, firma, veduci, poznamka As String
+            Dim nazov, popis, firma, veduci, poznamka, cisloPoziadavky As String
             Dim datum, datum1 As DateTime
 
             nazov = TextBox1.Text
             popis = TextBox2.Text
             poznamka = TextBox3.Text
+            cisloPoziadavky = TextBox8.Text
             firma = ComboBox1.Text
             veduci = ComboBox2.Text
             datum = DateTimePicker1.Value
@@ -135,7 +136,7 @@ Public Class Pridat_CP
             ElseIf DataGridView2.RowCount <> 0 Then
 
                 If TextBox1.Text = Me.cp Then
-                    sql = "UPDATE CP SET Firma='" & ComboBox1.Text & "', Veduci='" & ComboBox2.Text & "', Poznamka='" & TextBox3.Text & "', Datum='" & datum.ToString("yyyy-MM-dd") & "', Popis='" & popis & "' WHERE pocet=1 AND Nazov='" & nazov & "'"
+                    sql = "UPDATE CP SET Firma='" & ComboBox1.Text & "', Veduci='" & ComboBox2.Text & "', CisloPoziadavky='" & cisloPoziadavky & "' Poznamka='" & TextBox3.Text & "', Datum='" & datum.ToString("yyyy-MM-dd") & "', Popis='" & popis & "' WHERE pocet=1 AND Nazov='" & nazov & "'"
                     cmd = New SqlCommand(sql, con)
                     cmd.ExecuteNonQuery()
                 Else
@@ -149,9 +150,9 @@ Public Class Pridat_CP
                 Me.cp = nazov
             Else
                 If datum1 <> New DateTime(1800, 1, 1) Then
-                    sql = "INSERT INTO CP (Nazov, Popis, Firma, Veduci, Datum, Cena, Poznamka, pocet, Evidoval, DU) VALUES('" & nazov & "','" & popis & "','" & firma & "','" & veduci & "','" & datum.ToString("yyyy-MM-dd") & "','" & 0 & "','" & poznamka & "'," & 1 & ",'" & Form78.uzivatel & "','" & datum1.ToString("yyyy-MM-dd") & "')"
+                    sql = "INSERT INTO CP (Nazov, Popis, Firma, Veduci, Datum, Cena, CisloPoziadavky, Poznamka, pocet, Evidoval, DU) VALUES('" & nazov & "','" & popis & "','" & firma & "','" & veduci & "','" & datum.ToString("yyyy-MM-dd") & "','" & 0 & "','" & cisloPoziadavky & "','" & poznamka & "'," & 1 & ",'" & Form78.uzivatel & "','" & datum1.ToString("yyyy-MM-dd") & "')"
                 Else
-                    sql = "INSERT INTO CP (Nazov, Popis, Firma, Veduci, Datum, Cena, Poznamka, pocet, Evidoval) VALUES('" & nazov & "','" & popis & "','" & firma & "','" & veduci & "','" & datum.ToString("yyyy-MM-dd") & "','" & 0 & "','" & poznamka & "'," & 1 & ",'" & Form78.uzivatel & "')"
+                    sql = "INSERT INTO CP (Nazov, Popis, Firma, Veduci, Datum, Cena, CisloPoziadavky, Poznamka, pocet, Evidoval) VALUES('" & nazov & "','" & popis & "','" & firma & "','" & veduci & "','" & datum.ToString("yyyy-MM-dd") & "','" & 0 & "','" & cisloPoziadavky & "','" & poznamka & "'," & 1 & ",'" & Form78.uzivatel & "')"
                 End If
             End If
             cmd = New SqlCommand(sql, con)

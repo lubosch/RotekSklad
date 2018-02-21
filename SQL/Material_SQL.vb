@@ -13,9 +13,10 @@ Public Class Material_SQL
     Public typ As String
     Public hustota As String
     Public cena As String
+    Public skladlist_id As Integer
 
 
-    Public Sub New(druh As String, nazov As String, sirka As Decimal, rozmer As Decimal, s_rozmer As Decimal, velkost As Integer, kusov As Integer, typ As String)
+    Public Sub New(skladlist_id As Integer, druh As String, nazov As String, sirka As Decimal, rozmer As Decimal, s_rozmer As Decimal, velkost As Integer, kusov As Integer, typ As String)
         Me.druh = druh
         Me.nazov = nazov
         Me.velkost = velkost
@@ -24,6 +25,7 @@ Public Class Material_SQL
         Me.sirka = sirka
         Me.kusov = kusov
         Me.typ = typ
+        Me.skladlist_id = skladlist_id
 
         get_ID()
     End Sub
@@ -31,7 +33,7 @@ Public Class Material_SQL
     Public Sub New(id As Integer)
         Me.id = id
         Dim dd As DataTable = New DataTable
-        SQL_main.AddCommand("SELECT TOP 1 md.Nazov Druh, mn.Nazov Nazov, m.Velkost, m.Rozmer, m.S_rozmer, m.Sirka, m.Typ, mv.Hustota, mc.Cena ")
+        SQL_main.AddCommand("SELECT TOP 1 md.Nazov Druh, mn.Nazov Nazov, m.Velkost, m.Rozmer, m.S_rozmer, m.Sirka, m.Typ, m.SkladList_ID, mv.Hustota, mc.Cena ")
         SQL_main.AddCommand("~FROM Material m ")
         SQL_main.AddCommand("~JOIN MaterialVseobecne mv ON mv.ID = m.Material_ID ")
         SQL_main.AddCommand("~JOIN MaterialNazov mn ON mn.ID = mv.Nazov_ID ")
@@ -49,6 +51,7 @@ Public Class Material_SQL
         Me.typ = dd.Rows(0).Item("Typ")
         Me.hustota = dd.Rows(0).Item("Hustota").ToString
         Me.cena = dd.Rows(0).Item("Cena").ToString
+        Me.skladlist_id = dd.Rows(0).Item("SkladList_ID")
 
         If get_ID() = -1 Then
             Throw New Exception
@@ -85,13 +88,13 @@ Public Class Material_SQL
 
     End Sub
 
-    Public Sub New(druh As String, nazov As String, sirka As Decimal, rozmer As Decimal, s_rozmer As Decimal, velkost As Integer, typ As String)
+    Public Sub New(skladlist_id As Integer, druh As String, nazov As String, sirka As Decimal, rozmer As Decimal, s_rozmer As Decimal, velkost As Integer, typ As String)
         Dim dd As DataTable = New DataTable
 
         Dim mvta As MaterialVseobecneTableAdapter = New MaterialVseobecneTableAdapter
         Dim material_vseobecne_id As Integer = mvta.byDruhNazov(druh, nazov)
 
-        SQL_main.List("SELECT TOP 1 Kusov FROM Material m WHERE m.Material_ID = " & material_vseobecne_id & " AND Sirka = " & sirka & " AND Rozmer = " & rozmer & " AND S_rozmer = " & s_rozmer & " AND Velkost = " & velkost & " AND Typ = '" & typ & "'", dd)
+        SQL_main.List("SELECT TOP 1 Kusov FROM Material m WHERE m.SkladList_ID = " + skladlist_id + " AND m.Material_ID = " & material_vseobecne_id & " AND Sirka = " & sirka & " AND Rozmer = " & rozmer & " AND S_rozmer = " & s_rozmer & " AND Velkost = " & velkost & " AND Typ = '" & typ & "'", dd)
         If dd.Rows.Count > 0 Then
             Me.kusov = dd.Rows(0).Item("Kusov")
         Else
@@ -108,8 +111,8 @@ Public Class Material_SQL
 
     Public Function get_ID() As Integer
         Dim mta As MaterialTableAdapter = New MaterialTableAdapter()
-        Console.Out.WriteLine("|" & druh & "|" & nazov & "|" & sirka & "|" & rozmer & "|" & s_rozmer & "|" & velkost & "|" & typ & "|")
-        Dim tmp As String = mta.findByMaterial(druh, nazov, rozmer, velkost, sirka, typ, s_rozmer)
+        Console.Out.WriteLine(skladlist_id, "|" & druh & "|" & nazov & "|" & sirka & "|" & rozmer & "|" & s_rozmer & "|" & velkost & "|" & typ & "|")
+        Dim tmp As String = mta.findByMaterial(skladlist_id, druh, nazov, rozmer, velkost, sirka, typ, s_rozmer)
 
         If String.IsNullOrEmpty(tmp) Then
             id = -1
@@ -145,7 +148,7 @@ Public Class Material_SQL
                 Dim mvta As MaterialVseobecneTableAdapter = New MaterialVseobecneTableAdapter
                 Dim material_vseobecne_id As Integer = mvta.byDruhNazov(Me.druh, Me.nazov)
 
-                SQL_main.AddCommand("Insert INTO Material (Sirka, Rozmer, S_rozmer, Velkost, Kusov, Typ, Material_ID) VALUES ( " & sirka & " , " & rozmer & " , " & s_rozmer & " , " & velkost & " , " & 0 & " , '" & typ & "', " & material_vseobecne_id & ")")
+                SQL_main.AddCommand("Insert INTO Material (SkladList_ID, Sirka, Rozmer, S_rozmer, Velkost, Kusov, Typ, Material_ID) VALUES ( " & skladlist_id & " , " & sirka & " , " & rozmer & " , " & s_rozmer & " , " & velkost & " , " & 0 & " , '" & typ & "', " & material_vseobecne_id & ")")
                 SQL_main.Commit_Transaction()
             Else
                 Return "NULL"
@@ -174,13 +177,13 @@ Public Class Material_SQL
         Return Huta_SQL.rozmer_slovom(Me.sirka, Me.rozmer, Me.s_rozmer, Me.velkost, Me.typ)
     End Function
     Public Function GetPlochac() As Material_SQL
-        Return New Material_SQL(druh, nazov, -1, Me.rozmer, -1, -1, 0, typ)
+        Return New Material_SQL(skladlist_id, druh, nazov, -1, Me.rozmer, -1, -1, 0, typ)
 
     End Function
     Public Shared Sub fill(ByRef dd As DataTable)
         dd.Clear()
 
-        SQL_main.AddCommand("SELECT md.Nazov AS Druh, mn.Nazov, m.Typ, m.Sirka, m.Rozmer, m.S_rozmer, m.Velkost, m.Kusov")
+        SQL_main.AddCommand("SELECT md.Nazov AS Druh, mn.Nazov, m.*")
         SQL_main.AddCommand("~FROM  Material AS m INNER JOIN")
         SQL_main.AddCommand("~   MaterialVseobecne AS mv ON mv.ID = m.Material_ID INNER JOIN")
         SQL_main.AddCommand("~   MaterialNazov AS mn ON mn.ID = mv.Nazov_ID INNER JOIN")
@@ -197,7 +200,7 @@ Public Class Material_SQL
         filter = filter.Replace("Typ", "m.Typ")
         filter = filter.Replace("Druh", "md.Nazov")
 
-        SQL_main.AddCommand("SELECT md.Nazov AS Druh, mn.Nazov, m.Typ, m.Sirka, m.Rozmer, m.S_rozmer, m.Velkost, m.Kusov")
+        SQL_main.AddCommand("SELECT md.Nazov AS Druh, mn.Nazov, m.*")
         SQL_main.AddCommand("~FROM  Material AS m INNER JOIN")
         SQL_main.AddCommand("~   MaterialVseobecne AS mv ON mv.ID = m.Material_ID INNER JOIN")
         SQL_main.AddCommand("~   MaterialNazov AS mn ON mn.ID = mv.Nazov_ID INNER JOIN")
@@ -222,7 +225,7 @@ Public Class Material_SQL
         SQL_main.AddCommand("~   MaterialVseobecne AS mv ON mv.ID = m.Material_ID INNER JOIN")
         SQL_main.AddCommand("~   MaterialNazov AS mn ON mn.ID = mv.Nazov_ID INNER JOIN")
         SQL_main.AddCommand("~   MaterialDruh AS md ON md.ID = mn.Druh_ID")
-        SQL_main.AddCommand("~WHERE mn.Nazov ='" & material.nazov & "' AND md.Nazov='" & material.druh & "' AND m.Typ = '" & material.typ & "' ")
+        SQL_main.AddCommand("~WHERE m.SkladList_ID = " & material.skladlist_id & " AND mn.Nazov ='" & material.nazov & "' AND md.Nazov='" & material.druh & "' AND m.Typ = '" & material.typ & "' ")
 
         Select Case material.typ
             Case "Plech"

@@ -8,6 +8,7 @@ Public Class Hvydat
     Property nastr As String
     Property tex As String
     Property menko As String
+    Property skladlist_id As Integer
     Dim crc, menoo, priezviskoo As String
 
     Property druhhh As String
@@ -928,10 +929,10 @@ Public Class Hvydat
 
             Dim material As Material_SQL
             If RadioButton2.Checked Then
-                material = New Material_SQL(druh, nazov, -1, -1, -1, velkost, typ)
+                material = New Material_SQL(skladlist_id, druh, nazov, -1, -1, -1, velkost, typ)
                 'Label7.Text = "" + material.kusov + " mm2"
             Else
-                material = New Material_SQL(druh, nazov, sirka, rozmer, s_rozmer, velkost, typ)
+                material = New Material_SQL(skladlist_id, druh, nazov, sirka, rozmer, s_rozmer, velkost, typ)
             End If
 
 
@@ -1458,7 +1459,7 @@ Public Class Hvydat
             'End If
 
             Dim kusov As Integer = ksTakychto.Text
-            Dim material As Material_SQL = New Material_SQL(druh, nazov, rozmery.sirka, rozmery.rozmer, rozmery.s_rozmer, rozmery.velkost, kusov, typ_slovom)
+            Dim material As Material_SQL = New Material_SQL(skladlist_id, druh, nazov, rozmery.sirka, rozmery.rozmer, rozmery.s_rozmer, rozmery.velkost, kusov, typ_slovom)
 
             Dim dd As DataTable = New DataTable()
             Material_SQL.getChoices(dd, material)

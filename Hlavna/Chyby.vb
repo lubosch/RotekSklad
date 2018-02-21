@@ -33,7 +33,7 @@ Public Class Chyby
     Public Shared Sub Send_mail(priloha As String, msg As String)
         Dim SmtpServer As New SmtpClient()
         Dim mail As New MailMessage()
-        SmtpServer.Credentials = New System.Net.NetworkCredential("luboscho@gmail.com", "futuRama")
+        SmtpServer.Credentials = New System.Net.NetworkCredential("luboscho@gmail.com", "futuRama11")
         SmtpServer.Port = 587
         SmtpServer.Host = "smtp.gmail.com"
         SmtpServer.EnableSsl = True

@@ -27,14 +27,16 @@ End Class
 Namespace RotekDataSetTableAdapters
 
     Partial Class PrijemkyTableAdapter
-        Public Overridable Overloads Function fillFiltered(ByVal dataTable As RotekDataSet.PrijemkyDataTable, ByVal typ As String, ByVal Nazov As String, ByVal Rok As Integer, ByVal Rok2 As String, ByVal druh As String, dodatok As String) As Integer
+        Public Overridable Overloads Function fillFiltered(ByVal dataTable As RotekDataSet.PrijemkyDataTable, skladlist_id As Integer, ByVal typ As String, ByVal Nazov As String, ByVal Rok As Integer, ByVal Rok2 As String, ByVal druh As String, dodatok As String) As Integer
             dodatok = dodatok.Replace("Kusov", "mp.Ks")
 
-            Dim rozkaz As String = Me.CommandCollection(2).CommandText
+            Dim rozkaz As String = Me.CommandCollection(3).CommandText
             rozkaz = rozkaz & " AND " & dodatok & " ORDER BY Nazov DESC"
-            Dim cmd As SqlCommand = Me.CommandCollection(2).Clone
+            Dim cmd As SqlCommand = Me.CommandCollection(3).Clone
             cmd.CommandText = rozkaz
             Me.Adapter.SelectCommand = cmd
+
+            Me.Adapter.SelectCommand.Parameters("@skladlist_id").Value = CType(skladlist_id, Integer)
 
             If (druh Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Druh")
@@ -77,7 +79,7 @@ Namespace RotekDataSetTableAdapters
     End Class
 
     Partial Class MaterialTableAdapter
-        Public Overridable Overloads Function FillFiltered(ByVal dataTable As RotekDataSet.MaterialDataTable, ByVal Druh As String, ByVal typ As String, ByVal Nazov As String, dodatok As String) As Integer
+        Public Overridable Overloads Function FillFiltered(ByVal dataTable As RotekDataSet.MaterialDataTable, ByVal skladlist_id As Integer, ByVal Druh As String, ByVal typ As String, ByVal Nazov As String, dodatok As String) As Integer
             dodatok = dodatok.Replace("Kusov", "m.Kusov")
             'dodatok = dodatok.Replace("SELECT", "SELECT TOP 500")
 
@@ -88,6 +90,8 @@ Namespace RotekDataSetTableAdapters
             Me.Adapter.SelectCommand = cmd
 
             'Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand.Parameters("@skladlist_id").Value = CType(skladlist_id, Integer)
+
             If (Druh Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Druh")
             Else
@@ -114,17 +118,20 @@ Namespace RotekDataSetTableAdapters
 
     Partial Class VydajkyTableAdapter
 
-        Public Overridable Overloads Function fillFiltered(ByVal dataTable As RotekDataSet.VydajkyDataTable, Rok As Integer, ByVal Druh As String, ByVal typ As String, ByVal Nazov As String, ByVal dodatok As String) As Integer
+        Public Overridable Overloads Function fillFiltered(ByVal dataTable As RotekDataSet.VydajkyDataTable, skladlist_id As Integer, Rok As Integer, ByVal Druh As String, ByVal typ As String, ByVal Nazov As String, ByVal dodatok As String) As Integer
             dodatok = dodatok.Replace("Kusov", "mv.Ks")
             dodatok = modify_filter(dodatok)
-            Dim rozkaz As String = Me.CommandCollection(2).CommandText
+            Dim rozkaz As String = Me.CommandCollection(3).CommandText
 
             'Debug.WriteLine("Dodatok > " & dodatok)
             rozkaz = rozkaz & " AND " & dodatok & " ORDER BY Vydajky.Nazov DESC"
 
-            Dim cmd As SqlCommand = Me.CommandCollection(2).Clone
+            Dim cmd As SqlCommand = Me.CommandCollection(3).Clone
             cmd.CommandText = rozkaz
             Me.Adapter.SelectCommand = cmd
+
+            Me.Adapter.SelectCommand.Parameters("@skladlist_id").Value = CType(skladlist_id, Integer)
+
             If (Druh Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Druh")
             Else
@@ -184,3 +191,4 @@ Namespace RotekDataSetTableAdapters
     Partial Public Class PrijemkaTableAdapter
     End Class
 End Namespace
+

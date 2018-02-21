@@ -8,6 +8,7 @@ Imports System.Threading
 Imports System.Reflection
 Imports System.Web
 Imports Microsoft.VisualBasic.Devices
+Imports System.Globalization
 
 Public Class Spust
     Public Shared spravy As List(Of Sprava)
@@ -41,6 +42,8 @@ Public Class Spust
     End Sub
 
     Private Sub Spust_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'RotekDataSet.SkladList' table. You can move, or remove it, as needed.
+        Me.SkladListTableAdapter.Fill(Me.RotekDataSet.SkladList)
         'TODO: This line of code loads data into the 'RotekDataSet.Maily' table. You can move, or remove it, as needed.
 
         aktualizacie()
@@ -87,18 +90,19 @@ Public Class Spust
 
             'End While
             'objReader.Close()
-            objReader = New System.IO.StreamReader(My.Settings.Rotek3 & "last.dat", System.Text.Encoding.Default)
-            Dim datum As DateTime = objReader.ReadLine()
-            objReader.Close()
-            objReader.Dispose()
-            datum = datum.AddMonths(1)
-            ' MessageBox.Show(datum.ToShortDateString)
-            If datum.CompareTo(Now) <= 0 Then
-                objWriter = New System.IO.StreamWriter(My.Settings.Rotek3 & "last.dat", False)
-                objWriter.Write(Now.ToShortDateString)
-                objWriter.Dispose()
-                posli_mail()
-            End If
+            'objReader = New System.IO.StreamReader(My.Settings.Rotek3 & "last.dat", System.Text.Encoding.Default)
+            'Dim dateString As String = objReader.ReadLine().Replace(vbCr, "").Replace(vbLf, "")
+            'Dim datum As DateTime = DateTime.ParseExact(dateString, "dd.m.yyyy", CultureInfo.InvariantCulture)
+            'objReader.Close()
+            'objReader.Dispose()
+            'datum = datum.AddMonths(1)
+            '' MessageBox.Show(datum.ToShortDateString)
+            'If datum.CompareTo(Now) <= 0 Then
+            '    objWriter = New System.IO.StreamWriter(My.Settings.Rotek3 & "last.dat", False)
+            '    objWriter.Write(Now.ToShortDateString)
+            '    objWriter.Dispose()
+            '    posli_mail()
+            'End If
 
 
             Me.MailyTableAdapter.Fill(Me.RotekDataSet.Maily)
@@ -157,7 +161,7 @@ Public Class Spust
     '    End Using
     'End Function
 
-    Private Sub Button2_Click(sender As System.Object, e As System.EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As System.Object, e As System.EventArgs)
         Dim f As New Form78
         Me.Hide()
         f.ShowDialog()
@@ -176,6 +180,7 @@ Public Class Spust
 
     Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
         Dim f As New hForm78
+        f.sklad_list_id = ListBox1.SelectedValue
         Me.Hide()
         f.ShowDialog()
         f.Dispose()
@@ -291,7 +296,7 @@ Public Class Spust
         Try
             Dim SmtpServer As New SmtpClient()
             Dim mail As New MailMessage()
-            SmtpServer.Credentials = New System.Net.NetworkCredential("luboscho@gmail.com", "futuRama")
+            SmtpServer.Credentials = New System.Net.NetworkCredential("luboscho@gmail.com", "futuRama11")
             SmtpServer.Port = 587
             SmtpServer.Host = "smtp.gmail.com"
             SmtpServer.EnableSsl = True

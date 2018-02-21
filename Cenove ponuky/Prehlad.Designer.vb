@@ -108,10 +108,10 @@ Partial Class Prehlad
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Viner Hand ITC", 36.0!, System.Drawing.FontStyle.Bold)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Bold)
         Me.Label1.Location = New System.Drawing.Point(388, -2)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(392, 78)
+        Me.Label1.Size = New System.Drawing.Size(373, 55)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Cenové ponuky"
         '
@@ -193,7 +193,7 @@ Partial Class Prehlad
         '
         Me.DU.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.DU.DataPropertyName = "DU"
-        Me.DU.HeaderText = "Ukončiť do:"
+        Me.DU.HeaderText = "Ukončiť do"
         Me.DU.Name = "DU"
         Me.DU.ReadOnly = True
         Me.DU.Width = 86
@@ -798,22 +798,22 @@ Partial Class Prehlad
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents Button6 As System.Windows.Forms.Button
     Friend WithEvents ListView1 As System.Windows.Forms.ListView
-    Friend WithEvents NazovDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PopisDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents FirmaDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents VeduciDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DatumDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents CenaDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DU As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PoznamkaDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column1 As System.Windows.Forms.DataGridViewButtonColumn
-    Friend WithEvents Evidoval As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As System.Windows.Forms.DataGridViewButtonColumn
-    Friend WithEvents Column3 As System.Windows.Forms.DataGridViewButtonColumn
-    Friend WithEvents Column4 As System.Windows.Forms.DataGridViewButtonColumn
-    Friend WithEvents Column5 As System.Windows.Forms.DataGridViewButtonColumn
-    Friend WithEvents Column6 As System.Windows.Forms.DataGridViewButtonColumn
-    Friend WithEvents Column7 As System.Windows.Forms.DataGridViewButtonColumn
-    Friend WithEvents Vykresy As System.Windows.Forms.DataGridViewButtonColumn
-    Friend WithEvents Vykresy_db As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents NazovDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PopisDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents FirmaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents VeduciDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DatumDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents CenaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DU As DataGridViewTextBoxColumn
+    Friend WithEvents PoznamkaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents Column1 As DataGridViewButtonColumn
+    Friend WithEvents Evidoval As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewButtonColumn
+    Friend WithEvents Column3 As DataGridViewButtonColumn
+    Friend WithEvents Column4 As DataGridViewButtonColumn
+    Friend WithEvents Column5 As DataGridViewButtonColumn
+    Friend WithEvents Column6 As DataGridViewButtonColumn
+    Friend WithEvents Column7 As DataGridViewButtonColumn
+    Friend WithEvents Vykresy As DataGridViewButtonColumn
+    Friend WithEvents Vykresy_db As DataGridViewTextBoxColumn
 End Class
