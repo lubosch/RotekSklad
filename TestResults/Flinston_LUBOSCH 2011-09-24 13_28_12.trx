@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="f8708cd9-7745-4bd7-b100-c865dc966ed6" name="Flinston@LUBOSCH 2011-09-24 13:28:12" runUser="LUBOSCH\Flinston" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="3440aae9-6dd4-49fe-9141-abcc44191783">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Flinston_LUBOSCH 2011-09-24 13_28_12" />
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2011-09-24T13:28:12.4173780+02:00" queuing="2011-09-24T13:28:15.8925768+02:00" start="2011-09-24T13:28:16.1175897+02:00" finish="2011-09-24T13:28:19.7417970+02:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestMethod1" storage="c:\users\flinston\documents\visual studio 2010\projects\windowsapplication2\debug\defaulttest.dll" id="59863143-3238-122e-4d8a-637b491cc755">
+      <Execution id="59856b42-ae21-413c-802a-e97f7437750a" />
+      <TestMethod codeBase="C:/Users/Flinston/documents/visual studio 2010/Projects/WindowsApplication2/Debug/DefaultTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.UnitTest1, DefaultTest, Version=1.0.4284.22443, Culture=neutral, PublicKeyToken=null" name="TestMethod1" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="59863143-3238-122e-4d8a-637b491cc755" executionId="59856b42-ae21-413c-802a-e97f7437750a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="59856b42-ae21-413c-802a-e97f7437750a" testId="59863143-3238-122e-4d8a-637b491cc755" testName="TestMethod1" computerName="LUBOSCH" duration="00:00:00.0123930" startTime="2011-09-24T13:28:16.3056004+02:00" endTime="2011-09-24T13:28:18.5637296+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="59856b42-ae21-413c-802a-e97f7437750a">
+    </UnitTestResult>
+  </Results>
+</TestRun>
