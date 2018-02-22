@@ -1,0 +1,104 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WindowsApplication2", "WindowsApplication2\WindowsApplication2.vbproj", "{FA13F182-105D-4F9A-A9F4-155E2A06804C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4C883ECE-454B-481E-AC48-E47018F3A64D}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+		WindowsApplication2.vsmdi = WindowsApplication2.vsmdi
+	EndProjectSection
+EndProject
+Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Inštalačka", "Inštalačka\Inštalačka.isproj", "{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C} = {FA13F182-105D-4F9A-A9F4-155E2A06804C}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Mixed Platforms = CD_ROM|Mixed Platforms
+		CD_ROM|Win32 = CD_ROM|Win32
+		CD_ROM|x86 = CD_ROM|x86
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|Win32 = Debug|Win32
+		Debug|x86 = Debug|x86
+		DVD-5|Mixed Platforms = DVD-5|Mixed Platforms
+		DVD-5|Win32 = DVD-5|Win32
+		DVD-5|x86 = DVD-5|x86
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|Win32 = Release|Win32
+		Release|x86 = Release|x86
+		SingleImage|Mixed Platforms = SingleImage|Mixed Platforms
+		SingleImage|Win32 = SingleImage|Win32
+		SingleImage|x86 = SingleImage|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.CD_ROM|Mixed Platforms.ActiveCfg = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.CD_ROM|Mixed Platforms.Build.0 = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.CD_ROM|Win32.ActiveCfg = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.CD_ROM|Win32.Build.0 = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.CD_ROM|x86.ActiveCfg = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.CD_ROM|x86.Build.0 = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.Debug|Win32.ActiveCfg = Debug|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.Debug|x86.ActiveCfg = Debug|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.Debug|x86.Build.0 = Debug|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.DVD-5|Mixed Platforms.ActiveCfg = Debug|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.DVD-5|Mixed Platforms.Build.0 = Debug|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.DVD-5|Win32.ActiveCfg = Debug|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.DVD-5|Win32.Build.0 = Debug|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.DVD-5|x86.ActiveCfg = Debug|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.DVD-5|x86.Build.0 = Debug|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.Release|Win32.ActiveCfg = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.Release|x86.ActiveCfg = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.Release|x86.Build.0 = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.SingleImage|Mixed Platforms.ActiveCfg = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.SingleImage|Mixed Platforms.Build.0 = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.SingleImage|Win32.ActiveCfg = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.SingleImage|Win32.Build.0 = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.SingleImage|x86.ActiveCfg = Release|x86
+		{FA13F182-105D-4F9A-A9F4-155E2A06804C}.SingleImage|x86.Build.0 = Release|x86
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.CD_ROM|Mixed Platforms.ActiveCfg = CD_ROM
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.CD_ROM|Mixed Platforms.Build.0 = CD_ROM
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.CD_ROM|Win32.ActiveCfg = CD_ROM
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.CD_ROM|Win32.Build.0 = CD_ROM
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.CD_ROM|x86.ActiveCfg = CD_ROM
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.CD_ROM|x86.Build.0 = CD_ROM
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.Debug|Mixed Platforms.ActiveCfg = DVD-5
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.Debug|Mixed Platforms.Build.0 = DVD-5
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.Debug|Win32.ActiveCfg = DVD-5
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.Debug|Win32.Build.0 = DVD-5
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.Debug|x86.ActiveCfg = DVD-5
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.Debug|x86.Build.0 = DVD-5
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.DVD-5|Mixed Platforms.ActiveCfg = DVD-5
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.DVD-5|Mixed Platforms.Build.0 = DVD-5
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.DVD-5|Win32.ActiveCfg = DVD-5
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.DVD-5|Win32.Build.0 = DVD-5
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.DVD-5|x86.ActiveCfg = DVD-5
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.DVD-5|x86.Build.0 = DVD-5
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.Release|Mixed Platforms.ActiveCfg = SingleImage
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.Release|Mixed Platforms.Build.0 = SingleImage
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.Release|Win32.ActiveCfg = SingleImage
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.Release|Win32.Build.0 = SingleImage
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.Release|x86.ActiveCfg = SingleImage
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.Release|x86.Build.0 = SingleImage
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.SingleImage|Mixed Platforms.ActiveCfg = SingleImage
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.SingleImage|Mixed Platforms.Build.0 = SingleImage
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.SingleImage|Win32.ActiveCfg = SingleImage
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.SingleImage|Win32.Build.0 = SingleImage
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.SingleImage|x86.ActiveCfg = SingleImage
+		{E32A9FBD-EBCF-4C6E-8D98-9399C3383F37}.SingleImage|x86.Build.0 = SingleImage
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = WindowsApplication2.vsmdi
+	EndGlobalSection
+EndGlobal

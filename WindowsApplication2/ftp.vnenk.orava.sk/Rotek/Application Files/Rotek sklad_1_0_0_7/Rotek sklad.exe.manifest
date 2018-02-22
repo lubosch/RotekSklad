@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly manifestVersion="1.0" xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
+  <asmv1:assemblyIdentity version="1.0.0.7" name="Rotek sklad.exe" publicKeyToken="1533e553626f57a5" language="sk-SK" processorArchitecture="x86" type="win32" />
+  <description asmv2:iconFile="logo+200_67.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Rotek sklad" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+    <commandLine file="Rotek sklad.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet version="1" class="System.Security.NamedPermissionSet" Name="LocalIntranet" Description="Default rights given to applications on the local intranet" Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- UAC Manifest Options
+            If you want to change the Windows User Account Control level replace the 
+            requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+            Specifying requestedExecutionLevel node will disable file and registry virtualization.
+            If you want to utilize File and Registry Virtualization for backward 
+            compatibility then delete the requestedExecutionLevel node.
+        -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.VisualBasic.PowerPacks.Vs" version="10.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="System.Data.SqlServerCe" version="3.5.1.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Rotek sklad.exe" size="890368">
+      <assemblyIdentity name="Rotek sklad" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>GKH4CuOApMNPHkdCk8ps1FBvEMU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="logo+200_67.ico" size="67947">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>fyO7YtJ7SutQnSHHw8D8B/dGDew=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Rotek sklad.exe.config" size="1455">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>A7Odw8EL5qe64G0f7qiyNwf7MaQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Rotek.mdb" size="1245184" writeableType="applicationData">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>7tNqjvgn4ho59bSHTUYJluDOmRU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- A list of all Windows versions that this application is designed to work with. Windows will automatically select the most compatible environment.-->
+      <!-- If your application is designed to work with Windows 7, uncomment the following supportedOS node-->
+      <!--<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}"/>-->
+    </application>
+  </compatibility>
+<publisherIdentity name="CN=LUBOSCH\Flinston" issuerKeyHash="9f31c978af0c78546e19b2588bf322a3d9779929" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>DDZfnUAiDw4X0ptF0uvB+jdQ+KM=</DigestValue></Reference></SignedInfo><SignatureValue>NbKopyfs+QjIE3alWghBOo0nIhrnq9LcvgPEvLD/M6uZg/iR9R7wTBoc5MqBqCfQ6H+sQAIPwiIk/evi3vl3RDwq3dsv55gyBygdNaPMy75xe9FMfOkYPJTtEMsQNlJmTGh2Ws+eMKNFl1yGTA9j0gkiAQNyIFz6qGQ1eKHGHVs=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>g0LNxcya6IWDRq6T2Dcxil68rCO1RqZumMAIkNNLmGl7byApStme/EP2bgFYZn5ulrnRAeFqKD0LtxgwnkIlbqEBGQu6EBPHKEFXMBsUxdi/bdGH2XiZB7a+qa/OGLpWVJnqXjzj6HWGZHNvQk7AVOq9rVjn677r6wqAxMLjk2c=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="a3f85037fac1ebd2459bd2170e0f22409d5f360c" Description="" Url=""><as:assemblyIdentity version="1.0.0.7" name="Rotek sklad.exe" publicKeyToken="1533e553626f57a5" language="sk-SK" processorArchitecture="x86" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=LUBOSCH\Flinston</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>/czufejNVTRtgEtiqINaQO4ncr8=</DigestValue></Reference></SignedInfo><SignatureValue>dMLlBNSAykglfPNRs4pydttV+1X3Fu5dn64PDMTVOr03PGkDxmpuMuvOHltjGXPvazIURxeRCbkJuxxDmaabYVRNO4pLbDF9W1TFH0xAp9+9FhLfzcUtjnysTVDOfUnwNCUk3kJt/8sVgOvU+gyXGgF1ZM9moQvDHO22SIxx+Qg=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>g0LNxcya6IWDRq6T2Dcxil68rCO1RqZumMAIkNNLmGl7byApStme/EP2bgFYZn5ulrnRAeFqKD0LtxgwnkIlbqEBGQu6EBPHKEFXMBsUxdi/bdGH2XiZB7a+qa/OGLpWVJnqXjzj6HWGZHNvQk7AVOq9rVjn677r6wqAxMLjk2c=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB2TCCAUKgAwIBAgIQGqpZIrwgq7BLNo8xj35VTjANBgkqhkiG9w0BAQUFADArMSkwJwYDVQQDHiAATABVAEIATwBTAEMASABcAEYAbABpAG4AcwB0AG8AbjAeFw0xMjAxMjUxMzA1MTRaFw0xMzAxMjQxOTA1MTRaMCsxKTAnBgNVBAMeIABMAFUAQgBPAFMAQwBIAFwARgBsAGkAbgBzAHQAbwBuMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDQs3FzJrohYNGrpPYNzGKXrysI7VGpm6YwAiQ00uYaXtvIClK2Z78Q/ZuAVhmfm6WudEB4WooPQu3GDCeQiVuoQEZC7oQE8coQVcwGxTF2L9t0YfZeJkHtr6pr84YulZUmepePOPodYZkc29CTsBU6r2tWOfrvuvrCoDEwuOTZwIDAQABMA0GCSqGSIb3DQEBBQUAA4GBAFFE9MW1OHwSh1yJhgZpd8x6sRa9HhIYQJ5N9cyVYFrGWi+U9XsLqYDig8Ne5qNXYmD6odN2Ml637StHPj49RPzdqbKv2LyFdgMaveOGLfSOhuGFtIazuZ0cIzNoErnbow3+8WIPzXC2K1rjcBN4pUleUjeqhoBzQSacAWTN3z6q</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
